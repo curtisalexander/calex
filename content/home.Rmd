@@ -5,7 +5,7 @@ date: "2017-09-28"
 output: html_document
 ---
 
-```
+```bash
 #!/usr/bin/env bash
 
 echo 'blah' | \
