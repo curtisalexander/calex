@@ -3,7 +3,6 @@ title: "Colophon"
 author: "Curtis Alexander"
 date: "2017-09-29"
 output: html_document
-slug: colophon
 ---
 
 ### Website 
