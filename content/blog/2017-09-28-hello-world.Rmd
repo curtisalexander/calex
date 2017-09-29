@@ -20,7 +20,6 @@ for (i in rep("Hello World!", 5)) {
 
 
 library(purrr)
-
 rep("Hello World!", 5) %>%
   walk(writeLines)
 ```
@@ -46,18 +45,19 @@ data _null_;
   put "Hello World!";
 run;
 
+
 data _null_;
   file stdout ;
   do i = 1 to 5;
     put "Hello World!";
   end;
 run;
-
 ```
 
 ### Bash
 ```{r, engine = 'bash', eval = FALSE, echo = TRUE}
 echo "Hello World!"
+
 
 for i in {1..5} do
     echo "Hello World!"
@@ -68,11 +68,12 @@ done
 ```{r, engine = 'bash', eval = FALSE, echo = TRUE}
 awk 'BEGIN { print "Hello World!" }'
 
+
 awk 'BEGIN { for (i=0; i<=5; i++) print "Hello World!" }'
 ```
 
 ### Racket
-```{r, engine = 'racket', eval = FALSE, echo = TRUE}
+```racket
 #lang racket
 (print "Hello World!")
 

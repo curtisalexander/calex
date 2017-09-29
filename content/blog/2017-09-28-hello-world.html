@@ -21,7 +21,6 @@ for (i in rep(&quot;Hello World!&quot;, 5)) {
 
 
 library(purrr)
-
 rep(&quot;Hello World!&quot;, 5) %&gt;%
   walk(writeLines)</code></pre>
 </div>
@@ -45,17 +44,18 @@ pipe(&quot;Hello World!\n&quot;, lambda i: i * 5, print)</code></pre>
   put &quot;Hello World!&quot;;
 run;
 
+
 data _null_;
   file stdout ;
   do i = 1 to 5;
     put &quot;Hello World!&quot;;
   end;
-run;
-</code></pre>
+run;</code></pre>
 </div>
 <div id="bash" class="section level3">
 <h3>Bash</h3>
 <pre class="bash"><code>echo &quot;Hello World!&quot;
+
 
 for i in {1..5} do
     echo &quot;Hello World!&quot;
@@ -64,6 +64,7 @@ done</code></pre>
 <div id="awk" class="section level3">
 <h3>Awk</h3>
 <pre class="bash"><code>awk &#39;BEGIN { print &quot;Hello World!&quot; }&#39;
+
 
 awk &#39;BEGIN { for (i=0; i&lt;=5; i++) print &quot;Hello World!&quot; }&#39;</code></pre>
 </div>
