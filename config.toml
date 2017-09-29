@@ -1,0 +1,53 @@
+baseurl = "https://calex.org/"
+theme = "cocoa-eh-hugo-theme"
+builddrafts = true
+canonifyurls = true
+contentdir = "content"
+languageCode = "en-US"
+layoutdir = "layouts"
+publishdir = "public"
+author = "Curtis Alexander"
+title = "calex.org"
+# disqusshortname = ""
+pluralizelisttitles = false
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[permalinks]
+blog = "blog/:slug/"
+
+[params]
+dateform = "Jan 2, 2006"
+dateformfull = "Mon Jan 2 2006 15:04:05 MST"
+description = "Personal blog for Curtis Alexander"
+copyright = "Copyright © 2017 Curtis Alexander"
+# copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
+logofile = "img/calex-logo.jpg"
+faviconfile = "img/calex-logo.jpg"
+highlightjs = true
+progressively = true
+share = false
+latestpostcount = 5
+github = "curtisalexander"
+email = "calex@calex.org"
+# linkedin = "john-example-aa80ue8è"
+# twitter = "example"
+# facebook = "facebook_id"
+# social_banner = "img/banner.png"
+usesmallsummarycard = true
+posts_navigation = true
+# issoHost = "comments.domain.tld:1234"
+# githubRepo = "curtisalexander/calex"
+small_banner_logo = true
+
+[params.colors]
+identifier = "#527fc1f"
+identifier_dark = "#1a3152"
+trivial = "#6a7a8b"
+foreground = "#181d2a"
+background = "#f9f9f9"
+background_dark = "#282a36"
+code = "#87a5d2"
+type = "#97d28b"
+special = "#ffcb8d"
+value = "#96c2d7"
+statement = "#ff8e91"

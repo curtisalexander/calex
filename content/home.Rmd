@@ -1,0 +1,21 @@
+---
+title: "Home"
+author: "Curtis Alexander"
+date: "2017-09-28"
+output: html_document
+slug: home
+---
+
+```
+#!/usr/bin/env bash
+
+echo 'blah' | \
+    tr 'ah' 'lo' | \
+    sed -e 's/^[a-z]/H/' | \
+    awk '{n=split($0,a,"");
+        for (i in a) {if (a[i]=="H") print i " " a[i] "e";
+        else print i " " a[i];} print n+1 " " "!"}' | \
+    sort | \
+    cut -d' ' -f2 | \
+    paste -s -d '\0' -
+```

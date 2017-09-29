@@ -1,0 +1,25 @@
+---
+title: "Colophon"
+author: "Curtis Alexander"
+date: "2017-09-29"
+output: html_document
+slug: colophon
+---
+
+### Website 
+
+This website was built with the following technologies.
+
+* [blogdown](https://bookdown.org/yihui/blogdown/)
+* [Hugo](https://gohugo.io/)
+
+### Theme
+
+The [Hugo theme](https://themes.gohugo.io/) in use is [cocoa enhanced](https://themes.gohugo.io/cocoa-eh-hugo-theme/).
+
+### Hosting
+
+Hosting is provided through [netlify](https://www.netlify.com/).
+
+Simple instructions for getting setup can be found within [Chapter 3.1](https://bookdown.org/yihui/blogdown/netlify.html) of the [blogdown](https://bookdown.org/yihui/blogdown/) book/site.
+

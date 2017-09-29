@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Colophan on calex.org</title>
+    <link>/colophan/</link>
+    <description>Recent content in Colophan on calex.org</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <copyright>Copyright © 2017 Curtis Alexander</copyright>
+    
+	<atom:link href="/colophan/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Colophon</title>
+      <link>/colophan/colophon/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/colophan/colophon/</guid>
+      <description>
+Website This website was built with the following technologies.
+ R Markdown Specifically, the website is an R Markdown website For other great options from RStudio developers  bookdown blogdown  Slides were developed using the xamarin R package    Hosting Hosting is provided through netlify. Simple instructions for getting setup can be found within Chapter 3.1 of the blogdown book/site.
+ </description>
+    </item>
+    
+  </channel>
+</rss>
