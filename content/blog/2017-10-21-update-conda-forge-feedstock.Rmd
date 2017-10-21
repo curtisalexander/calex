@@ -40,7 +40,7 @@ I am quite interested in learning more about package management using [nix](http
 ---
 
 ## What to Update?
-Use [feedstockrot](https://github.com/axiom-data-science/feedstockrot) in order to determine which feedstocks I need to update.
+Use [feedstockrot](https://github.com/axiom-data-science/feedstockrot) in order to determine which feedstocks one needs to update.
 
 Approximately weekly, I run a `meta-update` script to determine which feedstocks I need to update.  Below is the appropriate section from my `meta-update` script (which assumes `feedstockrot` is on one's `PATH`).
 
