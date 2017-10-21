@@ -84,13 +84,13 @@ feedstockrot --github</code></pre>
 <p>Next, create a new branch for the new version. For clarity, branch names should be of the form <code>package_name-version</code>.</p>
 <pre class="sh"><code>git branch openpyxl-2.5.0a2</code></pre>
 <p>Then switch to the new branch.</p>
-<pre><code>git checkout openpyxl-2.5.0a2</code></pre>
+<pre class="sh"><code>git checkout openpyxl-2.5.0a2</code></pre>
 </div>
 <div id="update-the-feedstock" class="section level3">
 <h3>Update the Feedstock</h3>
 <p>To update the feedstock, simply edit the file <code>recipe/meta.yaml</code>.</p>
 <p>Within the <code>meta.yaml</code> file, the following entries need to be updated:</p>
-<pre><code>{% set version = &quot;2.5.0a1&quot; %}
+<pre class="yaml"><code>{% set version = &quot;2.5.0a1&quot; %}
 {% set sha256 = &quot;fe00ef04c5560504c625cac9f18913a1d3fb414f0560e715af95d894a6b43d63&quot; %}
 ...
 build:

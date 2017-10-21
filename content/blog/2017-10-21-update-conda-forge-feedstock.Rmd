@@ -93,7 +93,7 @@ git branch openpyxl-2.5.0a2
 
 Then switch to the new branch.
 
-```
+```sh
 git checkout openpyxl-2.5.0a2
 ```
 
@@ -103,7 +103,7 @@ To update the feedstock, simply edit the file `recipe/meta.yaml`.
 
 Within the `meta.yaml` file, the following entries need to be updated:
 
-```
+```yaml
 {% set version = "2.5.0a1" %}
 {% set sha256 = "fe00ef04c5560504c625cac9f18913a1d3fb414f0560e715af95d894a6b43d63" %}
 ...
