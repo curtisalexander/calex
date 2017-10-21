@@ -103,7 +103,7 @@ build:
 <div id="local-commit-push-create-a-pull-request" class="section level3">
 <h3>Local Commit <code>|&gt;</code> Push <code>|&gt;</code> Create a Pull Request</h3>
 <p>Commit the changes and push the branch to the <code>origin</code> remote and not the <code>upstream</code> remote. The <code>origin</code> remote points to the fork in one’s personal account and the <code>upstream</code> remote points to the original, or main, repository.</p>
-<pre><code>git add meta.yaml
+<pre class="sh"><code>git add meta.yaml
 git commit -m &#39;Update for version 2.5.0a2&#39;
 git push origin openpyxl-2.5.0a2</code></pre>
 <p>Now navigate back to the main <a href="https://github.com/conda-forge/openpyxl-feedstock">openpyxl-feedstock</a> site and create a pull request by clicking the button <code>Compare &amp; pull request</code>.</p>
@@ -113,7 +113,7 @@ git push origin openpyxl-2.5.0a2</code></pre>
 <p>After clicking <code>Compare &amp; pull request</code>, a pull request will be created within the tab <code>Pull requests</code> within the main <a href="https://github.com/conda-forge/openpyxl-feedstock">openpyxl-feedstock</a> repository. The <code>conda-forge</code> build system will then take over, initiating builds on Linux (Travis CI), MacOS (CircleCI), and Windows (AppVeyor).</p>
 <p>The builds can take a little bit of time to complete. Previously, AppVeyor took quite some time to complete but of late they have been running much quicker of late. At this time of this writing, Travis CI is lagging.</p>
 <p>If one needs to trigger a rebuild — for whatever reason — then the easiest way to do so is noted at the <a href="https://github.com/conda-forge/staged-recipes#12-some-checks-failed-but-it-wasnt-my-recipe-how-do-i-trigger-a-rebuild">conda-forge/staged-recipes</a> repository.</p>
-<pre><code>git commit --amend
+<pre class="sh"><code>git commit --amend
 git push -f origin openpyxl-2.5.0a2</code></pre>
 </div>
 <div id="merge" class="section level3">

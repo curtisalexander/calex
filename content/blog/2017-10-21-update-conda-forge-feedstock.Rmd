@@ -125,7 +125,7 @@ openssl sha256 ~/Downloads/openpyxl-2.5.0a2.tar.gz
 ### Local Commit `|>` Push `|>` Create a Pull Request
 Commit the changes and push the branch to the `origin` remote and not the `upstream` remote.  The `origin` remote points to the fork in one's personal account and the `upstream` remote points to the original, or main, repository.
 
-```
+```sh
 git add meta.yaml
 git commit -m 'Update for version 2.5.0a2'
 git push origin openpyxl-2.5.0a2
@@ -141,7 +141,7 @@ The builds can take a little bit of time to complete.  Previously, AppVeyor took
 
 If one needs to trigger a rebuild &mdash; for whatever reason &mdash; then the easiest way to do so is noted at the [conda-forge/staged-recipes](https://github.com/conda-forge/staged-recipes#12-some-checks-failed-but-it-wasnt-my-recipe-how-do-i-trigger-a-rebuild) repository.
 
-```
+```sh
 git commit --amend
 git push -f origin openpyxl-2.5.0a2
 ```
