@@ -34,10 +34,8 @@ Normally, I would not contribute to a project such as this &mdash; not because I
 
 Figuring out exactly how to build a recipe wasn't fun[^3].  But once I pieced together how to utilize the build infrastructure, it doesn't feel burdensome or even difficult to maintain a few packages.
 
-<aside>
-### Nix
+### Nix [Aside]
 I am quite interested in learning more about package management using [nix](https://nixos.org/nix/).  In fact, I was just looking at the [nix-in-place](https://github.com/jeaye/nixos-in-place) repository that allows one to install [NixOS](https://nixos.org/nix) on top of a Linux distribution.  Next step would be to experiment on a Digital Ocean [droplet](https://www.digitalocean.com/products/compute/) or on an [ARM board](https://nixos.wiki/wiki/NixOS_on_ARM).
-<aside/>
 
 ---
 
