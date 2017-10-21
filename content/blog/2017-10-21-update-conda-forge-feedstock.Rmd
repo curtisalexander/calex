@@ -184,6 +184,7 @@ git remote prune origin
 
 #### What just happened?
 At this point the following should be true:
+
 * The `master` branch at the forked repository &mdash; `curtisalexander:master` &mdash; should be even with the `master` branch at the main repository &mdash; `conda-forge:master`.
 * There should only be a single branch &mdash; `master` &mdash; at the forked and main repositories &mdash; i.e. the just utilized branches should be cleaned up.
 * Locally, the working branch (`openpyxl-2.5.0a2`) should be deleted.
