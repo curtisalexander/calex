@@ -1,0 +1,171 @@
+---
+title: Update conda-forge feedstock
+author: Curtis Alexander
+date: '2017-10-21'
+slug: update-conda-forge-feedstock
+categories: []
+tags: ["python", "conda"]
+---
+
+
+
+<div id="summary" class="section level2">
+<h2>Summary</h2>
+<p>Utilize the instructions below to update a <a href="https://conda-forge.org">conda-forge</a> <a href="https://github.com/conda-forge/feedstocks">feedstock</a>.</p>
+</div>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Before going further, if you don’t know what <a href="https://conda-forge.org/">conda-forge</a> is, I’ll quote directly from their website:</p>
+<blockquote>
+<p>A community led collection of recipes, build infrastructure and distributions for the conda package manager.</p>
+</blockquote>
+<p>For more background information, see the following posts from two members of the <a href="https://pydata.org/">PyData</a> community.</p>
+<ul>
+<li>Wes McKinney - <a href="http://wesmckinney.com/blog/conda-forge-centos-moment/">conda-forge and PyData’s CentOS moment</a></li>
+<li>Jake VanderPlas - <a href="https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/">Conda: Myths and Misconceptions</a></li>
+</ul>
+<p>Within the conda-forge description above, are what I believe to be keys for the success of the project:</p>
+<ul>
+<li>build infrastructure
+<ul>
+<li>I know little about how the infrastructure works but I find it to be an awesome example of using continuous integration + git + GitHub to deliver packages to several programming language ecosystems.</li>
+<li>Without this level of automation, the Python community (and to a lesser extent the R community) was relying on the hard work of <a href="https://github.com/ContinuumIO">Continuum</a> to <a href="https://github.com/ContinuumIO/anaconda-recipes">develop</a> and build packages. I think it is a win for all that the community is in the process of working towards aleviating and <a href="https://twitter.com/teoliphant/status/729625025200984065">eventually</a> taking over the efforts to maintain package recipes. Presumably, this frees up Continuum to push forward so many of their <a href="https://github.com/ContinuumIO">awesome projects</a>.</li>
+</ul></li>
+<li>community<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> led
+<ul>
+<li>That means people doing things on their own time because they want to help!</li>
+</ul></li>
+</ul>
+<p>Normally, I would not contribute to a project such as this — not because I have anything against the project but simply because I normally feel that I have nothing to contribute. However, I have benefited so greatly from free, open-source software that I should find some small way to become more involved<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>.</p>
+<p>Figuring out exactly how to build a recipe wasn’t fun<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>. But once I pieced together how to utilize the build infrastructure, it doesn’t feel burdensome or even difficult to maintain a few packages.</p>
+<aside>
+<div id="nix" class="section level3">
+<h3>Nix</h3>
+I am quite interested in learning more about package management using <a href="https://nixos.org/nix/">nix</a>. In fact, I was just looking at the <a href="https://github.com/jeaye/nixos-in-place">nix-in-place</a> repository that allows one to install <a href="https://nixos.org/nix">NixOS</a> on top of a Linux distribution. Next step would be to experiment on a Digital Ocean <a href="https://www.digitalocean.com/products/compute/">droplet</a> or on an <a href="https://nixos.wiki/wiki/NixOS_on_ARM">ARM board</a>.
+<aside/>
+<hr />
+</div>
+</div>
+<div id="what-to-update" class="section level2">
+<h2>What to Update?</h2>
+<p>Use <a href="https://github.com/axiom-data-science/feedstockrot">feedstockrot</a> in order to determine which feedstocks I need to update.</p>
+<p>Approximately weekly, I run a <code>meta-update</code> script to determine which feedstocks I need to update. Below is the appropriate section from my <code>meta-update</code> script (which assumes <code>feedstockrot</code> is on one’s <code>PATH</code>).</p>
+<pre class="sh"><code>echo
+echo &quot;#################&quot;
+echo &quot;## conda forge ##&quot;
+echo &quot;#################&quot;
+echo
+echo &quot;The following feedstocks require updating...&quot;
+echo
+
+# update using your GitHub token
+export FEEDSTOCKROT_GITHUB_TOKEN=&quot;12345abcdefg&quot;
+feedstockrot --github</code></pre>
+<p>Currently<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>, I maintain the following <a href="https://github.com/conda-forge/feedstocks">feedstocks</a>:</p>
+<ul>
+<li>openpyxl-feedstock</li>
+<li>greenlet-feedstock</li>
+<li>jdcal-feedstock</li>
+<li>et_xmlfile-feedstock</li>
+<li>neovim-feedstock</li>
+<li>trollius-feedstock</li>
+</ul>
+</div>
+<div id="how-to-update" class="section level2">
+<h2>How to Update?</h2>
+<p>All examples will use the <a href="https://openpyxl.readthedocs.io/en/default/">openpyxl</a> package as an example.</p>
+<div id="github-setup" class="section level3">
+<h3>Github Setup</h3>
+<p>Begin by forking the main repository for the feedstock. For instance, to update <code>openpyxl</code>, fork the <a href="https://github.com/conda-forge/openpyxl-feedstock">openpyxl-feedstock</a> repository.</p>
+<p>The <a href="https://github.com/curtisalexander/openpyxl-feedstock/">fork</a> now resides within one’s personal account.</p>
+</div>
+<div id="local-setup" class="section level3">
+<h3>Local Setup</h3>
+<p>Clone the forked repository to one’s local machine.</p>
+<pre class="sh"><code>git clone https://github.com/curtisalexander/openpyxl-feedstock/</code></pre>
+<p>Next, create a new branch for the new version. For clarity, branch names should be of the form <code>package_name-version</code>.</p>
+<pre class="sh"><code>git branch openpyxl-2.5.0a2</code></pre>
+<p>Then switch to the new branch.</p>
+<pre><code>git checkout openpyxl-2.5.0a2</code></pre>
+</div>
+<div id="update-the-feedstock" class="section level3">
+<h3>Update the Feedstock</h3>
+<p>To update the feedstock, simply edit the file <code>recipe/meta.yaml</code>.</p>
+<p>Within the <code>meta.yaml</code> file, the following entries need to be updated:</p>
+<pre><code>{% set version = &quot;2.5.0a1&quot; %}
+{% set sha256 = &quot;fe00ef04c5560504c625cac9f18913a1d3fb414f0560e715af95d894a6b43d63&quot; %}
+...
+build:
+  number: 0</code></pre>
+<p>In order to update the <code>sha256</code> value, the <code>tar.gz</code> file needs to be downloaded. For <code>openpyxl</code>, the file that needs to be downloaded can be found at <a href="https://pypi.org">pypi</a>. The canonical link at the site is for the latest version. For instance, as of this writing the <a href="https://pypi.python.org/pypi/openpyxl">openpyxl</a> link is for version <code>2.5.0b1</code>.</p>
+<p>Again, the canonical link is for the most recent version of the package. If older packages need to be downloaded, navigate to the following <a href="https://pypi.python.org/simple/openpyxl/">link</a> for archived versions.</p>
+<p>Once downloaded, the <code>sha256</code> can be acquired by running the following.</p>
+<pre class="sh"><code>openssl sha256 ~/Downloads/openpyxl-2.5.0a2.tar.gz</code></pre>
+</div>
+<div id="local-commit-push-create-a-pull-request" class="section level3">
+<h3>Local Commit <code>|&gt;</code> Push <code>|&gt;</code> Create a Pull Request</h3>
+<p>Commit the changes and push the branch to the <code>origin</code> remote and not the <code>upstream</code> remote. The <code>origin</code> remote points to the fork in one’s personal account and the <code>upstream</code> remote points to the original, or main, repository.</p>
+<pre><code>git add meta.yaml
+git commit -m &#39;Update for version 2.5.0a2&#39;
+git push origin openpyxl-2.5.0a2</code></pre>
+<p>Now navigate back to the main <a href="https://github.com/conda-forge/openpyxl-feedstock">openpyxl-feedstock</a> site and create a pull request by clicking the button <code>Compare &amp; pull request</code>.</p>
+</div>
+<div id="build-and-wait" class="section level3">
+<h3>Build (and wait)</h3>
+<p>After clicking <code>Compare &amp; pull request</code>, a pull request will be created within the tab <code>Pull requests</code> within the main <a href="https://github.com/conda-forge/openpyxl-feedstock">openpyxl-feedstock</a> repository. The <code>conda-forge</code> build system will then take over, initiating builds on Linux (Travis CI), MacOS (CircleCI), and Windows (AppVeyor).</p>
+<p>The builds can take a little bit of time to complete. Previously, AppVeyor took quite some time to complete but of late they have been running much quicker of late. At this time of this writing, Travis CI is lagging.</p>
+<p>If one needs to trigger a rebuild — for whatever reason — then the easiest way to do so is noted at the <a href="https://github.com/conda-forge/staged-recipes#12-some-checks-failed-but-it-wasnt-my-recipe-how-do-i-trigger-a-rebuild">conda-forge/staged-recipes</a> repository.</p>
+<pre><code>git commit --amend
+git push -f origin openpyxl-2.5.0a2</code></pre>
+</div>
+<div id="merge" class="section level3">
+<h3>Merge</h3>
+<p>If there are no errors then the pull request can be merged! Just click on the <code>Merge pull request</code> button at the <code>upstream</code> <a href="https://github.com/conda-forge/openpyxl-feedstock">site</a>.</p>
+<p>If there are errors, then read through the logs within the relevant CI system and make the necessary changes. When making these updates / changes, increment the <code>build number</code> within <code>meta.yaml</code>.</p>
+<p>After merging, the just built packages are uploaded to the <a href="https://anaconda.org/conda-forge/repo">conda-forge</a> repository for potential download.</p>
+</div>
+<div id="cleanup" class="section level3">
+<h3>Cleanup</h3>
+<p>There are three places where things need to be cleaned up.</p>
+<ul>
+<li>Locally</li>
+<li><a href="https://github.com/curtisalexander/openpyxl-feedstock/">Forked repository</a> — the <code>origin</code> remote</li>
+<li><a href="https://github.com/conda-forge/openpyxl-feedstock/">Main repository</a> — the <code>upstream</code> remote</li>
+</ul>
+<div id="forked-main-repositories" class="section level4">
+<h4>Forked &amp; Main Repositories</h4>
+<p>After merging on GitHub, one will have the option to delete the branch at forked repository — <code>curtisalexander:openpyxl-2.5.0a2</code>. Simply click the button <code>Delete branch</code>. At this point the forked repository — <code>curtisalexander/openpyxl-feedstock</code> — and the main repository — <code>conda-forge/openpyxl-feedstock</code> — only have a single, <code>master</code> branch. All other branches have been cleaned up.</p>
+</div>
+<div id="local-repository" class="section level4">
+<h4>Local Repository</h4>
+<p>Now the <code>master</code> branch at the fork — the <code>origin</code> remote — needs to be synced back with the <code>master</code> branch on one’s local machine. It is at this stage I tend to get myself into trouble.</p>
+<p>Following these <a href="https://help.github.com/articles/syncing-a-fork/">directions</a>, execute the following locally. Note that this is only done after one has already <a href="https://help.github.com/articles/configuring-a-remote-for-a-fork/">set the <code>upstream</code> branch</a>.</p>
+<pre class="sh"><code>git fetch upstream
+git checkout master
+git merge upstream/master
+git push origin master
+git branch -d openpyxl-2.5.0a2
+git remote prune origin
+# alternative is git fetch -p</code></pre>
+</div>
+<div id="what-just-happened" class="section level4">
+<h4>What just happened?</h4>
+<p>At this point the following should be true: * The <code>master</code> branch at the forked repository — <code>curtisalexander:master</code> — should be even with the <code>master</code> branch at the main repository — <code>conda-forge:master</code>. * There should only be a single branch — <code>master</code> — at the forked and main repositories — i.e. the just utilized branches should be cleaned up. * Locally, the working branch (<code>openpyxl-2.5.0a2</code>) should be deleted. * Locally, the reference to the remote (<code>curtisalexander:openpyxl-2.5.0a2</code>) should be pruned and cleaned up.</p>
+</div>
+</div>
+</div>
+<div id="check" class="section level2">
+<h2>Check</h2>
+<p>Finally, to check that the new package is available, run the following.</p>
+<pre class="sh"><code>conda update openpyxl --dry-run</code></pre>
+<p>The just updated version of the package should be displayed.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I normally think of <em>the community</em> as something other — but if I’m contributing my small part, then <em>the community</em> includes me.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Yes, I did want to become more involved. But my involvement grew out of the fact that I wanted to manage <a href="https://openpyxl.readthedocs.io/en/default/">openpyxl</a> via the <a href="https://anaconda.org/conda-forge/repo">conda-forge channel</a> as opposed to the <a href="https://anaconda.org/anaconda/">default channel</a>. An innocuous beginning!<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>I temporarily <a href="https://github.com/conda-forge/openpyxl-feedstock/issues/1">broke</a> the pandas build.<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>As of 2017-10-21.<a href="#fnref4">↩</a></p></li>
+</ol>
+</div>

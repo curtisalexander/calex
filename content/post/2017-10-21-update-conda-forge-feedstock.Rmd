@@ -1,0 +1,208 @@
+---
+title: Update conda-forge feedstock
+author: Curtis Alexander
+date: '2017-10-21'
+slug: update-conda-forge-feedstock
+categories: []
+tags: ["python", "conda"]
+---
+
+## Summary
+Utilize the instructions below to update a [conda-forge](https://conda-forge.org) [feedstock](https://github.com/conda-forge/feedstocks).
+
+
+## Background 
+Before going further, if you don't know what [conda-forge](https://conda-forge.org/) is, I'll quote directly from their website:
+
+> A community led collection of recipes, build infrastructure and distributions for the conda package manager.
+
+For more background information, see the following posts from two members of the [PyData](https://pydata.org/) community.
+
+* Wes McKinney - [conda-forge and PyData's CentOS moment](http://wesmckinney.com/blog/conda-forge-centos-moment/)
+* Jake VanderPlas - [Conda: Myths and Misconceptions](https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/)
+
+Within the conda-forge description above, are what I believe to be keys for the success of the project:
+
+* build infrastructure
+    * I know little about how the infrastructure works but I find it to be an awesome example of using continuous integration + git + GitHub to deliver packages to several programming language ecosystems.
+    * Without this level of automation, the Python community (and to a lesser extent the R community) was relying on the hard work of [Continuum](https://github.com/ContinuumIO) to [develop](https://github.com/ContinuumIO/anaconda-recipes) and build packages.  I think it is a win for all that the community is in the process of working towards aleviating and [eventually](https://twitter.com/teoliphant/status/729625025200984065) taking over the efforts to maintain package recipes.  Presumably, this frees up Continuum to push forward so many of their [awesome projects](https://github.com/ContinuumIO).
+* community[^1] led
+    * That means people doing things on their own time because they want to help!
+    
+Normally, I would not contribute to a project such as this &mdash; not because I have anything against the project but simply because I normally feel that I have nothing to contribute.  However, I have benefited so greatly from free, open-source software that I should find some small way to become more involved[^2].
+
+
+Figuring out exactly how to build a recipe wasn't fun[^3].  But once I pieced together how to utilize the build infrastructure, it doesn't feel burdensome or even difficult to maintain a few packages.
+
+<aside>
+### Nix
+I am quite interested in learning more about package management using [nix](https://nixos.org/nix/).  In fact, I was just looking at the [nix-in-place](https://github.com/jeaye/nixos-in-place) repository that allows one to install [NixOS](https://nixos.org/nix) on top of a Linux distribution.  Next step would be to experiment on a Digital Ocean [droplet](https://www.digitalocean.com/products/compute/) or on an [ARM board](https://nixos.wiki/wiki/NixOS_on_ARM).
+<aside/>
+
+---
+
+## What to Update?
+Use [feedstockrot](https://github.com/axiom-data-science/feedstockrot) in order to determine which feedstocks I need to update.
+
+Approximately weekly, I run a `meta-update` script to determine which feedstocks I need to update.  Below is the appropriate section from my `meta-update` script (which assumes `feedstockrot` is on one's `PATH`).
+
+```sh
+echo
+echo "#################"
+echo "## conda forge ##"
+echo "#################"
+echo
+echo "The following feedstocks require updating..."
+echo
+
+# update using your GitHub token
+export FEEDSTOCKROT_GITHUB_TOKEN="12345abcdefg"
+feedstockrot --github
+```
+
+Currently[^4], I maintain the following [feedstocks](https://github.com/conda-forge/feedstocks):
+
+* openpyxl-feedstock
+* greenlet-feedstock
+* jdcal-feedstock
+* et_xmlfile-feedstock
+* neovim-feedstock
+* trollius-feedstock
+
+
+## How to Update?
+All examples will use the [openpyxl](https://openpyxl.readthedocs.io/en/default/) package as an example.
+
+
+### Github Setup
+Begin by forking the main repository for the feedstock.  For instance, to update `openpyxl`, fork the [openpyxl-feedstock](https://github.com/conda-forge/openpyxl-feedstock) repository.
+
+The [fork](https://github.com/curtisalexander/openpyxl-feedstock/) now resides within one's personal account.
+
+
+### Local Setup
+Clone the forked repository to one's local machine.
+
+```sh
+git clone https://github.com/curtisalexander/openpyxl-feedstock/
+```
+
+Next, create a new branch for the new version.  For clarity, branch names should be of the form `package_name-version`.
+
+```sh
+git branch openpyxl-2.5.0a2
+```
+
+Then switch to the new branch.
+
+```
+git checkout openpyxl-2.5.0a2
+```
+
+
+### Update the Feedstock
+To update the feedstock, simply edit the file `recipe/meta.yaml`.
+
+Within the `meta.yaml` file, the following entries need to be updated:
+
+```
+{% set version = "2.5.0a1" %}
+{% set sha256 = "fe00ef04c5560504c625cac9f18913a1d3fb414f0560e715af95d894a6b43d63" %}
+...
+build:
+  number: 0
+```
+
+In order to update the `sha256` value, the `tar.gz` file needs to be downloaded.  For `openpyxl`, the file that needs to be downloaded can be found at [pypi](https://pypi.org).  The canonical link at the site is for the latest version.  For instance, as of this writing the [openpyxl](https://pypi.python.org/pypi/openpyxl) link is for version `2.5.0b1`.
+
+Again, the canonical link is for the most recent version of the package.  If older packages need to be downloaded, navigate to the following [link](https://pypi.python.org/simple/openpyxl/) for archived versions.
+
+Once downloaded, the `sha256` can be acquired by running the following.
+
+```sh
+openssl sha256 ~/Downloads/openpyxl-2.5.0a2.tar.gz
+```
+
+
+### Local Commit `|>` Push `|>` Create a Pull Request
+Commit the changes and push the branch to the `origin` remote and not the `upstream` remote.  The `origin` remote points to the fork in one's personal account and the `upstream` remote points to the original, or main, repository.
+
+```
+git add meta.yaml
+git commit -m 'Update for version 2.5.0a2'
+git push origin openpyxl-2.5.0a2
+```
+
+Now navigate back to the main [openpyxl-feedstock](https://github.com/conda-forge/openpyxl-feedstock) site and create a pull request by clicking the button `Compare & pull request`.
+
+
+### Build (and wait)
+After clicking `Compare & pull request`, a pull request will be created within the tab `Pull requests` within the main [openpyxl-feedstock](https://github.com/conda-forge/openpyxl-feedstock) repository.  The `conda-forge` build system will then take over, initiating builds on Linux (Travis CI), MacOS (CircleCI), and Windows (AppVeyor).
+
+The builds can take a little bit of time to complete.  Previously, AppVeyor took quite some time to complete but of late they have been running much quicker of late.  At this time of this writing, Travis CI is lagging. 
+
+If one needs to trigger a rebuild &mdash; for whatever reason &mdash; then the easiest way to do so is noted at the [conda-forge/staged-recipes](https://github.com/conda-forge/staged-recipes#12-some-checks-failed-but-it-wasnt-my-recipe-how-do-i-trigger-a-rebuild) repository.
+
+```
+git commit --amend
+git push -f origin openpyxl-2.5.0a2
+```
+
+
+### Merge
+If there are no errors then the pull request can be merged!  Just click on the `Merge pull request` button at the `upstream` [site](https://github.com/conda-forge/openpyxl-feedstock). 
+
+If there are errors, then read through the logs within the relevant CI system and make the necessary changes.  When making these updates / changes, increment the `build number` within `meta.yaml`.
+
+After merging, the just built packages are uploaded to the [conda-forge](https://anaconda.org/conda-forge/repo) repository for potential download.
+
+
+### Cleanup
+There are three places where things need to be cleaned up.
+
+* Locally
+* [Forked repository](https://github.com/curtisalexander/openpyxl-feedstock/) &mdash; the `origin` remote 
+* [Main repository](https://github.com/conda-forge/openpyxl-feedstock/) &mdash; the `upstream` remote
+
+
+#### Forked & Main Repositories
+After merging on GitHub, one will have the option to delete the branch at forked repository &mdash; `curtisalexander:openpyxl-2.5.0a2`.  Simply click the button `Delete branch`.  At this point the forked repository &mdash; `curtisalexander/openpyxl-feedstock` &mdash; and the main repository &mdash; `conda-forge/openpyxl-feedstock` &mdash; only have a single, `master` branch.  All other branches have been cleaned up.
+
+
+#### Local Repository
+Now the `master` branch at the fork &mdash; the `origin` remote &mdash; needs to be synced back with the `master` branch on one's local machine.  It is at this stage I tend to get myself into trouble.
+
+Following these [directions](https://help.github.com/articles/syncing-a-fork/), execute the following locally.  Note that this is only done after one has already [set the `upstream` branch](https://help.github.com/articles/configuring-a-remote-for-a-fork/).
+
+```sh
+git fetch upstream
+git checkout master
+git merge upstream/master
+git push origin master
+git branch -d openpyxl-2.5.0a2
+git remote prune origin
+# alternative is git fetch -p
+```
+
+#### What just happened?
+At this point the following should be true:
+* The `master` branch at the forked repository &mdash; `curtisalexander:master` &mdash; should be even with the `master` branch at the main repository &mdash; `conda-forge:master`.
+* There should only be a single branch &mdash; `master` &mdash; at the forked and main repositories &mdash; i.e. the just utilized branches should be cleaned up.
+* Locally, the working branch (`openpyxl-2.5.0a2`) should be deleted.
+* Locally, the reference to the remote (`curtisalexander:openpyxl-2.5.0a2`) should be pruned and cleaned up.
+
+
+## Check
+Finally, to check that the new package is available, run the following.
+
+```sh
+conda update openpyxl --dry-run
+```
+
+The just updated version of the package should be displayed.
+
+
+[^1]: I normally think of _the community_ as something other &mdash; but if I'm contributing my small part, then _the community_ includes me.
+[^2]: Yes, I did want to become more involved.  But my involvement grew out of the fact that I wanted to manage [openpyxl](https://openpyxl.readthedocs.io/en/default/) via the [conda-forge channel](https://anaconda.org/conda-forge/repo) as opposed to the [default channel](https://anaconda.org/anaconda/).  An innocuous beginning!
+[^3]: I temporarily [broke](https://github.com/conda-forge/openpyxl-feedstock/issues/1) the pandas build.
+[^4]: As of `r Sys.Date()`.
