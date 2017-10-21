@@ -4,7 +4,7 @@ author: "Curtis Alexander"
 date: "2017-09-28"
 slug: hello-world
 categories: []
-tags: []
+tags: ["python", "r", "shell", "racket", "sas"]
 ---
 
 `Hello World!` **+** `Hello World! x 5`
