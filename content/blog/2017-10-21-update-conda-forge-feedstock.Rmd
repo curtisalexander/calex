@@ -8,7 +8,7 @@ tags: ["python", "conda"]
 ---
 
 ## Summary
-Utilize the instructions below to update a [conda-forge](https://conda-forge.org) [feedstock](https://github.com/conda-forge/feedstocks).
+Utilize the [instructions below](#what-to-update) to update a [conda-forge](https://conda-forge.org) [feedstock](https://github.com/conda-forge/feedstocks).
 
 
 ## Background 
