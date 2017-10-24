@@ -7,24 +7,24 @@ categories: []
 tags: ["racket"]
 ---
 
-### Preamble
+## Preamble
 Thus begins a simple experiment.  Part of my desire for writing within a blog is to force myself to make consistent progress toward some goal.  I am interested in the accomplishment of the goal itself.  But that is only half of my intended purpose &mdash; I also want to document the progress along the way towards that goal.  I want the journaling artifact &mdash; all the micro blog posts describing my though process and progress.  And I want the personal experience of working through a problem bit by bit and writing along the way.
 
-### What is the experiment?
+## What is the experiment?
 The experiment to be undertaken is to have a set of micro posts that document my progress toward building a dataframe-like library in [Racket](https://racket-lang.org/).
 
 **Why Racket?**  Because I am interested in functional programming.  Because I love the fact that Racket is [a language for creating other languages](http://www.ccs.neu.edu/home/matthias/manifesto/).  I imagine that if I can first build a solid dataframe library that I then can build a language, a [DSL](https://beautifulracket.com/appendix/domain-specific-languages.html), for data manipulation.  Having a language to allow expert and non-expert programmers to manipulate table-like data structures would be something worth having.
 
-### What is first?
+## What is first?
 Normally, I would survey other libraries and think (and overthink) exactly how I would want to design a dataframe &mdash; both the data structure and the functionality to be developed.  But I know which API I want to mimic &mdash; the [dplyr](http://dplyr.tidyverse.org/) library in [R](https://www.r-project.org/).  I  find that it is quite expressive with a well thought out API.  If I already have an idea of the API, then I should get to coding!
 
 Except...I am not well-versed in Racket.  Thus, I probably just need to start with the most baby of baby steps &mdash; experimenting with Racket [data structures](https://beautifulracket.com/explainer/data-structures.html).
 
 To begin, and in a way to close this extended preamble, I am going to experiment with vectors and structures within Racket as I suspect that a combination of the two are probably the data structure I will want to build.
 
-### Code Experiments
+## Code Experiments
 
-#### [7a3f036845b8452ff59ad9e7fa17361e92c83f74](https://github.com/curtisalexander/dataframe/commit/7a3f036845b8452ff59ad9e7fa17361e92c83f74)
+### [7a3f036845b8452ff59ad9e7fa17361e92c83f74](https://github.com/curtisalexander/dataframe/commit/7a3f036845b8452ff59ad9e7fa17361e92c83f74)
 The first experiments really are truly refamiliarizing myself with syntax and playing.
 
 For the next set of experiments, see if I can utilize the [`#:guard`](http://docs.racket-lang.org/reference/creatingmorestructs.html#%28def._%28%28quote._~23~25kernel%29._make-struct-type%29%29) argument to ensure that the data structures passed in to the struct are vectors and that they have the same length.
