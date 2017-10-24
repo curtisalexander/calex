@@ -1,0 +1,13 @@
+---
+title: "dataframe"
+description: "dataframes in Racket"
+date: "2017-10-23"
+tags: ["projects"]
+output: html_document
+---
+
+[dataframe](https://github.com/curtisalexander/dataframe)
+
+dataframes in [Racket](https://racket-lang.org/)
+
+It [begins...](https://www.calex.org/blog/racket-dataframes/)
