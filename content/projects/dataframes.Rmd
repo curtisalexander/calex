@@ -6,7 +6,7 @@ tags: ["projects"]
 output: html_document
 ---
 
-[dataframe](https://github.com/curtisalexander/dataframe)
+[dataframe](https://github.com/curtisalexander/dataframe) on GitHub
 
 dataframes in [Racket](https://racket-lang.org/)
 
