@@ -20,7 +20,7 @@ options(servr.daemon = TRUE,
 
 3. Below is a screenshot of the completed `New Post` addin form for this particular blog post.
 
-![blogdown workflow](img/blogdown-workflow.png)
+<img src="img/blogdown-workflow.png" width="100" />
 
 4. **[Optional]** In order to preview locally, utilize `Tools -> Addins` and the `Serve Site` addin from the `blogdown` package.  It will run `blogdown::serve_site()`.
 5. Write up my post using [Rmarkdown](http://rmarkdown.rstudio.com/) flavored markdown and using [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop) as my IDE.
