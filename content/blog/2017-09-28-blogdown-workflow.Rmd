@@ -1,0 +1,30 @@
+---
+title: blogdown-workflow
+author: Curtis Alexander
+date: '2017-09-28'
+slug: blogdown-workflow
+categories: []
+tags: ["colophon"]
+---
+
+Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/).
+
+1. Open my project file &mdash; `open ../calex.Rproj`.
+2. Utilize the `Tools -> Addins` to select the `New Post` addin from the `blogdown` package.  Note that I have updated my global Rprofile &mdash; `~/.Rprofile` &mdash; to include the following:
+
+```
+options(servr.daemon = TRUE,
+        blogdown.author = "Curtis Alexander",
+        blogdown.subdir = "blog")
+```
+
+3. Below is a screenshot of the completed `New Post` addin form for this particular blog post.
+
+![blogdown workflow](img/blogdown-workflow.png)
+
+4. Write up my post using [Rmarkdown](http://rmarkdown.rstudio.com/) flavored markdown and using [Rstudio](https://www.rstudio.com/products/rstudio/#Desktop) as my IDE.
+5. [Optional] I utilize the `Build->More` button to run `Clean All`.  This in turn executes the command `rmarkdown::clean_site()` which removes the directories `blogdown`, `public`, and `static/rmarkdown-libs`.
+6. I do not use the `Build Website` button within RStudio.  Instead, I manually run the command `blogdown::hugo_build()` within the R console.
+7. I then go to the `Git` menu within RStudio and commit and push my changes.
+8. [netlify](https://www.netlify.com/) then picks up the changes to the `master` branch of the Github repo that houses my website and completes the website build and uploads to their CDN.
+9. et voil&agrave;!
