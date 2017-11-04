@@ -9,13 +9,13 @@ tags: ["r"]
 
 On my Windows machine, I oftentimes want to kill a set of applications that are running.  This is especially true when I don't have full control of my machine and am unable to adjust the applications that launch on startup.
 
-Below are two examples &mdash; both accomplish the same feat &mdash; that use R to call down to the OS and kill a list of tasks / applications.  An alternative impetus for writing the short scripts below was to experiment with the [processx](https://github.com/r-lib/processx) package.  A more portable
+Below are two examples &mdash; both accomplish the same feat &mdash; that use R to call down to the OS and kill a list of tasks / applications.  One example is more [readable](#taskkill-readable-annotated) while the [other](#taskkill-terse-single-pipeline) is more terse.  An alternative impetus for writing the short scripts below was to experiment with the [processx](https://github.com/r-lib/processx) package.  A more portable way to accomplish would be to simply use Powershell.  But this was a fun exercise.
 
 
-### Taskkill (Readable and Annotated)
+### Taskkill &mdash; Readable, Annotated
 
 <script src="https://gist.github.com/curtisalexander/5d328078441eb767083793faf268b27c.js"></script>
 
-### Taskkill (Single Pipeline)
+### Taskkill &mdash; Terse, Single Pipeline
 
 <script src="https://gist.github.com/curtisalexander/3d4f97fe7ef4564017d527c88830e852.js"></script>
