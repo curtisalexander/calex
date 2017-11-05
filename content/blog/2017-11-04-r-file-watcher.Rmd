@@ -9,7 +9,14 @@ tags: ["r"]
 
 While working on articles within this blog, I can utilize `blogdown::serve_site()` which in turn calls `servr::httw()`.  This will serve my site locally and trigger a rebuild whenever a file is saved.  However, this doesn't work for an [RMarkdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html).  Instead, I utilized the function `watch` from the `testthat` package to watch my repository directory for changes and rebuild my website with a call to `rmarkdown::render_site()`.
 
-The script example below makes use of [docopt](https://github.com/docopt/docopt.R) in order to create a script that one can simply run from the command line.
+The script below makes use of [docopt](https://github.com/docopt/docopt.R) in order to create a script that one can simply run from the command line.  I place this in the root directory of my RMarkdown website.  Note that I actually prepend an underscore to the script name &mdash; `_watch-render` &mdash; so that it isn't copied into the `_site` directory.
+
+My workflow then becomes
+
+1. Run `_watch-render` from a command prompt.
+2. Write content using RMarkdown.
+3. Save changes, allowing the entire site to rebuild.
+4. Open `_site/index.html` within a web browser.
+5. Refresh `_site/index.html` as the site is rebuilt.
 
 <script src="https://gist.github.com/curtisalexander/61de671c6b04980935736dc2d07ed16c.js"></script>
-
