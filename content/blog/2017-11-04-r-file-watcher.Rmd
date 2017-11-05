@@ -1,0 +1,15 @@
+---
+title: R File Watcher
+author: Curtis Alexander
+date: '2017-11-04'
+slug: r-file-watcher
+categories: []
+tags: ["r"]
+---
+
+While working on articles within this blog, I can utilize `blogdown::serve_site()` which in turn calls `servr::httw()`.  This will serve my site locally and trigger a rebuild whenever a file is saved.  However, this doesn't work for an [RMarkdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html).  Instead, I utilized the function `watch` from the `testthat` package to watch my repository directory for changes and rebuild my website with a call to `rmarkdown::render_site()`.
+
+The script example below makes use of [docopt](https://github.com/docopt/docopt.R) in order to create a script that one can simply run from the command line.
+
+<script src="https://gist.github.com/curtisalexander/61de671c6b04980935736dc2d07ed16c.js"></script>
+
