@@ -9,7 +9,7 @@ tags: ["r"]
 
 
 
-<p>While working on articles within this blog, I can utilize <code>blogdown::serve_site()</code> which in turn calls <code>servr::httw()</code>. This will serve my site locally and trigger a rebuild whenever a file is saved. However, this doesn’t work for an <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">RMarkdown website</a>. Instead, I utilized the function <code>watch</code> from the <code>testthat</code> package to watch my repository directory for changes and rebuild my website with a call to <code>rmarkdown::render_site()</code>.</p>
+<p>While working on articles within this blog, I can utilize <code>blogdown::serve_site()</code> which in turn calls <code>servr::httw()</code>. This will serve my site locally and trigger a rebuild whenever a file is saved. However, this doesn’t work for an <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">RMarkdown website</a> that happens to contain slides built with <a href="https://slides.yihui.name/xaringan/">xaringan</a>. Instead, I utilized the function <code>watch</code> from the <code>testthat</code> package to watch my repository directory for changes and rebuild my website with a call to <code>rmarkdown::render_site()</code>.</p>
 <p>The script below makes use of <a href="https://github.com/docopt/docopt.R">docopt</a> in order to create a script that one can simply run from the command line. I place this in the root directory of my RMarkdown website. Note that I actually prepend an underscore to the script name, <code>_watch-render</code>, so that it isn’t copied into the <code>_site</code> directory.</p>
 <p>My workflow then becomes</p>
 <ol style="list-style-type: decimal">
