@@ -1,8 +1,8 @@
 —
-title: Working Copy
-author: Curtis Alexander
-date: ‘2017-11-07’
-slug: working-copy
+title: “Working Copy”
+author: “Curtis Alexander”
+date: “2017-11-07”
+slug: “working-copy”
 categories: []
 tags: []
 —
