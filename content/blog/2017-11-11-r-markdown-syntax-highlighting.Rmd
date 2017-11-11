@@ -25,14 +25,14 @@ In the end the answer always seems to be Javascript.  For many [reasons](https:/
 
 Within header include scripts.
 
-```html
+```HTML
 <script src="http://codemirror.net/lib/codemirror.js"></script>
 <link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
 ```
 
 Create a knitr hook.
 
-```{r eval=FALSE}
+```R
 knitr::knit_hooks$set(source = function(x, options) {
   if (!is.null(options$hilang)) {
     code_open <- "\n\n<textarea id=\"__code\">"
