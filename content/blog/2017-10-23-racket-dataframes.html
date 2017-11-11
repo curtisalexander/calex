@@ -9,31 +9,31 @@ tags: ["racket"]
 
 
 
-<section id="preamble" class="level2">
+<div id="preamble" class="section level2">
 <h2>Preamble</h2>
 <p>Thus begins a simple experiment. Part of my desire for writing within a blog is to force myself to make consistent progress toward some goal. I am interested in the accomplishment of the goal itself. But that is only half of my intended purpose — I also want to document the progress along the way towards that goal. I want the journaling artifact — all the micro blog posts describing my though process and progress. And I want the personal experience of working through a problem bit by bit and writing along the way.</p>
-</section>
-<section id="what-is-the-experiment" class="level2">
+</div>
+<div id="what-is-the-experiment" class="section level2">
 <h2>What is the experiment?</h2>
 <p>The experiment to be undertaken is to have a set of micro posts that document my progress toward building a dataframe-like library in <a href="https://racket-lang.org/">Racket</a>.</p>
 <p><strong>Why Racket?</strong> Because I am interested in functional programming. Because I love the fact that Racket is <a href="http://www.ccs.neu.edu/home/matthias/manifesto/">a language for creating other languages</a>. I imagine that if I can first build a solid dataframe library that I then can build a language, a <a href="https://beautifulracket.com/appendix/domain-specific-languages.html">DSL</a>, for data manipulation. Having a language to allow expert and non-expert programmers to manipulate table-like data structures would be something worth having.</p>
-</section>
-<section id="what-is-first" class="level2">
+</div>
+<div id="what-is-first" class="section level2">
 <h2>What is first?</h2>
 <p>Normally, I would survey other libraries and think (and overthink) exactly how I would want to design a dataframe — both the data structure and the functionality to be developed. But I know which API I want to mimic — the <a href="http://dplyr.tidyverse.org/">dplyr</a> library in <a href="https://www.r-project.org/">R</a>. I find that it is quite expressive with a well thought out API. If I already have an idea of the API, then I should get to coding!</p>
 <p>Except…I am not well-versed in Racket. Thus, I probably just need to start with the most baby of baby steps — experimenting with Racket <a href="https://beautifulracket.com/explainer/data-structures.html">data structures</a>.</p>
 <p>To begin, and in a way to close this extended preamble, I am going to experiment with vectors and structures within Racket as I suspect that a combination of the two are probably the data structure I will want to build.</p>
-</section>
-<section id="code-experiments" class="level2">
+</div>
+<div id="code-experiments" class="section level2">
 <h2>Code Experiments</h2>
-<section id="a3f036845b8452ff59ad9e7fa17361e92c83f74" class="level3">
+<div id="a3f036845b8452ff59ad9e7fa17361e92c83f74" class="section level3">
 <h3><a href="https://github.com/curtisalexander/dataframe/commit/7a3f036845b8452ff59ad9e7fa17361e92c83f74">7a3f036845b8452ff59ad9e7fa17361e92c83f74</a></h3>
 <p>The first experiments really are truly refamiliarizing myself with syntax and playing.</p>
 <p>For the next set of experiments, see if I can utilize the <a href="http://docs.racket-lang.org/reference/creatingmorestructs.html#%28def._%28%28quote._~23~25kernel%29._make-struct-type%29%29"><code>#:guard</code></a> argument to ensure that the data structures passed in to the struct are vectors and that they have the same length.</p>
 <p>I should also probably read <a href="http://docs.racket-lang.org/reference/define-struct.html">structs</a> in the Racket Guide as it probably has some pre-built ways to drill into and access pieces of a struct. Specifically, how can I filter out a <em>row</em> from the struct?</p>
-</section>
-</section>
-<section id="end" class="level2">
+</div>
+</div>
+<div id="end" class="section level2">
 <h2>End</h2>
 <p>I could completely fail to produce anything, lose interest, or develop something poorly structured and impossible to build upon. But I will still try.</p>
-</section>
+</div>
