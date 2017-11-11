@@ -10,20 +10,20 @@ tags: ["colophon"]
 
 
 <p>Below is my general workflow for creating a blog post using <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>.</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Open my project file — <code>open calex.Rproj</code>.</li>
 <li>Utilize the <code>Tools -&gt; Addins</code> to select the <code>New Post</code> addin from the <code>blogdown</code> package. Note that I have updated my global Rprofile — <code>~/.Rprofile</code> — to include the following:</li>
 </ol>
 <pre><code>options(servr.daemon = TRUE,
         blogdown.author = &quot;Curtis Alexander&quot;,
         blogdown.subdir = &quot;blog&quot;)</code></pre>
-<ol start="3" style="list-style-type: decimal">
+<ol start="3" type="1">
 <li>Below is a screenshot of the completed <code>New Post</code> addin form for this particular blog post.</li>
 </ol>
 <p><img src="img/blogdown-workflow.png" style="width: 80%;" /></p>
-<ol start="4" style="list-style-type: decimal">
+<ol start="4" type="1">
 <li><strong>[Optional]</strong> In order to preview locally, utilize <code>Tools -&gt; Addins</code> and the <code>Serve Site</code> addin from the <code>blogdown</code> package. It will run <code>blogdown::serve_site()</code>.</li>
-<li>Write up my post using <a href="http://rmarkdown.rstudio.com/">Rmarkdown</a> flavored markdown and using <a href="https://www.rstudio.com/products/rstudio/#Desktop">Rstudio</a> as my IDE.</li>
+<li>Write up my post using <a href="http://rmarkdown.rstudio.com/">R Markdown</a> flavored markdown and using <a href="https://www.rstudio.com/products/rstudio/#Desktop">RStudio</a> as my IDE.</li>
 <li><strong>[Optional]</strong> Cleanup output artifacts using the <code>Build -&gt; More</code> button to run <code>Clean All</code>. This in turn executes the command <code>rmarkdown::clean_site()</code> which removes the directories <code>blogdown</code>, <code>public</code>, and <code>static/rmarkdown-libs</code>.</li>
 <li>Next I utilize the <code>Build Website</code> button within RStudio. If I am already serving the site and taking advantage of the <code>servr</code> daemon in step 4, then this step is unneeded.</li>
 <li>As recommended at the <a href="https://bookdown.org/yihui/blogdown/workflow.html">blogdown</a> site, I restart my R session and run the command <code>blogdown::hugo_build()</code> within the R console.</li>

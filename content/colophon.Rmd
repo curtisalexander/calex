@@ -16,6 +16,17 @@ This website was built with the following technologies.
 
 The [Hugo theme](https://themes.gohugo.io/) in use is [cocoa enhanced](https://themes.gohugo.io/cocoa-eh-hugo-theme/).
 
+I made one slight change to the theme in order to better space the image logo against headers.  Within `themes/cocoa-eh-hugo-theme/layouts/partials/css/main.css`, I make the following update.
+
+```css
+div.header .container .logo {
+  max-width: 100px;
+  margin-left: -2em;
+  /* CRA - added to better space image logo against headers */
+  padding-right: 5px;
+}
+```
+
 ### Hosting
 
 Hosting is provided through [netlify](https://www.netlify.com/).

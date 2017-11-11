@@ -1,0 +1,67 @@
+---
+title: R Markdown Syntax Highlighting
+author: Curtis Alexander
+date: '2017-11-11'
+slug: rmarkdown-syntax-highlighting
+categories: []
+tags: ["r"]
+---
+
+## Prior art
+
+In the [past](http://curtisalexander.github.io/rmarkdown-syntax-highlighting/) I had explored using the [highr](https://github.com/yihui/highr) package to enable syntax highlighting of languages that were not supported within [R Markdown](http://rmarkdown.rstudio.com/).  I had never loved the solution as it required one to download and setup [highlight](http://www.andre-simon.de/doku/highlight/en/install.php).
+
+
+## What is the problem again?
+Repeating my original problem &mdash; I want to have syntax highlighting for [sas](https://www.sas.com/) code within my R Markdown documents.  
+
+
+
+## The answer...Javascript
+In the end the answer always seems to be Javascript.  For many [reasons](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f), I have avoided learning Javascript.  But for my use case here it works beautifully.
+
+
+> NOTE: Below is a sketch of the solution.  I will come back later to better document / explain.
+
+Within header include scripts.
+
+```html
+<script src="http://codemirror.net/lib/codemirror.js"></script>
+<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+```
+
+Create a knitr hook.
+
+```{r eval=FALSE}
+knitr::knit_hooks$set(source = function(x, options) {
+  if (!is.null(options$hilang)) {
+    code_open <- "\n\n<textarea id=\"__code\">"
+    code_close <- "\n</textarea>"
+    code_body <- x
+    jscript_mode <- paste0("\n\n<script src=\"http://codemirror.net/mode/", options$hilang, "/", options$hilang, ".js\"></script>")
+    jscript_editor <- paste0("\n\n<script> var codeElement = document.getElementById(\"__code\"); var editor = null; if (null != codeElement) { editor = CodeMirror.fromTextArea(codeElement, { lineNumbers: true, readOnly: 'nocursor', mode: 'text/x-", options$hilang, "' }); } </script>\n\n")
+    knitr::asis_output(
+      htmltools::htmlPreserve(
+        stringr::str_c(
+          code_open,
+          knitr::indent_block(paste(code_body, collapse = '\n'), ""),
+          code_close,
+          jscript_mode,
+          jscript_editor
+        )
+      )
+    )
+  } else {
+    stringr::str_c("\n\n```", tolower(options$engine), "\n", paste(x, collapse = '\n', "\n```\n\n"))
+  }
+})
+```
+
+Then utilize like so.
+
+<div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">``` {r eval = FALSE, hilang = 'sas'}
+data _null_;
+  x = 1;
+  /* comment */
+run;
+```</code></pre></div>

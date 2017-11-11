@@ -1,0 +1,61 @@
+---
+title: R Markdown Syntax Highlighting
+author: Curtis Alexander
+date: '2017-11-11'
+slug: rmarkdown-syntax-highlighting
+categories: []
+tags: ["r"]
+---
+
+
+
+<section id="prior-art" class="level2">
+<h2>Prior art</h2>
+<p>In the <a href="http://curtisalexander.github.io/rmarkdown-syntax-highlighting/">past</a> I had explored using the <a href="https://github.com/yihui/highr">highr</a> package to enable syntax highlighting of languages that were not supported within <a href="http://rmarkdown.rstudio.com/">R Markdown</a>. I had never loved the solution as it required one to download and setup <a href="http://www.andre-simon.de/doku/highlight/en/install.php">highlight</a>.</p>
+</section>
+<section id="what-is-the-problem-again" class="level2">
+<h2>What is the problem again?</h2>
+<p>Repeating my original problem — I want to have syntax highlighting for <a href="https://www.sas.com/">sas</a> code within my R Markdown documents.</p>
+</section>
+<section id="the-answerjavascript" class="level2">
+<h2>The answer…Javascript</h2>
+<p>In the end the answer always seems to be Javascript. For many <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">reasons</a>, I have avoided learning Javascript. But for my use case here it works beautifully.</p>
+<blockquote>
+<p>NOTE: Below is a sketch of the solution. I will come back later to better document / explain.</p>
+</blockquote>
+<p>Within header include scripts.</p>
+<pre class="html"><code>&lt;script src=&quot;http://codemirror.net/lib/codemirror.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://codemirror.net/lib/codemirror.css&quot;&gt;</code></pre>
+<p>Create a knitr hook.</p>
+<pre class="r"><code>knitr::knit_hooks$set(source = function(x, options) {
+  if (!is.null(options$hilang)) {
+    code_open &lt;- &quot;\n\n&lt;textarea id=\&quot;__code\&quot;&gt;&quot;
+    code_close &lt;- &quot;\n&lt;/textarea&gt;&quot;
+    code_body &lt;- x
+    jscript_mode &lt;- paste0(&quot;\n\n&lt;script src=\&quot;http://codemirror.net/mode/&quot;, options$hilang, &quot;/&quot;, options$hilang, &quot;.js\&quot;&gt;&lt;/script&gt;&quot;)
+    jscript_editor &lt;- paste0(&quot;\n\n&lt;script&gt; var codeElement = document.getElementById(\&quot;__code\&quot;); var editor = null; if (null != codeElement) { editor = CodeMirror.fromTextArea(codeElement, { lineNumbers: true, readOnly: &#39;nocursor&#39;, mode: &#39;text/x-&quot;, options$hilang, &quot;&#39; }); } &lt;/script&gt;\n\n&quot;)
+    knitr::asis_output(
+      htmltools::htmlPreserve(
+        stringr::str_c(
+          code_open,
+          knitr::indent_block(paste(code_body, collapse = &#39;\n&#39;), &quot;&quot;),
+          code_close,
+          jscript_mode,
+          jscript_editor
+        )
+      )
+    )
+  } else {
+    stringr::str_c(&quot;\n\n```&quot;, tolower(options$engine), &quot;\n&quot;, paste(x, collapse = &#39;\n&#39;, &quot;\n```\n\n&quot;))
+  }
+})</code></pre>
+<p>Then utilize like so.</p>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode">``` {r eval = FALSE, hilang = 'sas'}
+data _null_;
+  x = 1;
+  /* comment */
+run;
+```</code></pre>
+</div>
+</section>

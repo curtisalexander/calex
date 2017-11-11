@@ -15,7 +15,7 @@ tags: ["r"]
 <p>In order for the script to work appropriately, I also needed to create the file <code>.Renviron</code> within my RMarkdown website root directory. It has a single environment variable set as I don’t currently have <a href="https://pandoc.org/">pandoc</a> on my <code>PATH</code>.</p>
 <pre><code>RSTUDIO_PANDOC=&quot;/Applications/RStudio.app/Contents/MacOS/pandoc&quot;</code></pre>
 <p>With the script below, my workflow for the RMarkdown website then becomes:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li>Run <code>_watch-render</code> from a command prompt.</li>
 <li>Write content using RMarkdown.</li>
 <li>Save changes, allowing the entire site to rebuild.</li>

@@ -10,7 +10,7 @@ tags: ["r", "python", "sas", "shell", "racket"]
 
 
 <p><code>Hello World!</code> <strong>+</strong> <code>Hello World! x 5</code></p>
-<div id="r" class="section level3">
+<section id="r" class="level3">
 <h3>R</h3>
 <pre class="r"><code>writeLines(&quot;Hello World!&quot;)
 
@@ -23,8 +23,8 @@ for (i in rep(&quot;Hello World!&quot;, 5)) {
 library(purrr)
 rep(&quot;Hello World!&quot;, 5) %&gt;%
   walk(writeLines)</code></pre>
-</div>
-<div id="python" class="section level3">
+</section>
+<section id="python" class="level3">
 <h3>Python</h3>
 <pre class="python"><code># Python 3
 print(&quot;Hello World!&quot;)
@@ -36,8 +36,8 @@ for i in range(5):
     
 from toolz import pipe
 pipe(&quot;Hello World!\n&quot;, lambda i: i * 5, print)</code></pre>
-</div>
-<div id="sas" class="section level3">
+</section>
+<section id="sas" class="level3">
 <h3>SAS</h3>
 <pre class="sas"><code>data _null_;
   file stdout ;
@@ -51,8 +51,8 @@ data _null_;
     put &quot;Hello World!&quot;;
   end;
 run;</code></pre>
-</div>
-<div id="bash" class="section level3">
+</section>
+<section id="bash" class="level3">
 <h3>Bash</h3>
 <pre class="bash"><code>echo &quot;Hello World!&quot;
 
@@ -60,15 +60,15 @@ run;</code></pre>
 for i in {1..5} do
     echo &quot;Hello World!&quot;
 done</code></pre>
-</div>
-<div id="awk" class="section level3">
+</section>
+<section id="awk" class="level3">
 <h3>Awk</h3>
 <pre class="bash"><code>awk &#39;BEGIN { print &quot;Hello World!&quot; }&#39;
 
 
 awk &#39;BEGIN { for (i=0; i&lt;=5; i++) print &quot;Hello World!&quot; }&#39;</code></pre>
-</div>
-<div id="racket" class="section level3">
+</section>
+<section id="racket" class="level3">
 <h3>Racket</h3>
 <pre class="racket"><code>#lang racket
 (print &quot;Hello World!&quot;)
@@ -77,4 +77,4 @@ awk &#39;BEGIN { for (i=0; i&lt;=5; i++) print &quot;Hello World!&quot; }&#39;</
 (for-each (lambda (i)
             (printf &quot;Hello World!\n&quot;))
           (stream-&gt;list (in-range 5)))</code></pre>
-</div>
+</section>
