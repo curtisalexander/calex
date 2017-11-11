@@ -22,7 +22,7 @@ I made one slight change to the theme in order to better space the image logo ag
 div.header .container .logo {
   max-width: 100px;
   margin-left: -2em;
-  /* CRA - added to better space image logo against headers */
+  /* Added to better space image logo against headers */
   padding-right: 5px;
 }
 ```
