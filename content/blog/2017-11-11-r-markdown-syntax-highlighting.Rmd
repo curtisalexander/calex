@@ -13,7 +13,7 @@ In the [past](http://curtisalexander.github.io/rmarkdown-syntax-highlighting/) I
 
 
 ## What is the problem again?
-Repeating my original problem &mdash; I want to have syntax highlighting for [sas](https://www.sas.com/) code within my R Markdown documents.  
+Repeating my original problem &mdash; I want to have syntax highlighting for [SAS](https://www.sas.com/) code within my R Markdown documents.  
 
 R Markdown relies on [pandoc](https://pandoc.org) for its syntax highlighting.  Specifically, the [skylighting](https://github.com/jgm/skylighting/) Haskell library is utilized by `pandoc`.  The list of languages that are supported can be found [here](https://github.com/jgm/skylighting/tree/master/xml).
 
