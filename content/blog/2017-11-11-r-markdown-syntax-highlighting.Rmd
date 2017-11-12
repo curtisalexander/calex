@@ -17,7 +17,7 @@ Repeating my original problem &mdash; I want to have syntax highlighting for [sa
 
 R Markdown relies on [pandoc](https://pandoc.org) for its syntax highlighting.  Specifically, the [skylighting](https://github.com/jgm/skylighting/) Haskell library is utilized by `pandoc`.  The list of languages that are supported can be found [here](https://github.com/jgm/skylighting/tree/master/xml).
 
-![Courtesy RStudio](img/RMarkdownFlow.png)
+![*Courtesy RStudio*](img/RMarkdownFlow.png)
 
 RStudio [provides](http://rmarkdown.rstudio.com/lesson-2.html) the nice illustration above describing how one begins with an R Markdown document and ends with an html document.  [pandoc](https://pandoc.org/) is what ultimately performs sytnax highlighting using the aforementioned `skylighting` sytntax highlighter.
 
