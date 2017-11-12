@@ -1,4 +1,4 @@
-baseurl = "https://calex.org/"
+baseurl = "https://www.calex.org/"
 theme = "cocoa-eh-hugo-theme"
 builddrafts = true
 canonifyurls = true
