@@ -136,6 +136,10 @@ The file `_hilang_eval.Rmd` is then evaluated within the R Markdown document wit
 
 ## Full Example
 
+A full example follows &mdash; assuming one makes use of `header.html`, `_hilang_setup.Rmd`, and `_hilang_eval.Rmd`.
+
+<br/>
+
 <script src="https://gist.github.com/curtisalexander/12bcbfb9e9fb96452d2459efa9f7d21a.js"></script>
 
 ## Future Work
