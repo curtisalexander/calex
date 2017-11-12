@@ -142,6 +142,8 @@ A full example follows &mdash; assuming one makes use of `header.html`, `_hilang
 
 <script src="https://gist.github.com/curtisalexander/12bcbfb9e9fb96452d2459efa9f7d21a.js"></script>
 
+<br/>
+
 ## Future Work
 In the future, I would like to consider:
 
