@@ -64,8 +64,8 @@ params:
 </div>
 <div id="r-markdown-parameter" class="section level3">
 <h3><a href="http://rmarkdown.rstudio.com/developer_parameterized_reports.html">R Markdown Parameter</a></h3>
-<p>Within the <code>yaml</code> block above, the language to be used for highlighting within the document is set with the <code>highlang</code> option. For a full list of all languages that can be utilized, take a look at the CodeMirror <a href="http://codemirror.net/mode/index.html">languages page</a>.</p>
-<p>Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file. The alternative is that the parameter provides more flexibility. For example, the <a href="https://github.com/jgm/skylighting">skylighting</a> library does not include highlighting for the <a href="https://crystal-lang.org">Crystal</a> language. As proof of the flexibility of this approach, one can take a look at <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd">this example</a>.</p>
+<p>Within the <code>yaml</code> block above, the language to be used for highlighting within the document is set with the <code>hilang</code> option. For a full list of all languages that can be utilized, take a look at the CodeMirror <a href="http://codemirror.net/mode/index.html">languages page</a>.</p>
+<p>Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file. The alternative is that the parameter provides more flexibility. For example, the <a href="https://github.com/jgm/skylighting">skylighting</a> library does not include highlighting for the <a href="https://crystal-lang.org">Crystal</a> language. As proof of the flexibility of this approach, one can take a look at <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd">this example</a> which provides syntax highlighting for Crystal.</p>
 </div>
 <div id="hilang_setup.rmd" class="section level3">
 <h3><code>_hilang_setup.Rmd</code></h3>
@@ -93,7 +93,7 @@ params:
 <pre class="sourceCode"><code class="sourceCode">```{r, child="_hilang_setup.Rmd"}
 ```</code></pre>
 </div>
-<p>In a way this serves as the first part of a code sandwich where you setup the needed source hook, write the SAS code needed in an R code chunk, and then evaluate the code chunk to apply the highlighting.</p>
+<p>In a way this serves as the first part of a code sandwich where you setup the needed source hook, write the SAS code in an R code chunk, and then evaluate the code chunk to apply the highlighting.</p>
 </div>
 <div id="sas-code" class="section level3">
 <h3>SAS Code</h3>
@@ -109,7 +109,7 @@ run;
 </div>
 <div id="hilang_eval.rmd" class="section level3">
 <h3><code>_hilang_eval.Rmd</code></h3>
-<p>Finally, the SAS code needs to have the highlighting applied to it. This is accomplished with some custom Javascript that CodeMirror provides. The file <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_eval.Rmd">_highlang_eval.Rmd</a> contains the following.</p>
+<p>Finally, the SAS code needs to have highlighting applied to it. This is accomplished by identifying the SAS code within <code>&lt;textarea&gt;</code> tags and then applying CodeMirror’s Javascript to the entire block of text within the <code>&lt;textarea&gt;</code> tag. The file <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_eval.Rmd">_highlang_eval.Rmd</a> contains the following, which when executed applies highlighting.</p>
 <pre class="r"><code>jscript_mode &lt;- paste0(&quot;\n&lt;script src=\&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/mode/&quot;, params$hilang, &quot;/&quot;, params$hilang, &quot;.min.js\&quot;&gt;&lt;/script&gt;\n&quot;)
 
 jscript_editor &lt;- paste0(&quot;\n&lt;script&gt; var codeElement = document.getElementById(\&quot;__code\&quot;); var editor = null; if (null != codeElement) { editor = CodeMirror.fromTextArea(codeElement, { lineNumbers: true, readOnly: &#39;nocursor&#39;, mode: &#39;text/x-&quot;, params$hilang, &quot;&#39; }); } &lt;/script&gt;\n&quot;)

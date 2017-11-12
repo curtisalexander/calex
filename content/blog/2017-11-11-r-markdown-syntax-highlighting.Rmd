@@ -65,9 +65,9 @@ The file [header.html](https://raw.githubusercontent.com/curtisalexander/rmarkdo
 ```
 
 ### [R Markdown Parameter](http://rmarkdown.rstudio.com/developer_parameterized_reports.html)
-Within the `yaml` block above, the language to be used for highlighting within the document is set with the `highlang` option.  For a full list of all languages that can be utilized, take a look at the CodeMirror [languages page](http://codemirror.net/mode/index.html).
+Within the `yaml` block above, the language to be used for highlighting within the document is set with the `hilang` option.  For a full list of all languages that can be utilized, take a look at the CodeMirror [languages page](http://codemirror.net/mode/index.html).
 
-Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file.  The alternative is that the parameter provides more flexibility.  For example, the [skylighting](https://github.com/jgm/skylighting) library does not include highlighting for the [Crystal](https://crystal-lang.org) language.  As proof of the flexibility of this approach, one can take a look at [this example](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd).
+Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file.  The alternative is that the parameter provides more flexibility.  For example, the [skylighting](https://github.com/jgm/skylighting) library does not include highlighting for the [Crystal](https://crystal-lang.org) language.  As proof of the flexibility of this approach, one can take a look at [this example](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd) which provides syntax highlighting for Crystal.
 
 
 ### `_hilang_setup.Rmd`
@@ -99,7 +99,7 @@ The source hook doesn't have to be in a separate file.  However, I like to inclu
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">```{r, child="_hilang_setup.Rmd"}
 ```</code></pre></div>
 
-In a way this serves as the first part of a code sandwich where you setup the needed source hook, write the SAS code needed in an R code chunk, and then evaluate the code chunk to apply the highlighting.
+In a way this serves as the first part of a code sandwich where you setup the needed source hook, write the SAS code in an R code chunk, and then evaluate the code chunk to apply the highlighting.
 
 ### SAS Code
 Next is the easy part &mdash; just drop the SAS code into an R Markdown code chunk.  A code chunk needs the following options to be set &mdash; `eval=FALSE` and `hilang=TRUE`.  Below is a simple example.
@@ -112,7 +112,7 @@ run;
 ```</code></pre></div>
 
 ### `_hilang_eval.Rmd`
-Finally, the SAS code needs to have the highlighting applied to it.  This is accomplished with some custom Javascript that CodeMirror provides.  The file [_highlang_eval.Rmd](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_eval.Rmd) contains the following.
+Finally, the SAS code needs to have highlighting applied to it.  This is accomplished by identifying the SAS code within `<textarea>` tags and then applying CodeMirror's Javascript to the entire block of text within the `<textarea>` tag.  The file [_highlang_eval.Rmd](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_eval.Rmd) contains the following, which when executed applies highlighting.
 
 ```R
 jscript_mode <- paste0("\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/mode/", params$hilang, "/", params$hilang, ".min.js\"></script>\n")
