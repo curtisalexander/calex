@@ -134,6 +134,10 @@ The file `_hilang_eval.Rmd` is then evaluated within the R Markdown document wit
 <div class="sourceCode"><pre class="sourceCode"><code class="sourceCode">```{r, child="_hilang_eval.Rmd"}
 ```</code></pre></div>
 
+## Full Example
+
+<script src="https://gist.github.com/curtisalexander/12bcbfb9e9fb96452d2459efa9f7d21a.js"></script>
+
 ## Future Work
 In the future, I would like to consider:
 
