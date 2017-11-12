@@ -11,37 +11,76 @@ tags: ["r"]
 
 <div id="prior-art" class="section level2">
 <h2>Prior art</h2>
-<p>In the <a href="http://curtisalexander.github.io/rmarkdown-syntax-highlighting/">past</a> I had explored using the <a href="https://github.com/yihui/highr">highr</a> package to enable syntax highlighting of languages that were not supported within <a href="http://rmarkdown.rstudio.com/">R Markdown</a>. I had never loved the solution as it required one to download and setup <a href="http://www.andre-simon.de/doku/highlight/en/install.php">highlight</a>.</p>
+<p>In the <a href="http://curtisalexander.github.io/rmarkdown-syntax-highlighting/">past</a> I had explored using the <a href="https://github.com/yihui/highr">highr</a> package to enable syntax highlighting of languages that were not supported within <a href="http://rmarkdown.rstudio.com/">R Markdown</a>. I never loved the solution as it required one to download and setup <a href="http://www.andre-simon.de/doku/highlight/en/install.php">highlight</a>.</p>
 </div>
 <div id="what-is-the-problem-again" class="section level2">
 <h2>What is the problem again?</h2>
 <p>Repeating my original problem — I want to have syntax highlighting for <a href="https://www.sas.com/">sas</a> code within my R Markdown documents.</p>
+<p>R Markdown relies on <a href="https://pandoc.org">pandoc</a> for its syntax highlighting. Specifically, the <a href="https://github.com/jgm/skylighting/">skylighting</a> Haskell library is utilized by <code>pandoc</code>. The list of languages that are supported can be found <a href="https://github.com/jgm/skylighting/tree/master/xml">here</a>.</p>
+<div class="figure">
+<img src="img/RMarkdownFlow.png" alt="Courtesy RStudio" />
+<p class="caption">Courtesy RStudio</p>
 </div>
-<div id="the-answerjavascript" class="section level2">
-<h2>The answer…Javascript</h2>
-<p>In the end the answer always seems to be Javascript. For many <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">reasons</a>, I have avoided learning Javascript. But for my use case here it works beautifully.</p>
+<p>RStudio <a href="http://rmarkdown.rstudio.com/lesson-2.html">provides</a> the nice illustration above describing how one begins with an R Markdown document and ends with an html document. <a href="https://pandoc.org/">pandoc</a> is what ultimately performs sytnax highlighting using the aforementioned <code>skylighting</code> sytntax highlighter.</p>
+</div>
+<div id="the-answercodemirror" class="section level2">
+<h2>The answer…<a href="https://codemirror.net/">CodeMirror</a></h2>
+<p>Rather than relying on <code>pandoc</code>, I determined a way to take advantage of the Javascript text editor <a href="https://codemirror.net/">CodeMirror</a>.</p>
 <blockquote>
-<p>NOTE: Below is a sketch of the solution. I will come back later to better document / explain.</p>
+<p><strong>Aside</strong>: In the end the answer always seems to be Javascript. For many <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">reasons</a>, I have avoided learning Javascript. But for my use case here, I must admit that Javascript is quite helpful!</p>
 </blockquote>
-<p>Within header include scripts.</p>
-<pre class="html"><code>&lt;script src=&quot;http://codemirror.net/lib/codemirror.js&quot;&gt;&lt;/script&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;http://codemirror.net/lib/codemirror.css&quot;&gt;</code></pre>
-<p>Create a knitr hook.</p>
+</div>
+<div id="r-markdown-example" class="section level2">
+<h2>R Markdown Example</h2>
+<p>To go straight to an example, take a look at either the <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-sas.Rmd">R Markdown document</a> or the <a href="https://curtisalexander.github.io/rmarkdown-with-sas/">rendered html</a>.</p>
+</div>
+<div id="r-markdown-setup" class="section level2">
+<h2>R Markdown Setup</h2>
+<p>There are five pieces that when all stitched together allow for SAS (and other language) syntax highlighting.</p>
+<div id="requirements" class="section level3">
+<h3>Requirements</h3>
+<p>The following R packages are required for the proposed solution.</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/stringr/index.html">stringr</a></li>
+<li><a href="https://cran.r-project.org/web/packages/htmltools/">htmltools</a></li>
+</ul>
+</div>
+<div id="code-mirror-javascriptcss" class="section level3">
+<h3>Code Mirror Javascript/CSS</h3>
+<p>There is a stylesheet and Javascript file provided by CodeMirror that need to be included. My preference is to create a <code>header.html</code> file and then make sure it is included within my <code>YAML</code> header.</p>
+<p>Below is an example of the YAML header for <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-sas.Rmd">rmarkdown-with-sas</a>. Specifically take note of the <code>in_header</code> key.</p>
+<pre class="yaml"><code>title: &quot;R Markdown with SAS&quot;
+author: &quot;Curtis Alexander&quot;
+output:
+  html_document:
+    include:
+      in_header: header.html
+    mathjax: null
+params:
+  hilang: sas</code></pre>
+<p>The file <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/header.html">header.html</a> contains the following. Note that I used links to a CDN rather than directly pointing to CodeMirror.</p>
+<pre class="html"><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.min.css&quot;&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+</div>
+<div id="r-markdown-parameter" class="section level3">
+<h3>R Markdown Parameter</h3>
+<p>Within the <code>yaml</code> block above, the language to be used for highlighting within the document is set with the <code>highlang</code> option. For a full list of all languages that can be utilized, take a look at the CodeMirror <a href="http://codemirror.net/mode/index.html">languages page</a>.</p>
+<p>Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file. The alternative is that the parameter provides more flexibility. For example, the <a href="https://github.com/jgm/skylighting">skylighting</a> library does not include highlighting for the <a href="https://crystal-lang.org">Crystal</a> language. As proof of the flexibility of this approach, one can take a look at <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd">this example</a>.</p>
+</div>
+<div id="hilang_setup.rmd" class="section level3">
+<h3><code>_hilang_setup.Rmd</code></h3>
+<p>Next, one needs to create a <a href="https://yihui.name/knitr/hooks/">knitr source hook</a> in order to wrap up the SAS code in <code>&lt;textarea&gt;</code> tags. The file <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_setup.Rmd">_hilang_setup.Rmd</a> contains the source hook below.</p>
 <pre class="r"><code>knitr::knit_hooks$set(source = function(x, options) {
-  if (!is.null(options$hilang)) {
+  if (options$hilang) {
     code_open &lt;- &quot;\n\n&lt;textarea id=\&quot;__code\&quot;&gt;&quot;
     code_close &lt;- &quot;\n&lt;/textarea&gt;&quot;
     code_body &lt;- x
-    jscript_mode &lt;- paste0(&quot;\n\n&lt;script src=\&quot;http://codemirror.net/mode/&quot;, options$hilang, &quot;/&quot;, options$hilang, &quot;.js\&quot;&gt;&lt;/script&gt;&quot;)
-    jscript_editor &lt;- paste0(&quot;\n\n&lt;script&gt; var codeElement = document.getElementById(\&quot;__code\&quot;); var editor = null; if (null != codeElement) { editor = CodeMirror.fromTextArea(codeElement, { lineNumbers: true, readOnly: &#39;nocursor&#39;, mode: &#39;text/x-&quot;, options$hilang, &quot;&#39; }); } &lt;/script&gt;\n\n&quot;)
     knitr::asis_output(
       htmltools::htmlPreserve(
         stringr::str_c(
           code_open,
-          knitr::indent_block(paste(code_body, collapse = &#39;\n&#39;), &quot;&quot;),
-          code_close,
-          jscript_mode,
-          jscript_editor
+          paste(code_body, collapse = &#39;\n&#39;),
+          code_close
         )
       )
     )
@@ -49,13 +88,54 @@ tags: ["r"]
     stringr::str_c(&quot;\n\n```&quot;, tolower(options$engine), &quot;\n&quot;, paste(x, collapse = &#39;\n&#39;, &quot;\n```\n\n&quot;))
   }
 })</code></pre>
-<p>Then utilize like so.</p>
+<p>The source hook doesn’t have to be in a separate file. However, I like to include in a separate file so that within my relevant R Markdown document, I just need to include the following to bring it into scope within the document.</p>
 <div class="sourceCode">
-<pre class="sourceCode"><code class="sourceCode">``` {r eval = FALSE, hilang = 'sas'}
+<pre class="sourceCode"><code class="sourceCode">```{r, child="_hilang_setup.Rmd"}
+```</code></pre>
+</div>
+<p>In a way this serves as the first part of a code sandwich where you setup the needed source hook, write the SAS code needed in an R code chunk, and then evaluate the code chunk to apply the highlighting.</p>
+</div>
+<div id="sas-code" class="section level3">
+<h3>SAS Code</h3>
+<p>Next is the easy part — just drop the SAS code into an R Markdown code chunk. A code chunk needs the following options to be set — <code>eval=FALSE</code> and <code>hilang=TRUE</code>. Below is a simple example.</p>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode">```{r, eval=FALSE, hilang=TRUE}
 data _null_;
   x = 1;
-  /* comment */
+  put x=;
 run;
 ```</code></pre>
 </div>
+</div>
+<div id="hilang_eval.rmd" class="section level3">
+<h3><code>_hilang_eval.Rmd</code></h3>
+<p>Finally, the SAS code needs to have the highlighting applied to it. This is accomplished with some custom Javascript that CodeMirror provides. The file <a href="https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/_hilang_eval.Rmd">_highlang_eval.Rmd</a> contains the following.</p>
+<pre class="r"><code>jscript_mode &lt;- paste0(&quot;\n&lt;script src=\&quot;https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/mode/&quot;, params$hilang, &quot;/&quot;, params$hilang, &quot;.min.js\&quot;&gt;&lt;/script&gt;\n&quot;)
+
+jscript_editor &lt;- paste0(&quot;\n&lt;script&gt; var codeElement = document.getElementById(\&quot;__code\&quot;); var editor = null; if (null != codeElement) { editor = CodeMirror.fromTextArea(codeElement, { lineNumbers: true, readOnly: &#39;nocursor&#39;, mode: &#39;text/x-&quot;, params$hilang, &quot;&#39; }); } &lt;/script&gt;\n&quot;)
+
+knitr::asis_output(
+  htmltools::htmlPreserve(
+    stringr::str_c(
+          jscript_mode,
+          jscript_editor
+    )
+  )
+)</code></pre>
+<p>The file <code>_hilang_eval.Rmd</code> is then evaluated within the R Markdown document with the code below.</p>
+<div class="sourceCode">
+<pre class="sourceCode"><code class="sourceCode">```{r, child="_hilang_eval.Rmd"}
+```</code></pre>
+</div>
+</div>
+</div>
+<div id="future-work" class="section level2">
+<h2>Future Work</h2>
+<p>In the future, I would like to consider:</p>
+<ul>
+<li>Creating my own <a href="http://rmarkdown.rstudio.com/developer_custom_formats.html">custom output format</a></li>
+<li>Creating an actual package with everything bound up that can be conveniently installed</li>
+<li>See if I can further parameterize the <a href="http://codemirror.net/doc/manual.html#config">configuration options</a> that are passed to the <code>CodeMirror.fromTextArea</code> Javascript function.</li>
+<li>Figure out a method to allow for multiple languages to be used within the same R Markdown file</li>
+</ul>
 </div>
