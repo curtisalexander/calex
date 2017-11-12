@@ -32,7 +32,7 @@ Rather than relying on `pandoc`, I determined a way to take advantage of the Jav
 To go straight to an example, take a look at either the [R Markdown document](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-sas.Rmd) or the [rendered html](https://curtisalexander.github.io/rmarkdown-with-sas/).
 
 ## R Markdown Setup
-There are five pieces that when all stitched together allow for SAS (and other language) syntax highlighting.
+There are quite a few steps required but once they are all stitched together, they allow for SAS (and other language) syntax highlighting that wasn't possible before.
 
 ### Requirements
 The following R packages are required for the proposed solution.
