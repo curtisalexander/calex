@@ -29,7 +29,7 @@ Rather than relying on `pandoc`, I determined a way to take advantage of the Jav
 
 
 ## R Markdown Example
-To go straight to an example, take a look at either the [R Markdown document](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-sas.Rmd) or the [rendered html](https://curtisalexander.github.io/rmarkdown-with-sas/).
+To go straight to an example, take a look at either the [R Markdown document](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-sas.Rmd) or the [rendered html](https://curtisalexander.github.io/rmarkdown-with-sas/).  This [repo](https://github.com/curtisalexander/rmarkdown-with-sas/) will be utilized throughout as an example.
 
 ## R Markdown Setup
 There are quite a few steps required but once they are all stitched together, they allow for SAS (and other language) syntax highlighting that wasn't possible before.
@@ -64,7 +64,7 @@ The file [header.html](https://raw.githubusercontent.com/curtisalexander/rmarkdo
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.31.0/codemirror.min.js"></script>
 ```
 
-### R Markdown Parameter
+### [R Markdown Parameter](http://rmarkdown.rstudio.com/developer_parameterized_reports.html)
 Within the `yaml` block above, the language to be used for highlighting within the document is set with the `highlang` option.  For a full list of all languages that can be utilized, take a look at the CodeMirror [languages page](http://codemirror.net/mode/index.html).
 
 Unfortunately, this means that multiple languages using CodeMirror cannot be utilized in the same R Markdown file.  The alternative is that the parameter provides more flexibility.  For example, the [skylighting](https://github.com/jgm/skylighting) library does not include highlighting for the [Crystal](https://crystal-lang.org) language.  As proof of the flexibility of this approach, one can take a look at [this example](https://raw.githubusercontent.com/curtisalexander/rmarkdown-with-sas/master/rmarkdown-with-crystal.Rmd).
