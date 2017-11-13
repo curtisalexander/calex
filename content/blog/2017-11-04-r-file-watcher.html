@@ -9,15 +9,15 @@ tags: ["r"]
 
 
 
-<p>While working on articles within this blog, I can utilize <code>blogdown::serve_site()</code> which in turn calls <code>servr::httw()</code>. This will serve my site locally and trigger a rebuild whenever a file is saved. However, this doesn’t work for a separate <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">RMarkdown website</a> I built that happens to contain slides built with the <a href="https://slides.yihui.name/xaringan/">xaringan</a> package.</p>
-<p>In order to watch for file changes and rebuild the entire RMarkdown website, I wrote the script below taking advantage of the function <a href="https://github.com/r-lib/testthat/blob/master/R/watcher.R">watch</a> from the <a href="http://testthat.r-lib.org/">testthat</a> package. The script watches the root directory of my RMarkdown website for changes and rebuilds my website with a call to <code>rmarkdown::render_site()</code>.</p>
-<p>The script below makes use of <a href="https://github.com/docopt/docopt.R">docopt</a> in order to create a script that one can simply run from the command line. I place this in the root directory of my RMarkdown website. Note that I actually prepend an underscore to the script name, <code>_watch-render</code>, so that it isn’t copied into the <code>_site</code> directory.</p>
-<p>In order for the script to work appropriately, I also needed to create the file <code>.Renviron</code> within my RMarkdown website root directory. It has a single environment variable set as I don’t currently have <a href="https://pandoc.org/">pandoc</a> on my <code>PATH</code>.</p>
+<p>While working on articles within this blog, I can utilize <code>blogdown::serve_site()</code> which in turn calls <code>servr::httw()</code>. This will serve my site locally and trigger a rebuild whenever a file is saved. However, this doesn’t work for a separate <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">R Markdown website</a> I built that happens to contain slides built with the <a href="https://slides.yihui.name/xaringan/">xaringan</a> package.</p>
+<p>In order to watch for file changes and rebuild the entire R Markdown website, I wrote the script below taking advantage of the function <a href="https://github.com/r-lib/testthat/blob/master/R/watcher.R">watch</a> from the <a href="http://testthat.r-lib.org/">testthat</a> package. The script watches the root directory of my R Markdown website for changes and rebuilds my website with a call to <code>rmarkdown::render_site()</code>.</p>
+<p>The script below makes use of <a href="https://github.com/docopt/docopt.R">docopt</a> in order to create a script that one can simply run from the command line. I place this in the root directory of my R Markdown website. Note that I actually prepend an underscore to the script name, <code>_watch-render</code>, so that it isn’t copied into the <code>_site</code> directory.</p>
+<p>In order for the script to work appropriately, I also needed to create the file <code>.Renviron</code> within my R Markdown website root directory. It has a single environment variable set as I don’t currently have <a href="https://pandoc.org/">pandoc</a> on my <code>PATH</code>.</p>
 <pre><code>RSTUDIO_PANDOC=&quot;/Applications/RStudio.app/Contents/MacOS/pandoc&quot;</code></pre>
-<p>With the script below, my workflow for the RMarkdown website then becomes:</p>
+<p>With the script below, my workflow for the R Markdown website then becomes:</p>
 <ol style="list-style-type: decimal">
 <li>Run <code>_watch-render</code> from a command prompt.</li>
-<li>Write content using RMarkdown.</li>
+<li>Write content using R Markdown.</li>
 <li>Save changes, allowing the entire site to rebuild.</li>
 <li>Open <code>_site/index.html</code> within a web browser.</li>
 <li>Refresh <code>_site/index.html</code> as the site is rebuilt.</li>

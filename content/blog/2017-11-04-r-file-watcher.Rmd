@@ -7,22 +7,22 @@ categories: []
 tags: ["r"]
 ---
 
-While working on articles within this blog, I can utilize `blogdown::serve_site()` which in turn calls `servr::httw()`.  This will serve my site locally and trigger a rebuild whenever a file is saved.  However, this doesn't work for a separate [RMarkdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html) I built that happens to contain slides built with the [xaringan](https://slides.yihui.name/xaringan/) package.
+While working on articles within this blog, I can utilize `blogdown::serve_site()` which in turn calls `servr::httw()`.  This will serve my site locally and trigger a rebuild whenever a file is saved.  However, this doesn't work for a separate [R Markdown website](http://rmarkdown.rstudio.com/rmarkdown_websites.html) I built that happens to contain slides built with the [xaringan](https://slides.yihui.name/xaringan/) package.
 
-In order to watch for file changes and rebuild the entire RMarkdown website, I wrote the script below taking advantage of the function [watch](https://github.com/r-lib/testthat/blob/master/R/watcher.R) from the [testthat](http://testthat.r-lib.org/) package.  The script watches the root directory of my RMarkdown website for changes and rebuilds my website with a call to `rmarkdown::render_site()`.
+In order to watch for file changes and rebuild the entire R Markdown website, I wrote the script below taking advantage of the function [watch](https://github.com/r-lib/testthat/blob/master/R/watcher.R) from the [testthat](http://testthat.r-lib.org/) package.  The script watches the root directory of my R Markdown website for changes and rebuilds my website with a call to `rmarkdown::render_site()`.
 
-The script below makes use of [docopt](https://github.com/docopt/docopt.R) in order to create a script that one can simply run from the command line.  I place this in the root directory of my RMarkdown website.  Note that I actually prepend an underscore to the script name, `_watch-render`, so that it isn't copied into the `_site` directory.
+The script below makes use of [docopt](https://github.com/docopt/docopt.R) in order to create a script that one can simply run from the command line.  I place this in the root directory of my R Markdown website.  Note that I actually prepend an underscore to the script name, `_watch-render`, so that it isn't copied into the `_site` directory.
 
-In order for the script to work appropriately, I also needed to create the file `.Renviron` within my RMarkdown website root directory.  It has a single environment variable set as I don't currently have [pandoc](https://pandoc.org/) on my `PATH`.
+In order for the script to work appropriately, I also needed to create the file `.Renviron` within my R Markdown website root directory.  It has a single environment variable set as I don't currently have [pandoc](https://pandoc.org/) on my `PATH`.
 
 ```
 RSTUDIO_PANDOC="/Applications/RStudio.app/Contents/MacOS/pandoc"
 ```
 
-With the script below, my workflow for the RMarkdown website then becomes:
+With the script below, my workflow for the R Markdown website then becomes:
 
 1. Run `_watch-render` from a command prompt.
-2. Write content using RMarkdown.
+2. Write content using R Markdown.
 3. Save changes, allowing the entire site to rebuild.
 4. Open `_site/index.html` within a web browser.
 5. Refresh `_site/index.html` as the site is rebuilt.
