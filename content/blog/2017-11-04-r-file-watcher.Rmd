@@ -32,7 +32,7 @@ With the script below, my workflow for the R Markdown website then becomes:
 <script src="https://gist.github.com/curtisalexander/61de671c6b04980935736dc2d07ed16c.js"></script>
 
 
-## R Markdown File
+## R Markdown file
 If one would like to render just a single file rather than an entire website, the function `rmarkdown::render()` should be utilized instead of `rmarkdown::render_site()`.
 
 Below is an example of rendering a single `Rmd` file.
