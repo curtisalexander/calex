@@ -46,7 +46,7 @@ tags: ["python", "conda"]
 </div>
 <div id="what-to-update" class="section level2">
 <h2>What to Update?</h2>
-<p>Use <a href="https://github.com/axiom-data-science/feedstockrot">feedstockrot</a> in order to determine which feedstocks one needs to update.</p>
+<p>Use <a href="https://github.com/axiom-data-science/feedstockrot">feedstockrot</a> in order to determine which feedstocks one needs to update.<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a></p>
 <p>Approximately weekly, I run a <code>meta-update</code> script to determine which feedstocks I need to update. Below is the appropriate section from my <code>meta-update</code> script (which assumes <code>feedstockrot</code> is on one’s <code>PATH</code>).</p>
 <pre class="sh"><code>echo
 echo &quot;#################&quot;
@@ -59,7 +59,7 @@ echo
 # update using your GitHub token
 export FEEDSTOCKROT_GITHUB_TOKEN=&quot;12345abcdefg&quot;
 feedstockrot --github</code></pre>
-<p>Currently<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>, I maintain the following <a href="https://github.com/conda-forge/feedstocks">feedstocks</a>:</p>
+<p>Currently<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>, I maintain the following <a href="https://github.com/conda-forge/feedstocks">feedstocks</a>:</p>
 <ul>
 <li>openpyxl-feedstock</li>
 <li>greenlet-feedstock</li>
@@ -171,6 +171,7 @@ git remote prune origin
 <li id="fn1"><p>I normally think of <em>the community</em> as something other — but if I’m contributing my small part, then <em>the community</em> includes me.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>Yes, I did want to become more involved. But my involvement grew out of the fact that I wanted to manage <a href="https://openpyxl.readthedocs.io/en/default/">openpyxl</a> via the <a href="https://anaconda.org/conda-forge/repo">conda-forge channel</a> as opposed to the <a href="https://anaconda.org/anaconda/">default channel</a>. An innocuous beginning!<a href="#fnref2">↩</a></p></li>
 <li id="fn3"><p>I temporarily <a href="https://github.com/conda-forge/openpyxl-feedstock/issues/1">broke</a> the pandas build.<a href="#fnref3">↩</a></p></li>
-<li id="fn4"><p>As of 2018-02-10.<a href="#fnref4">↩</a></p></li>
+<li id="fn4"><p>In the future I may try utilizing <a href="https://github.com/conda-forge/conda-forge.github.io/blob/master/scripts/tick_my_feedstocks.py">tick_my_feedstocks.py</a>.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>As of 2018-02-10.<a href="#fnref5">↩</a></p></li>
 </ol>
 </div>

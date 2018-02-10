@@ -40,7 +40,7 @@ I am quite interested in learning more about package management using [nix](http
 ---
 
 ## What to Update?
-Use [feedstockrot](https://github.com/axiom-data-science/feedstockrot) in order to determine which feedstocks one needs to update.
+Use [feedstockrot](https://github.com/axiom-data-science/feedstockrot) in order to determine which feedstocks one needs to update.[^4]
 
 Approximately weekly, I run a `meta-update` script to determine which feedstocks I need to update.  Below is the appropriate section from my `meta-update` script (which assumes `feedstockrot` is on one's `PATH`).
 
@@ -58,7 +58,7 @@ export FEEDSTOCKROT_GITHUB_TOKEN="12345abcdefg"
 feedstockrot --github
 ```
 
-Currently[^4], I maintain the following [feedstocks](https://github.com/conda-forge/feedstocks):
+Currently[^5], I maintain the following [feedstocks](https://github.com/conda-forge/feedstocks):
 
 * openpyxl-feedstock
 * greenlet-feedstock
@@ -204,4 +204,5 @@ The just updated version of the package should be displayed.
 [^1]: I normally think of _the community_ as something other &mdash; but if I'm contributing my small part, then _the community_ includes me.
 [^2]: Yes, I did want to become more involved.  But my involvement grew out of the fact that I wanted to manage [openpyxl](https://openpyxl.readthedocs.io/en/default/) via the [conda-forge channel](https://anaconda.org/conda-forge/repo) as opposed to the [default channel](https://anaconda.org/anaconda/).  An innocuous beginning!
 [^3]: I temporarily [broke](https://github.com/conda-forge/openpyxl-feedstock/issues/1) the pandas build.
-[^4]: As of 2018-02-10.
+[^4]: In the future I may try utilizing [tick_my_feedstocks.py](https://github.com/conda-forge/conda-forge.github.io/blob/master/scripts/tick_my_feedstocks.py).
+[^5]: As of 2018-02-10.
