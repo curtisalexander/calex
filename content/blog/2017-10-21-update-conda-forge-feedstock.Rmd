@@ -66,7 +66,7 @@ Currently[^4], I maintain the following [feedstocks](https://github.com/conda-fo
 * et_xmlfile-feedstock
 * neovim-feedstock
 * trollius-feedstock
-
+* pyuv-feedstock
 
 ## How to Update?
 All examples will use the [openpyxl](https://openpyxl.readthedocs.io/en/default/) package as an example.
@@ -204,4 +204,4 @@ The just updated version of the package should be displayed.
 [^1]: I normally think of _the community_ as something other &mdash; but if I'm contributing my small part, then _the community_ includes me.
 [^2]: Yes, I did want to become more involved.  But my involvement grew out of the fact that I wanted to manage [openpyxl](https://openpyxl.readthedocs.io/en/default/) via the [conda-forge channel](https://anaconda.org/conda-forge/repo) as opposed to the [default channel](https://anaconda.org/anaconda/).  An innocuous beginning!
 [^3]: I temporarily [broke](https://github.com/conda-forge/openpyxl-feedstock/issues/1) the pandas build.
-[^4]: As of 2017-10-21.
+[^4]: As of 2018-02-10.
