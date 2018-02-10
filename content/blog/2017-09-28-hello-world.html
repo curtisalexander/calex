@@ -46,14 +46,14 @@ pipe(&quot;Hello World!\n&quot;, lambda i: i * 5, print)</code></pre>
 </div>
 <div id="sas" class="section level3">
 <h3>SAS</h3>
-<pre class="sas"><code>* 1x ;
+<pre class="sas"><code>/* 1x */
 data _null_;
   file stdout ;
   put &quot;Hello World!&quot;;
 run;
 
 
-* 5x ;
+/* 5x */
 data _null_;
   file stdout ;
   do i = 1 to 5;

@@ -47,14 +47,14 @@ pipe("Hello World!\n", lambda i: i * 5, print)
 
 ### SAS
 ```sas
-* 1x ;
+/* 1x */
 data _null_;
   file stdout ;
   put "Hello World!";
 run;
 
 
-* 5x ;
+/* 5x */
 data _null_;
   file stdout ;
   do i = 1 to 5;
