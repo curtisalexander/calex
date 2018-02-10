@@ -21,7 +21,7 @@ For more background information, see the following posts from two members of the
 * Wes McKinney - [conda-forge and PyData's CentOS moment](http://wesmckinney.com/blog/conda-forge-centos-moment/)
 * Jake VanderPlas - [Conda: Myths and Misconceptions](https://jakevdp.github.io/blog/2016/08/25/conda-myths-and-misconceptions/)
 
-Within the conda-forge description above, are what I believe to be keys for the success of the project:
+Within the conda-forge description above are what I believe to be keys for the success of the project:
 
 * build infrastructure
     * I know little about how the infrastructure works but I find it to be an awesome example of using continuous integration + git + GitHub to deliver packages to several programming language ecosystems.
