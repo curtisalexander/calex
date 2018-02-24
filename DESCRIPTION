@@ -1,0 +1,5 @@
+Package: calex
+Type: Website
+Title: Website for https://calex.org
+Version: 0.0.1
+Imports: blogdown
