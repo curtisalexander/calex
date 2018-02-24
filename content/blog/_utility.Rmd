@@ -1,6 +1,6 @@
 ```{r, eval=TRUE, echo=FALSE}
 # inspired by https://github.com/rstudio/blogdown/issues/241#issuecomment-367566753
 ref_shortcode <- function(text, link){
-  htmltools::HMTL(paste0("[", text, "]({{< ref '", link, "' >}})"))
+  htmltools::HTML(paste0("[", text, "]({{< ref '", link, "' >}})"))
 }
 ```
