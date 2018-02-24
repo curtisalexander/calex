@@ -9,6 +9,6 @@ git checkout -b publish
 git add .
 git commit --message "Travis build: ${TRAVIS_BUILD_NUMBER}"
 
-git remote add origin-pages https://${GITHUB_TOKEN}@github.com/curtisalexander/calex.git > /dev/null 2>&1
-git push --quiet --set-upstream origin publish
+git remote add origin-publish https://${GITHUB_TOKEN}@github.com/curtisalexander/calex.git > /dev/null 2>&1
+git push --quiet --set-upstream origin-publish publish
 
