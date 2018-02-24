@@ -10,14 +10,19 @@ weight: 2
 
 Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/).
 
+## General Workflow
+
 1. Open my project file &mdash; `open calex.Rproj`.
 2. Utilize the `Tools -> Addins` to select the `New Post` addin from the `blogdown` package.  Note that I have updated my global Rprofile &mdash; `~/.Rprofile` &mdash; to include the following:
 
 ```
 options(servr.daemon = TRUE,
         blogdown.author = "Curtis Alexander",
-        blogdown.subdir = "blog")
+        blogdown.subdir = "blog",
+        blogdown.ext = "Rmd")
 ```
+
+This will create the needed `Rmd` file within `content/blog`.
 
 3. Below is a screenshot of the completed `New Post` addin form for this particular blog post.
 
@@ -36,6 +41,5 @@ options(servr.daemon = TRUE,
 ## Caveats
 
 ### Drafts
-The [blogdown documentation](https://bookdown.org/yihui/blogdown/content.html#yaml-metadata) suggests adding the YAML field `draft: true` to the YAML front matter of a blog post in order to set the post as a draft.  However, this is only effective if one builds their site using `blogdown` with the command `blogdown::build_site()` or `blogdown::hugo_build()`.  However, I do not utilize either of those commands to build my site.  Instead, I rely on [netlify](https://www.netlify.com) to build my site.
+The [blogdown documentation](https://bookdown.org/yihui/blogdown/content.html#yaml-metadata) suggests adding the YAML field `draft: true` to the YAML front matter of a blog post in order to set the post as a draft.  In order for this to work properly I had to ensure that `builddrafts` within my `config.toml` file was set to `false`.
 
-My solution is to manage drafts with directory and `git`.  I create a `drafts` directory where I would like to store any draft `Rmd` files.  Then within my `.gitignore` file, I add entries for the relevant directories.
