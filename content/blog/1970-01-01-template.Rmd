@@ -1,0 +1,20 @@
+---
+title: template
+author: Curtis Alexander
+date: "1970-01-01"
+slug: template
+categories: []
+tags: ["colophon"]
+draft: true
+---
+
+## Title...
+
+Content...
+
+## R code example...
+
+```{r, eval = FALSE, echo = TRUE}
+writeLines("Hello World!")
+```
+
