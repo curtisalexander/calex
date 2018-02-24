@@ -11,14 +11,8 @@ branches:
     - master
 
 script:
+  - Rscript -e 'rmarkdown::clean_site()'
   - Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 
 after_success:
   - ./publish.sh
-
-#deploy:
-#  skip_cleanup: true
-#  github_token: $GITHUB_TOKEN
-#  on:
-#    branch: master
-#  target_branch: publish
