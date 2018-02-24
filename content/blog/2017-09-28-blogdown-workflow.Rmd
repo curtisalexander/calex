@@ -5,6 +5,7 @@ date: "2017-09-28"
 slug: blogdown-workflow
 categories: []
 tags: ["colophon"]
+weight: 2
 ---
 
 Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/).
