@@ -8,9 +8,10 @@ tags: ["colophon"]
 weight: 1
 ---
 
-Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/).
+Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/) if I am building locally.  If I am making full use of automation and CI, I utilize a [different process](blog/github-travis-netlify/).
 
-## General Workflow
+
+## Local Workflow
 
 1. Open my project file &mdash; `open calex.Rproj`.
 2. Utilize the `Tools -> Addins` to select the `New Post` addin from the `blogdown` package.  Note that I have updated my global Rprofile &mdash; `~/.Rprofile` &mdash; to include the following:
