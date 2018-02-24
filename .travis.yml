@@ -8,14 +8,17 @@ sudo: false
 
 branches:
   only:
-    - src
+    - master
 
 script:
   - Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 
-deploy:
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN
-  on:
-    branch: src
-  target_branch: master
+after_success:
+  - ./publish.sh
+
+#deploy:
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN
+#  on:
+#    branch: master
+#  target_branch: publish
