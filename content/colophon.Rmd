@@ -26,7 +26,9 @@ div.header .container .logo {
 }
 ```
 
-### Hosting
+### Building and Hosting
+
+Building is performed with [Travis CI](https://travis-ci.org).
 
 Hosting is provided through [netlify](https://www.netlify.com/).
 
