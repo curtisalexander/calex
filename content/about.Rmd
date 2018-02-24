@@ -2,7 +2,6 @@
 title: "About"
 author: "Curtis Alexander"
 date: "2017-09-28"
-output: html_document
 ---
 
 This is the personal website and blog of Curtis Alexander.

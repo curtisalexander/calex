@@ -2,7 +2,6 @@
 title: "License"
 author: "Curtis Alexander"
 date: "2017-09-28"
-output: html_document
 ---
 
 All source code, unless specifically excepted, is licensed under the MIT License.
