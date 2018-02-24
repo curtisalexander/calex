@@ -11,7 +11,7 @@ branches:
     - src
 
 script:
-  - Rscript -e 'blogdown::build_site()'
+  - Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 
 deploy:
   skip_cleanup: true
