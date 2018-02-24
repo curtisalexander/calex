@@ -8,16 +8,14 @@ sudo: false
 
 branches:
   only:
-    - master
+    - src
 
 script:
   - Rscript -e 'blogdown::build_site()'
 
 deploy:
-  provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   on:
-    branch: master
-  local_dir: public
-  fqdn: travis-blogdown.yihui.name
+    branch: src
+  target_branch: master
