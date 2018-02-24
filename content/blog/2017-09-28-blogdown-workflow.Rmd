@@ -1,7 +1,7 @@
 ---
 title: Blogdown Workflow
 author: Curtis Alexander
-date: '2017-09-28'
+date: "2017-09-28"
 slug: blogdown-workflow
 categories: []
 tags: ["colophon"]
@@ -30,3 +30,11 @@ options(servr.daemon = TRUE,
 9. I then go to the `Git` menu within RStudio and commit and push my changes.  I push everything to a repo within Github.
 10. [netlify](https://www.netlify.com/) then picks up the changes to the `master` branch of the Github repo that houses my website.  The final [Hugo](https://gohugo.io/) command that builds the website is run by netlify.  After building, the static site is uploaded to netlify's CDN.
 11. et voil&agrave;!
+
+
+## Caveats
+
+### Drafts
+The [blogdown documentation](https://bookdown.org/yihui/blogdown/content.html#yaml-metadata) suggests adding the YAML field `draft: true` to the YAML front matter of a blog post in order to set the post as a draft.  However, this is only effective if one builds their site using `blogdown` with the command `blogdown::build_site()` or `blogdown::hugo_build()`.  However, I do not utilize either of those commands to build my site.  Instead, I rely on [netlify](https://www.netlify.com) to build my site.
+
+My solution is to manage drafts with directory and `git`.  I create a `drafts` directory where I would like to store any draft `Rmd` files.  Then within my `.gitignore` file, I add entries for the relevant directories.

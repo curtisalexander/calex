@@ -1,7 +1,7 @@
 ---
 title: Update conda-forge feedstock
 author: Curtis Alexander
-date: '2017-10-21'
+date: "2017-10-21"
 slug: update-conda-forge-feedstock
 categories: []
 tags: ["python", "conda"]

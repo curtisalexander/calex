@@ -1,7 +1,7 @@
 ---
 title: R Markdown Syntax Highlighting
 author: Curtis Alexander
-date: '2017-11-11'
+date: "2017-11-11"
 slug: r-markdown-syntax-highlighting
 categories: []
 tags: ["r"]
