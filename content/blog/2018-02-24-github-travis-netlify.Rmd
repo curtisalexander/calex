@@ -20,3 +20,5 @@ I plan to document this in greater detail in the future but wanted to out least 
 I prefer this solution as it allows me to continue to utilize Netlify for publishing.  I [agree with Yihui](https://yihui.name/en/2017/06/netlify-instead-of-github-pages/) that Netlify is a fantastic service and prefer using it over Github Pages.  However, I was previously building all of my files &mdash; going from `Rmd` to `html` &mdash; on my local machine.  I wanted the ability to utilize my phone or web browser to author a post and take advantage of all the various automation and CI tools to publish to the web.
 
 Now when I want to write something, I usually start with copying a [template](https://github.com/curtisalexander/calex/blob/master/content/blog/1970-01-01-template.Rmd) file, adding my thoughts, removing `draft` from the YAML front matter, and then committing to `master`.
+
+As an example I added this sentence via my phone. I have the beautiful [Working Copy](https://workingcopyapp.com) app on my phone which I can use to manage git repos. Alternatively I could just use the Github site from my phone or any web browser. 
