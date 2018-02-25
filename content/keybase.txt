@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/calex
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://calex.org
+  * I am calex (https://keybase.io/calex) on keybase.
+  * I have a public key ASDNba77xCSPhnA4nROjzaFMXhsdNDwx1O-aWmRx1nwo4Ao
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120cd6daefbc4248f8670389d13a3cda14c5e1b1d343c31d4ef9a5a6471d67c28e00a",
+      "host": "keybase.io",
+      "kid": "0120cd6daefbc4248f8670389d13a3cda14c5e1b1d343c31d4ef9a5a6471d67c28e00a",
+      "uid": "81c5b8d028d50ff02f66378caba30f19",
+      "username": "calex"
+    },
+    "merkle_root": {
+      "ctime": 1519541725,
+      "hash": "dcaf445af6176dd0c5a9864473660eca85eb4c8a2017e8b88c7a3e881cdfc33380433f27f94d275b7931b3b0712dc5d55226de2a5fe17ee2ac57829fa7a0d8bf",
+      "hash_meta": "b0431af7bc9d7ff98e91fda2aea39d4905b8cdc6a38c84ded13400f69f5be43d",
+      "seqno": 2149203
+    },
+    "service": {
+      "hostname": "calex.org",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.41"
+  },
+  "ctime": 1519541755,
+  "expire_in": 504576000,
+  "prev": "0375e57a9c972dc0dfdf5b1e9d7561a4d3a22413af127f997318c15f4346adca",
+  "seqno": 9,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgzW2u+8Qkj4ZwOJ0To82hTF4bHTQ8MdTvmlpkcdZ8KOAKp3BheWxvYWTFAz57ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwY2Q2ZGFlZmJjNDI0OGY4NjcwMzg5ZDEzYTNjZGExNGM1ZTFiMWQzNDNjMzFkNGVmOWE1YTY0NzFkNjdjMjhlMDBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwY2Q2ZGFlZmJjNDI0OGY4NjcwMzg5ZDEzYTNjZGExNGM1ZTFiMWQzNDNjMzFkNGVmOWE1YTY0NzFkNjdjMjhlMDBhIiwidWlkIjoiODFjNWI4ZDAyOGQ1MGZmMDJmNjYzNzhjYWJhMzBmMTkiLCJ1c2VybmFtZSI6ImNhbGV4In0sIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNTE5NTQxNzI1LCJoYXNoIjoiZGNhZjQ0NWFmNjE3NmRkMGM1YTk4NjQ0NzM2NjBlY2E4NWViNGM4YTIwMTdlOGI4OGM3YTNlODgxY2RmYzMzMzgwNDMzZjI3Zjk0ZDI3NWI3OTMxYjNiMDcxMmRjNWQ1NTIyNmRlMmE1ZmUxN2VlMmFjNTc4MjlmYTdhMGQ4YmYiLCJoYXNoX21ldGEiOiJiMDQzMWFmN2JjOWQ3ZmY5OGU5MWZkYTJhZWEzOWQ0OTA1YjhjZGM2YTM4Yzg0ZGVkMTM0MDBmNjlmNWJlNDNkIiwic2Vxbm8iOjIxNDkyMDN9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiY2FsZXgub3JnIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuNDEifSwiY3RpbWUiOjE1MTk1NDE3NTUsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiMDM3NWU1N2E5Yzk3MmRjMGRmZGY1YjFlOWQ3NTYxYTRkM2EyMjQxM2FmMTI3Zjk5NzMxOGMxNWY0MzQ2YWRjYSIsInNlcW5vIjo5LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQI9mYP4S6Ipjxe0/m6MQweAN3HV2O09zh3bHPFpY6FGSCuBfFsg7/ZX6lTXvj7CYunBYZQM6CbFiHZpHgQ555QSoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCAX/BrxUmRmGGjcVz4mWfJ80HaZ1FwJ2Vxogr+KxEVivqN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/calex
+
+==================================================================
