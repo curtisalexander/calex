@@ -8,10 +8,7 @@ tags: ["colophon"]
 weight: 1
 ---
 
-```{r, child="_utility.Rmd"}
-```
-
-Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/) if I am building locally.  If I am making full use of automation and CI, I utilize something similar to the outline at `r ref_shortcode("this link", "content/blog/github-travis-netlify")`.
+Below is my general workflow for creating a blog post using [blogdown](https://bookdown.org/yihui/blogdown/) if I am building locally.  If I am making full use of automation and CI, I utilize something similar to what is described in this [outline](https://www.calex.org/blog/github-travis-netlify/).
 
 ## Local Workflow
 
