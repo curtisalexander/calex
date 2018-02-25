@@ -22,7 +22,7 @@ Below is my general workflow for creating a blog post using [blogdown](https://b
 options(servr.daemon = TRUE,
         blogdown.author = "Curtis Alexander",
         blogdown.subdir = "blog",
-        blogdown.ext = "Rmd")
+        blogdown.ext = ".Rmd")
 ```
 
 This will create the needed `Rmd` file within `content/blog`.
