@@ -1,0 +1,72 @@
+---
+title: "Install `openssl` R package"
+author: Curtis Alexander
+date: "2018-03-03"
+slug: install-openssl-r-package
+categories: []
+tags: ["r"]
+---
+
+Due to the various `openssl` libraries I have throughout my system (Apple's version, homebrew's version, miniconda3's version), I was having trouble installing the [openssl](https://CRAN.R-project.org/package=openssl) R package.
+
+Below is a shell script that makes use of my [cran-dl](https://github.com/curtisalexander/cran-dl) script to first download the needed `tar.gz` file for `openssl` and then install it from the command line with `R CMD INSTALL` and the appropriate settings for `--configure-vars`.
+
+The below is also available in [gist](https://gist.github.com/curtisalexander/7dd6ddff900c2a7aa4461b34aa4dbde8) form.
+
+```bash
+#!/usr/bin/env zsh
+
+# where to begin?
+DIR="${HOME}/code"
+cd "${DIR}"
+
+echo
+echo "Working from within ${PWD}"
+echo
+
+# clone cran-dl repo
+if [ ! -d "cran-dl" ] ; then
+    printf "Would you like to clone cran-dl? [y/N]: "
+    if read -q; then
+        echo; git clone https://github.com/curtisalexander/cran-dl; echo
+    fi
+fi
+
+
+echo "Note that cran-dl requires the following R packages be installed:"
+echo "  - docopt"
+echo "  - httr"
+echo "  - purrr"
+echo "  - rvest"
+echo "  - xml2"
+echo
+echo "To install within R, execute the following:"
+echo "  - install.packages(c(\"docopt\", \"httr\", \"purrr\", \"rvest\", \"xml2\"))"
+
+# create the directory if it does not exist
+if [ ! -d "r-pkgs" ] ; then
+    echo
+    echo "Making the directory r-pkgs"
+    mkdir -p "${DIR}/r-pkgs"
+fi
+
+# from the command line, download the tar.gz file
+echo
+echo "Download the package using cran-dl"
+${DIR}/cran-dl/cran-dl --pkg=openssl --path="${DIR}/r-pkgs"
+echo
+
+# get the current openssl version
+echo
+echo "Get the current version of openssl"
+OPENSSL_VER="$(openssl version | cut -d' ' -f 2)"
+echo "  - ${OPENSSL_VER}"
+
+# install using appropriate configuration
+OPENSSL_R_VER="$(ls -1 ${DIR}/r-pkgs | grep ^openssl | sort -R | head -1)"
+echo
+echo "Installing...${OPENSSL_R_VER}"
+echo
+
+sudo R CMD INSTALL -l /Library/Frameworks/R.framework/Resources/library --configure-vars='INCLUDE_DIR=/usr/local/opt/openssl/include LIB_DIR=/usr/local/opt/openssl/lib' "${DIR}/r-pkgs/${OPENSSL_R_VER}"
+```
