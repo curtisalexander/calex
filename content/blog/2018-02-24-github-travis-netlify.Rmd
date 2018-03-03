@@ -9,16 +9,16 @@ tags: ["colophon", "r"]
 
 Today I figured out how to utilize [Github](https://github.com) + [Travis CI](https://travis-ci.org/) + [Netlify](https://netlify.com) to publish this blog.  It obviously depends on the amazing work by Yihui Xie on [blogdown](https://bookdown.org/yihui/blogdown/).
 
-I plan to document this in greater detail in the future but wanted to out least stub out my approach.
+I plan to document this in greater detail in the future but wanted to at least stub out my approach / requirements.
 
 * First, I wanted to have my `master` branch only contain the needed static files and `Rmd` files to produce my blog.
-* I then take advantage of Travis and use it to render the `html` files from `Rmd` files using `blogdown::build_site()`.  Specifically, I don't utilize Hugo to build my files.
-* Next, I utilize a [simple script](https://github.com/curtisalexander/calex/blob/master/publish.sh) to commit the just built `html` files to the `publish` branch.
-* The `publish` branch gets pushed back to Github.
-* Netlify is setup to look for changes on the `publish` branch rather than the `master` branch.  Netlify then utilizes Hugo to finish building and deploying my site.
+* I then take advantage of Travis and use it to render the `html` files from `Rmd` files using `blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)`.  By setting `run_hugo = FALSE` I don't utilize Hugo on Travis to build the final `public` directory.
+* Next, I utilize a [shell script](https://github.com/curtisalexander/calex/blob/master/publish.sh) to commit the just built `html` files to the `publish` branch.
+* The `publish` branch gets pushed force pushed back to Github.
+* My Netlify account is setup to look for changes on the `publish` branch rather than the `master` branch within Github.  Netlify utilizes Hugo to finish building and deploying my site.
 
 I prefer this solution as it allows me to continue to utilize Netlify for publishing.  I [agree with Yihui](https://yihui.name/en/2017/06/netlify-instead-of-github-pages/) that Netlify is a fantastic service and prefer using it over Github Pages.  However, I was previously building all of my files &mdash; going from `Rmd` to `html` &mdash; on my local machine.  I wanted the ability to utilize my phone or web browser to author a post and take advantage of all the various automation and CI tools to publish to the web.
 
-Now when I want to write something, I usually start with copying a [template](https://github.com/curtisalexander/calex/blob/master/content/blog/1970-01-01-template.Rmd) file, adding my thoughts, removing `draft` from the YAML front matter, and then committing to `master`.
+Now when I want to write something, I usually start by copying a [template](https://github.com/curtisalexander/calex/blob/master/content/blog/1970-01-01-template.Rmd) file, adding my thoughts, removing `draft` from the YAML front matter, and then committing to `master`.
 
 As an example I added this sentence via my phone. I have the beautiful [Working Copy](https://workingcopyapp.com) app on my phone which I can use to manage git repos. Alternatively I could just use the Github site from my phone or any web browser. 
