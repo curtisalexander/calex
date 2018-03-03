@@ -1,5 +1,5 @@
 ---
-title: "Install `openssl` R package"
+title: "Install openssl R package"
 author: Curtis Alexander
 date: "2018-03-03"
 slug: install-openssl-r-package
