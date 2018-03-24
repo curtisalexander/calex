@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2017-09-28"
 slug: blogdown-workflow
 categories: []
-tags: ["colophon"]
+tags: 
+  - colophon
 weight: 1
 ---
 

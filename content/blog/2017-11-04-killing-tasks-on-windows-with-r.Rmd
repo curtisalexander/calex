@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2017-11-04"
 slug: killing-tasks-on-windows-with-r
 categories: []
-tags: ["r"]
+tags:
+  - r
 ---
 
 On my Windows machine, I oftentimes want to kill a set of applications that are running.  This is especially true when I don't have full control of my machine and am unable to adjust the applications that launch on startup.

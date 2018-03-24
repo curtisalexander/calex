@@ -4,7 +4,9 @@ author: Curtis Alexander
 date: "2017-10-21"
 slug: update-conda-forge-feedstock
 categories: []
-tags: ["python", "conda"]
+tags:
+  - python
+  - conda
 ---
 
 ## Summary

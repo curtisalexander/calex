@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2017-10-23"
 slug: racket-dataframes
 categories: []
-tags: ["racket"]
+tags: 
+  - racket
 draft: true
 ---
 

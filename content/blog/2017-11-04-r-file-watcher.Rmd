@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2017-11-04"
 slug: r-file-watcher
 categories: []
-tags: ["r"]
+tags:
+  - r
 ---
 
 ## R Markdown website

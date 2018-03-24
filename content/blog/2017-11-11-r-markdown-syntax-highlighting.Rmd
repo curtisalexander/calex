@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2017-11-11"
 slug: r-markdown-syntax-highlighting
 categories: []
-tags: ["r"]
+tags: 
+  - r
 ---
 
 ## Prior art

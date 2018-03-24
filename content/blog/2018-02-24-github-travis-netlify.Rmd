@@ -4,7 +4,9 @@ author: Curtis Alexander
 date: "2018-02-24"
 slug: github-travis-netlify
 categories: []
-tags: ["colophon", "r"]
+tags: 
+  - colophon
+  - r
 ---
 
 Today I figured out how to utilize [Github](https://github.com) + [Travis CI](https://travis-ci.org/) + [Netlify](https://netlify.com) to publish this blog.  It obviously depends on the amazing work by Yihui Xie on [blogdown](https://bookdown.org/yihui/blogdown/).

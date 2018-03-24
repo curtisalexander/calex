@@ -4,7 +4,8 @@ author: Curtis Alexander
 date: "2018-03-03"
 slug: install-openssl-r-package
 categories: []
-tags: ["r"]
+tags:
+  - r
 ---
 
 Due to the various `openssl` libraries I have throughout my system (Apple's version, homebrew's version, miniconda3's version), I was having trouble installing the [openssl](https://CRAN.R-project.org/package=openssl) R package.
