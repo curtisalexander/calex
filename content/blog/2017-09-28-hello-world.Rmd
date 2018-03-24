@@ -68,6 +68,16 @@ data _null_;
     put "Hello World!";
   end;
 run;
+
+/* 1x - macro language writing to the log */
+%put "Hello World!";
+
+/* 3x - macro language writing to the log */
+%macro helloworld;
+  %do i = 1 %to 3;
+    %put "Hello World!"; 
+  %end;
+%mend;
 ```
 
 ### Bash
@@ -103,4 +113,16 @@ awk 'BEGIN { for (i=0; i<=5; i++) print "Hello World!" }'
 (for-each (lambda (i)
             (printf "Hello World!\n"))
           (stream->list (in-range 5)))
+```
+
+### PowerShell
+```powershell
+# 1x
+Write-Host "Hello World!"
+
+# 3x - full
+1..3 | ForEach-Object { Write-Host "Hello World!" }
+
+# 3x - abbreviated where % is an alias for ForEach-Object
+1..3 | % { Write-Host "Hello World!" }
 ```
