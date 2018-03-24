@@ -14,7 +14,7 @@ I plan to document this in greater detail in the future but wanted to at least s
 * First, I wanted to have my `master` branch only contain the needed static files and `Rmd` files to produce my blog.
 * I then take advantage of Travis and use it to render the `html` files from `Rmd` files using `blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)`.  By setting `run_hugo = FALSE` I don't utilize Hugo on Travis to build the final `public` directory.
 * Next, I utilize a [shell script](https://github.com/curtisalexander/calex/blob/master/publish.sh) to commit the just built `html` files to the `publish` branch.
-* The `publish` branch gets pushed force pushed back to Github.
+* The `publish` branch gets force pushed back to Github.
 * My Netlify account is setup to look for changes on the `publish` branch rather than the `master` branch within Github.  Netlify utilizes Hugo to finish building and deploying my site.
 
 I prefer this solution as it allows me to continue to utilize Netlify for publishing.  I [agree with Yihui](https://yihui.name/en/2017/06/netlify-instead-of-github-pages/) that Netlify is a fantastic service and prefer using it over Github Pages.  However, I was previously building all of my files &mdash; going from `Rmd` to `html` &mdash; on my local machine.  I wanted the ability to utilize my phone or web browser to author a post and take advantage of all the various automation and CI tools to publish to the web.
