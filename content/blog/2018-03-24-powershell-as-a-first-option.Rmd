@@ -1,0 +1,31 @@
+---
+title: PowerShell as a First Option
+author: Curtis Alexander
+date: '2018-03-24'
+slug: powershell-as-a-first-option
+categories: []
+tags:
+  - powershell
+---
+
+I am always searching for a better way to unify the scripts I write for home computer with those I write for my work computer.  At work we utilize Windows whereas at home I utilize macOS or a flavor of Linux.  Typically, I think about how I can get scripts that I have written for *nix-like platforms to work on Windows.  A couple methodologies I have explored include
+
+* [Cygwin](https://www.cygwin.com/)
+* [Git for Windows](https://git-scm.com/)
+    * Includes `bash` and some light utilities for simple scripting
+* [xonsh](http://xon.sh/)
+    * I'm still quite interested in `xonsh` however it requires a proper Python environment be setup on each system.  With the advent of `conda` this has become much easier, particulary on Windows.  But distributing scripts widely at work is a challenge for those who don't make use of Python.
+* Using a programming language that compiles to multiple platforms
+    * Preferably one that produces self-contained binaries
+    * Free CI services, like [AppVeyor]() or [Travis CI]() may need to be used to produce the actual binary
+    * I had explored a few different languages.  Note that each of these are particularly interesting because of the opportunity for advanced language features such as the strong typing in Haskell or FSharp or the macro capabilities in Racket.
+        * [Haskell](https://haskell-lang.org/)
+        * [Racket](https://racket-lang.org/)
+        * [FSharp](http://fsharp.org/)
+
+None of the above are very satisfactory (for a variety of reasons).  But recently I [learned](https://blogs.msdn.microsoft.com/powershell/2018/01/10/powershell-core-6-0-generally-available-ga-and-supported/) that there is a version of PowerShell &mdash; called `PowerShell Core` &mdash; that is built on top of [.NET Core](https://www.microsoft.com/net/download/macos) which itself is multi-platform.  Thus my thinking *has flipped!*  Instead of trying to bring *nix-like tools to Windows, maybe I should look to bring a historically Windows-like tool to \*nix.
+
+**Aside:** Why not just utilize the [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about)?  That would be *ideal*!  However, I am not a "developer" at work and thus WSL isn't available to me.  My role is a strange mix of developer, business analyst, and quasi-data scientist.  The tools that are available to me tend to be those that "business analyst" or "statistician/data scientist" would utilize.  Unfortunately, we have need to build up solutions that look more like "developer" work.  More details of that work would make a good future post.
+
+Thus, I'm going to begin exploring the use of PowerShell as a cross-platform scripting language.  After a cursory look at PowerShell, I know that I can pass around scriptblocks (lambda like things) and make use of pipelines.  With those primitives, the ability to create functions, as well as an assortment of data types (unlike `bash` where the principal data types are text and an array whose sytnax I never can remember) I should be able to begin to build up a small toolset that works on multiple platforms.
+
