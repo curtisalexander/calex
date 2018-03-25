@@ -78,6 +78,8 @@ run;
     %put "Hello World!"; 
   %end;
 %mend;
+
+%helloworld;
 ```
 
 ### Bash
