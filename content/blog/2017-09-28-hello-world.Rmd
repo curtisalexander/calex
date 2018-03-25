@@ -72,9 +72,9 @@ run;
 /* 1x - macro language writing to the log */
 %put "Hello World!";
 
-/* 3x - macro language writing to the log */
+/* 5x - macro language writing to the log */
 %macro helloworld;
-  %do i = 1 %to 3;
+  %do i = 1 %to 5;
     %put "Hello World!"; 
   %end;
 %mend;
@@ -122,9 +122,9 @@ awk 'BEGIN { for (i=0; i<=5; i++) print "Hello World!" }'
 # 1x
 Write-Host "Hello World!"
 
-# 3x - full
-1..3 | ForEach-Object { Write-Host "Hello World!" }
+# 5x - full
+1..5 | ForEach-Object { Write-Host "Hello World!" }
 
-# 3x - abbreviated where % is an alias for ForEach-Object
-1..3 | % { Write-Host "Hello World!" }
+# 5x - abbreviated where % is an alias for ForEach-Object
+1..5 | % { Write-Host "Hello World!" }
 ```
