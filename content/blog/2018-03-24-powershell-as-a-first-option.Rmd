@@ -8,7 +8,7 @@ tags:
   - powershell
 ---
 
-I am always searching for a better way to unify the scripts I write for home computer with those I write for my work computer.  At work we utilize Windows whereas at home I utilize macOS or a flavor of Linux.  Typically, I think about how I can get scripts that I have written for *nix-like platforms to work on Windows.  A couple methodologies I have explored include
+I am always searching for a better way to unify the scripts I write for my home computer(s) with those I write for my work computer.  At work we utilize Windows whereas at home I utilize macOS or a flavor of Linux.  Typically, I think about how I can get scripts that I have written for *nix-like platforms to work on Windows.  A couple methodologies I have explored include
 
 * [Cygwin](https://www.cygwin.com/)
 * [Git for Windows](https://git-scm.com/)
