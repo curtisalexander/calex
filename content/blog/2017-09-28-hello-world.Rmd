@@ -82,6 +82,7 @@ run;
 
 %helloworld;
 
+
 /* 1x - obfuscated */
 data _null_;
   array letter {6} $1.;
