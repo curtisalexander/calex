@@ -36,7 +36,7 @@ steps:
       packrat
       $(Agent.OS)
       $(Build.SourcesDirectory)/packrat/packrat.lock
-    path: $(Build.SourcesDirectory)/packrat
+    path: $(Build.SourcesDirectory)/packrat/src
   displayName: 'Caching packages'
 - script: |
     cd "${CALEX_DIR}"
