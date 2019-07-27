@@ -24,7 +24,7 @@ steps:
   displayName: 'Set up R'
 - script: |
     echo "Installing packrat"
-    R -e "install.packages(c('blogdown'))"
+    R -e "install.packages(c('packrat'))"
   displayName: 'Install packrat'
 - task: CacheBeta@0
   inputs:
