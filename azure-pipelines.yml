@@ -14,10 +14,11 @@ variables:
 
 steps:
 - script: |
+    echo 'The value of R_LIBS_USER is ${R_LIBS_USER}'
     echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
     echo '.libPaths("${R_LIBS_USER}")' >> ~/.Rprofile
     mkdir -p "${R_LIBS_USER}"
-  displayName: 'Installing R'
+  displayName: 'Set up R'
 - task: CacheBeta@0
   inputs:
     key: DESCRIPTION
