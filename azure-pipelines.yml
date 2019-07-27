@@ -28,6 +28,8 @@ steps:
     echo "Installing packrat"
     R -e "install.packages(c('packrat'))"
   displayName: 'Install packrat'
+- script: |
+    sudo apt-get update && sudo apt-get install -y pandoc
 - task: CacheBeta@0
   inputs:
     key: |
