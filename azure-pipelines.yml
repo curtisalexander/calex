@@ -24,7 +24,7 @@ steps:
   displayName: 'Set up R'
 - script: |
     echo "Installing packrat"
-    R -e "install.packages(c('packrat'), lib = '${R_LIBS_USER}')"
+    R -e "install.packages(c('packrat'))"
     # R -e "install.packages(c('packrat'), lib = '${R_LIBS_USER}')"
   displayName: 'Install packrat'
 - task: CacheBeta@0
@@ -36,6 +36,7 @@ steps:
     path: $(Build.SourcesDirectory)/packrat
   displayName: 'Caching packages'
 - script: |
+    cd $(Build.SourcesDirectory)
     R -e "packrat::restore(restart = FALSE)"
   displayName: 'Restore packages'
 #- script: |
