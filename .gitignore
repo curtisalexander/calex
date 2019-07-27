@@ -1,9 +1,10 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
 .DS_Store
-public/
+.RData
+.Renviron
+.Rhistory
+.Rproj.user
+.Ruserdata
 blogdown/
+public/
 packrat/lib*/
 packrat/src/
