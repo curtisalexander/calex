@@ -1,0 +1,57 @@
+---
+title: Convert docx to pdf
+author: Curtis Alexander
+date: '2019-07-27'
+slug: convert-docx-to-pdf
+categories: []
+tags:
+  - powershell
+---
+
+Recently, I had the need to convert a set (> 30) of Word documents `docx` to pdf.  Cobbling together pieces, I came up with a PowerShell script that takes advantage of the feature within Word to save a document as pdf.
+
+As I have been wont to do of late, I turned this simple task into a more complete script, with [comment based help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6), that I can share.  This serves two purposes for me.
+* It helps to continue to improve my scripting.  I have to think through how to best generalize common functionality, how to perform (light) error checking, and how to design for use by others.
+* It also helps to ensure that a user can utilize the script right away.  Note that because I anticipate using this script somewhat infrequently, the ability to recall its use is important to future me!
+
+Unfortunately, this script only works on Windows as it requires the use of a [COM Object](https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-6#creating-com-objects-with-new-object) that allows PowerShell to open and control a Word application.
+
+Of particular interest to me within the script is how to perform a [map like](https://en.wikipedia.org/wiki/Map_(higher-order_function)) operation where I am only interested in processing a collection and producing side-effects rather than processing a collection and returning a new collection.  To accomplish, the script is broken into two pieces &mdash; creating the initial collection and producing the side-effect on each element within the collection.
+
+### Creating the initial collection
+Utilizing [Get-ChildItem](), creating the collection is quite easy.  Utilizing a simple filter results in a collection of files in a directory with a `docx` extension.
+
+```powershell
+Get-ChildItem -Path "${docxDir}" -Filter "*.docx"
+```
+
+### Saving as pdf
+To process the above collection, it is piped into  [ForEach-Object](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-6) which iterates over the collection, executing a function for each file (the collection element).
+
+```powershell
+ForEach-Object {
+    convertToPdf -wordApp $wordApp -wordFile $_
+}
+```
+
+The actual function is quite simple, merely opening the Word file and saving as a pdf.  
+
+```powershell
+function convertToPdf {
+    Param(
+        [Parameter(Mandatory = $true)]
+        [System.__ComObject]$wordApp,
+        [Parameter(Mandatory = $true)]
+        [System.IO.FileInfo]$wordFile
+    )
+    $pdfFile = Join-Path $wordFile.DirectoryName "$($wordFile.Basename).pdf" 
+    $wordDoc = $wordApp.Documents.Open($wordFile.FullName)
+    Write-Host "Converting $wordFile to $pdfFile"
+    try {
+        $wordDoc.SaveAs($pdfFile, 17)
+    }
+    finally {
+        $wordDoc.Close()
+    }
+}
+```
