@@ -38,6 +38,6 @@ steps:
     cd $(Build.SourcesDirectory)
     R -e "packrat::restore(restart = FALSE)"
   displayName: 'Restore packages'
-#- script: |
-#    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
-#  displayName: 'Build site'
+- script: |
+    R -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
+  displayName: 'Build site'
