@@ -10,7 +10,9 @@ container:
   image: 'rocker/r-ver:3.6.1'
 
 variables:
+  AZURE_BUILD_NUMBER: '$(Build.BuildNumber)'
   R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
+  CALEX_DIR: '$(Build.SourcesDirectory)'
 
 steps:
 - script: |
@@ -35,9 +37,24 @@ steps:
     path: $(Build.SourcesDirectory)/packrat
   displayName: 'Caching packages'
 - script: |
-    cd $(Build.SourcesDirectory)
+    cd "${CALEX_DIR}"
     R -e "packrat::restore(restart = FALSE)"
+  condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
 - script: |
+    cd "${CALEX_DIR}"
     R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
+#- script: |
+#    echo "Setting up git user.name and user.email"
+#    git config --global user.name "Curtis Alexander"
+#    git config --global user.email "calex@calex.org"
+#    echo "fetch, checkout, and commit to publish branch"
+#    git fetch
+#    git checkout -b publish
+#    git add .
+#    git commit --message "Azure Pipelines build: ${AZURE_BUILD_NUMBER}"
+#    echo "Push to remote"
+#    git remote add origin-publish https://${GITHUB_PAT}@github.com/curtisalexander/calex.git > /dev/null 2>&1
+#    git push -f --quiet --set-upstream origin-publish publish
+#  displayName: 'Push to publish branch'
