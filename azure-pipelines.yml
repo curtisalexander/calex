@@ -4,7 +4,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'Ubuntu-16.04'
   containerImage: rstudio/r-base:3.6-xenial
   container: $[ variables['containerImage'] ]
 
@@ -21,6 +21,6 @@ steps:
 - script: |
     R -e "install.packages(c('blogdown'))"
   displayName: 'Install package dependencies'
-- script: |
-    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
-  displayName: 'Build site'
+#- script: |
+#    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
+#  displayName: 'Build site'
