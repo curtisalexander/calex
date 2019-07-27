@@ -69,6 +69,7 @@ data _null_;
   end;
 run;
 
+
 /* 1x - macro language writing to the log */
 %put "Hello World!";
 
@@ -80,6 +81,19 @@ run;
 %mend;
 
 %helloworld;
+
+
+/* 1x - obfuscated */
+data _null_;
+  array letter {6} $1.;
+  i = 0;
+  do x = 72, 101, 108, 108, 111, 33;
+    i + 1;
+    letter {i} = byte(x);
+  end;
+  greeting = cats(of letter:);
+  putlog greeting;
+run;
 ```
 
 ### Bash
