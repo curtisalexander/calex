@@ -9,18 +9,15 @@ pool:
 container:
   image: 'rocker/r-ver:latest'
 
-variables:
-  R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
-
 steps:
 - script: |
     echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
-    mkdir -p ${R_LIBS_USER}
-    echo '${R_LIBS_USER}'
+    echo '.libPaths("~/Rlibs")' >> ~/.Rprofile
+    mkdir -p ~/Rlibs
   displayName: 'Installing R'
-#- script: |
-#    R -e "install.packages(c('blogdown'))"
-#  displayName: 'Install package dependencies'
+- script: |
+    R -e "install.packages(c('blogdown'))"
+  displayName: 'Install package dependencies'
 #- script: |
 #    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 #  displayName: 'Build site'
