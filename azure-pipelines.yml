@@ -7,14 +7,14 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 container:
-  image: 'rocker/r-ver:latest'
+  image: 'rocker/r-ver:3.6.1'
 
 variables:
   R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
 
 steps:
 - script: |
-    pwd
+    pwd; ls -la
     echo "Creating directory for R packages ==> ${R_LIBS_USER}"
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
