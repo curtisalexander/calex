@@ -18,6 +18,7 @@ steps:
     echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
     echo '.libPaths("$R_LIBS_USER")' >> ~/.Rprofile
     mkdir -p "${R_LIBS_USER}"
+    cat ~/.Rprofile
   displayName: 'Set up R'
 - task: CacheBeta@0
   inputs:
