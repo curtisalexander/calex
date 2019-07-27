@@ -1,19 +1,26 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
+# Adapted from https://github.com/jimhester/azuretest
 
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
+  containerImage: rstudio/r-base:3.6-xenial
+  container: $[ variables['containerImage'] ]
+
+variables:
+  CI: true
+  R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
+    mkdir -p ${R_LIBS_USER}
+    sudo apt-get update && sudo apt-get install -y libxml2-dev libssl-dev
+  displayName: 'Installing R'
+- script: |
+    R -e "install.packages(c('blogdown'))"
+  displayName: 'Install package dependencies'
+- script: |
+    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
+  displayName: 'Build site'
