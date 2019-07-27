@@ -39,5 +39,5 @@ steps:
     R -e "packrat::restore(restart = FALSE)"
   displayName: 'Restore packages'
 - script: |
-    R -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
+    R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
