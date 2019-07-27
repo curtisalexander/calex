@@ -28,8 +28,8 @@ steps:
     echo "Installing packrat"
     R -e "install.packages(c('packrat'))"
   displayName: 'Install packrat'
-- script: |
-    sudo apt-get update && sudo apt-get install -y pandoc
+#- script: |
+#    sudo apt-get update && sudo apt-get install -y pandoc
 - task: CacheBeta@0
   inputs:
     key: |
@@ -45,7 +45,8 @@ steps:
   displayName: 'Restore packages'
 - script: |
     cd "${CALEX_DIR}"
-    R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
+    R -e "installed.packages()"
+    # R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
 #- script: |
 #    echo "Setting up git user.name and user.email"
