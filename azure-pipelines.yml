@@ -10,20 +10,22 @@ container:
   image: 'rocker/r-ver:latest'
 
 variables:
-  R_INSTALL_DIR: ~/rlib
+  R_LIBS_USER: '$(Agent.BuildDirectory)/R/library'
 
 steps:
 - script: |
-    echo "The value of R_INSTALL_DIR is ${R_INSTALL_DIR}"
-    echo "options(repos = \"https://cloud.r-project.org\")" > ~/.Rprofile
-    echo ".libPaths(\"${R_INSTALL_DIR}\")" >> ~/.Rprofile
-    mkdir -p "${R_INSTALL_DIR}"
+    echo "Updating ~/.Rprofile"
+    echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
+    echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
+    echo "The content of ~/.Rprofile is now"
     cat ~/.Rprofile
+    echo "Creating directory for R packages ==> ${R_LIBS_USER}"
+    mkdir -p "${R_LIBS_USER}"
   displayName: 'Set up R'
 - task: CacheBeta@0
   inputs:
     key: DESCRIPTION
-    path: $(R_INSTALL_DIR)
+    path: $(R_LIBS_USER)
   displayName: 'Caching Packages'
 - script: |
     R -e "install.packages(c('blogdown'))"
