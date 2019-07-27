@@ -40,7 +40,7 @@ steps:
   displayName: 'Caching packages'
 - script: |
     cd "${CALEX_DIR}"
-    R -e "packrat::restore(restart = FALSE)"
+    R -e "packrat::restore(restart = TRUE, overwrite.dirty = TRUE)"
   condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
 - script: |
