@@ -18,9 +18,12 @@ steps:
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
     echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
-    echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
+    echo "Updating ~/.Renviron"
+    echo "R_LIBS_USER=${R_LIBS_USER}" > ~/.Renviron
+    sed -e 's/^/>> /' ~/.Renviron
+    # echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
   displayName: 'Set up R'
 - script: |
     echo "Installing packrat"
