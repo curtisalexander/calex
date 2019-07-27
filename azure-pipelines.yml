@@ -10,13 +10,13 @@ container:
   image: 'rocker/r-ver:latest'
 
 variables:
-  R_INSTALL_DIR: '$(Agent.HomeDirectory)/rlib'
+  R_INSTALL_DIR: ~/rlib
 
 steps:
 - script: |
-    echo 'The value of R_INSTALL_DIR is ${R_INSTALL_DIR}'
-    echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
-    echo '.libPaths("${R_INSTALL_DIR}")' >> ~/.Rprofile
+    echo "The value of R_INSTALL_DIR is ${R_INSTALL_DIR}"
+    echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
+    echo ".libPaths('${R_INSTALL_DIR}')" >> ~/.Rprofile
     mkdir -p "${R_INSTALL_DIR}"
     cat ~/.Rprofile
   displayName: 'Set up R'
