@@ -14,22 +14,29 @@ variables:
 
 steps:
 - script: |
+    echo "Creating directory for R packages ==> ${R_LIBS_USER}"
+    mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
     echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
     echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
-    echo "The content of ~/.Rprofile is now"
-    cat ~/.Rprofile
-    echo "Creating directory for R packages ==> ${R_LIBS_USER}"
-    mkdir -p "${R_LIBS_USER}"
+    echo "The content of ~/.Rprofile is now ==>"
+    sed -e 's/^/>> /' ~/.Rprofile
   displayName: 'Set up R'
+- script: |
+    echo "Installing packrat"
+    R -e "install.packages(c('blogdown'))"
+  displayName: 'Install packrat'
 - task: CacheBeta@0
   inputs:
-    key: DESCRIPTION
-    path: $(R_LIBS_USER)
-  displayName: 'Caching Packages'
+    key: |
+      packrat
+      $(Agent.OS)
+      $(Build.SourcesDirectory)/packrat/packrat.lock
+    path: $(Build.SourcesDirectory)/packrat
+  displayName: 'Caching packages'
 - script: |
-    R -e "install.packages(c('blogdown'))"
-  displayName: 'Installing packages'
+    R -e "packrat::restore(restart = FALSE)"
+  displayName: 'Restore packages'
 #- script: |
 #    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 #  displayName: 'Build site'
