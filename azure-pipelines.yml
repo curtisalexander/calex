@@ -14,6 +14,7 @@ variables:
 
 steps:
 - script: |
+    pwd
     echo "Creating directory for R packages ==> ${R_LIBS_USER}"
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
