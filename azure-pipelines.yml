@@ -10,13 +10,13 @@ container:
   image: 'rocker/r-ver:latest'
 
 variables:
-  R_LIBS_USER: '$(Build.SourcesDirectory)/rlib'
+  R_LIBS_USER: $(Build.SourcesDirectory)/rlib
 
 steps:
 - script: |
-    echo 'The value of R_LIBS_USER is ${R_LIBS_USER}'
+    echo 'The value of R_LIBS_USER is $R_LIBS_USER'
     echo 'options(repos = "https://cloud.r-project.org")' > ~/.Rprofile
-    echo '.libPaths("${R_LIBS_USER}")' >> ~/.Rprofile
+    echo '.libPaths("$R_LIBS_USER")' >> ~/.Rprofile
     mkdir -p "${R_LIBS_USER}"
   displayName: 'Set up R'
 - task: CacheBeta@0
