@@ -21,7 +21,7 @@ steps:
     echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
-  displayName: 'Set up R'
+  displayName: 'Setup R'
 - script: |
     echo "Installing packrat"
     R -e "install.packages(c('packrat'))"
