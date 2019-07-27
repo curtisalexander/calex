@@ -15,9 +15,14 @@ steps:
     echo '.libPaths("~/Rlibs")' >> ~/.Rprofile
     mkdir -p ~/Rlibs
   displayName: 'Installing R'
+- task: CacheBeta@0
+  inputs:
+    key: "blogown 0.14"
+    path: "~/Rlibs"
+  displayName: 'Caching Packages'
 - script: |
     R -e "install.packages(c('blogdown'))"
-  displayName: 'Install package dependencies'
+  displayName: 'Installing packages'
 #- script: |
 #    Rscript -e 'blogdown::build_site(local = FALSE, method = c("html", "custom"), run_hugo = FALSE)'
 #  displayName: 'Build site'
