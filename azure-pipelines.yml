@@ -7,7 +7,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 container:
-  #image: 'curtisalexander/r-ver-pandoc:latest'
   image: 'rocker/r-ver:3.6.1'
 
 variables:
@@ -39,12 +38,12 @@ steps:
   displayName: 'Caching packages'
 - script: |
     cd "${CALEX_DIR}"
-    R -e "packrat::restore(restart = TRUE, overwrite.dirty = TRUE)"
+    Rscript -e "packrat::restore(restart = TRUE, overwrite.dirty = TRUE)"
   condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
 - script: |
     cd "${CALEX_DIR}"
-    R -e "installed.packages()"
+    Rscript -e "installed.packages()"
     # R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
 #- script: |
