@@ -34,16 +34,19 @@ steps:
       packrat
       $(Agent.OS)
       $(Build.SourcesDirectory)/packrat/packrat.lock
-    path: $(Build.SourcesDirectory)/packrat/src
+    path: $(Build.SourcesDirectory)/packrat/lib
     cacheHitVar: CACHE_RESTORED
   displayName: 'Caching packages'
 - script: |
     cd "${CALEX_DIR}"
-    Rscript -e "packrat::restore(restart = TRUE, overwrite.dirty = TRUE)"
+    Rscript -e "packrat::status()"
+    Rscript -e "packrat::restore(dry.run = TRUE)"
+    # Rscript -e "packrat::restore(restart = TRUE, overwrite.dirty = TRUE)"
   condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
 - script: |
     cd "${CALEX_DIR}"
+    Rscript -e ".Library"
     Rscript -e "installed.packages()"
     # R -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
