@@ -35,6 +35,7 @@ steps:
       $(Agent.OS)
       $(Build.SourcesDirectory)/packrat/packrat.lock
     path: $(Build.SourcesDirectory)/packrat/src
+    cacheHitVar: CACHE_RESTORED
   displayName: 'Caching packages'
 - script: |
     cd "${CALEX_DIR}"
