@@ -11,6 +11,6 @@ options(servr.daemon = FALSE,
 
 #### -- Source global profile -- ####
 if (file.exists("~/.Rprofile")) {
-  base::sys.source("~/.Rprofile", envir = environment())
+  source("~/.Rprofile")
 }
 #### -- End Source global profile -- ####
