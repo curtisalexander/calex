@@ -7,8 +7,8 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 container:
-  image: 'rocker/r-ver:3.6.1'
-  #image: 'rstudio/r-base:3.6.1-xenial'
+  #image: 'rocker/r-ver:3.6.1'
+  image: 'rstudio/r-base:3.6.1-xenial'
 
 variables:
   AZURE_BUILD_NUMBER: '$(Build.BuildNumber)'
@@ -17,8 +17,6 @@ variables:
 
 steps:
 - script: |
-    echo "before - .Library is"
-    R -e ".Library"
     echo "Creating directory for R packages ==> ${R_LIBS_USER}"
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
@@ -26,20 +24,12 @@ steps:
     echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
-    echo "after - .Library is"
-    R -e ".Library"
   displayName: 'Setup R'
 #- script: |
     #sudo apt-get update && sudo apt-get install &&
 - script: |
-    echo "pwd is"
-    pwd
-    echo "before - .Library is"
-    R -e ".Library"
     echo "Installing packrat"
     R -e "install.packages(c('packrat'))"
-    echo "after - .Library is"
-    R -e ".Library"
   displayName: 'Install packrat'
 #- task: CacheBeta@0
 #  inputs:
@@ -51,21 +41,15 @@ steps:
 #    #cacheHitVar: CACHE_RESTORED
 #  displayName: 'Caching packages'
 - script: |
-    cd "${SOURCE_DIR}"
-    echo "pwd is"
-    pwd
-    echo ".Library is"
-    R -e ".Library"
-    #cd "${SOURCE_DIR}"
-    #Rscript -e "packrat::restore()"
+    Rscript -e "packrat::restore()"
 #  condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
-- script: |
-    cd "${SOURCE_DIR}"
+#- script: |
+    #cd "${SOURCE_DIR}"
     #    Rscript -e ".Library"
     #    Rscript -e "installed.packages()"
-    Rscript -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
-  displayName: 'Build site'
+    #Rscript -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
+  #displayName: 'Build site'
 #- script: |
 #    echo "Setting up git user.name and user.email"
 #    git config --global user.name "Curtis Alexander"
