@@ -11,6 +11,7 @@ title = "calex.org"
 # disqusshortname = ""
 pluralizelisttitles = false
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+disableKinds = ["taxonomy", "taxonmyTerm"]
 
 [permalinks]
 blog = "blog/:slug/"
@@ -19,7 +20,7 @@ blog = "blog/:slug/"
 dateform = "Jan 2, 2006"
 dateformfull = "Mon Jan 2 2006 15:04:05 MST"
 description = "Personal blog for Curtis Alexander"
-copyright = "Copyright © 2017-2019 Curtis Alexander"
+copyright = "Copyright © 2017-{year} Curtis Alexander"
 # copyrightUrl = "https://creativecommons.org/licenses/by-sa/4.0/"
 logofile = "img/calex-logo.jpg"
 faviconfile = "img/calex-logo.jpg"
