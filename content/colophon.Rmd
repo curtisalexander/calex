@@ -1,7 +1,7 @@
 ---
 title: "Colophon"
 author: "Curtis Alexander"
-date: "2017-09-29"
+date: "2019-07729"
 ---
 
 ### Website 
@@ -26,10 +26,14 @@ div.header .container .logo {
 }
 ```
 
+Ultimately, as noted within [Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/), I manage [my theme](https://github.com/curtisalexander/cocoa-eh-hugo-theme) through a [git submodule](https://bookdown.org/yihui/blogdown/version-control.html).
+
 ### Building and Hosting
 
-Building is performed with [Travis CI](https://travis-ci.org).
+Building is performed with [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/).  My specific project is public and may be viewed at the [Azure DevOps site](https://dev.azure.com/curtisalexander/calex.org).
 
 Hosting is provided through [netlify](https://www.netlify.com/).
 
 Simple instructions for getting setup can be found within [Chapter 3.1](https://bookdown.org/yihui/blogdown/netlify.html) of the [blogdown](https://bookdown.org/yihui/blogdown/) book/site.
+
+A more complex set of instructions may be found at <strike>[this blog post](https://www.calex.org/blog/github-travis-netlify/)</strike> [this blog post](https://www.calex.org/blog/github-azure-netlify/).
