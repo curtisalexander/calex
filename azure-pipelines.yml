@@ -47,10 +47,13 @@ steps:
   displayName: 'Build site'
 - script: |
     echo "Installing git"
-    sudo apt-get update && sudo apt-get install -y git-core
+    sudo apt-get update && sudo apt-get install -y git
     echo "Setting up git user.name and user.email"
-    git config --global user.name "${GIT_USER_NAME}"
-    git config --global user.email "${GIT_USER_EMAIL}"
+    git config --global user.name $(GIT_USER_NAME)
+    git config --global user.email $(GIT_USER_EMAIL)
+    echo "git user.name and user.email are the following"
+    git config user.name
+    git config user.email
     echo "fetch, checkout, and commit to publish branch"
     git fetch
     git checkout -b publish
