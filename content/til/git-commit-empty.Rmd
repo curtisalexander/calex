@@ -10,3 +10,4 @@ In order to commit an empty commit, which is useful for triggering CI builds, ut
 ```sh
 git commit --allow-empty -m "Trigger CI Build"
 ```
+

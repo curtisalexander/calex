@@ -1,5 +1,7 @@
 ---
-title: "TIL"
+title: "til"
+date: "2019-07-29"
 ---
 
 Today I learned...
+
