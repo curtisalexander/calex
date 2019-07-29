@@ -11,7 +11,7 @@ title = "calex.org"
 # disqusshortname = ""
 pluralizelisttitles = false
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
-disableKinds = ["taxonomy", "taxonmyTerm"]
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [permalinks]
 blog = "blog/:slug/"
