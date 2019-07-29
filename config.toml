@@ -35,10 +35,11 @@ linkedin = "curtis-r-alexander"
 # facebook = "facebook_id"
 # social_banner = "img/banner.png"
 usesmallsummarycard = true
-posts_navigation = true
+posts_navigation = false
 # issoHost = "comments.domain.tld:1234"
 # githubRepo = "curtisalexander/calex"
 small_banner_logo = true
+noreadingtime = true
 
 [params.colors]
 identifier = "#527fc1f"
