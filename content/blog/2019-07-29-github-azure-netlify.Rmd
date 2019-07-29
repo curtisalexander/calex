@@ -1,0 +1,15 @@
+---
+title: Github + Azure Pipelines + Netlify
+author: Curtis Alexander
+date: "2019-07-29"
+slug: github-azure-netlify
+categories: []
+tags: 
+  - colophon
+  - r
+  - azure
+---
+
+> **NOTE:** Placeholder to update the [Github + Travis + Netflify](blog/github-travis-netlify) post with one about Github + Azure Pipelines + Netlify.
+
+<aside>**NOTE:** Placeholder to update the [Github + Travis + Netflify](blog/github-travis-netlify) post with one about Github + Azure Pipelines + Netlify.</aside>
