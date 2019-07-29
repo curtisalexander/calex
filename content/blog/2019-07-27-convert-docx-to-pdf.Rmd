@@ -8,9 +8,10 @@ tags:
   - powershell
 ---
 
-Recently, I had the need to convert a set (> 30) of Word documents `docx` to pdf.  Cobbling together pieces, I came up with a PowerShell script that takes advantage of the feature within Word to save a document as pdf.
+Recently, I had the need to convert a set (> 30) of Word documents (`docx` files) to pdf.  Cobbling together pieces, I came up with a [PowerShell script](https://github.com/curtisalexander/convert-docx-to-pdf) that takes advantage of the feature within Word to save a document as pdf.
 
-As I have been wont to do of late, I turned this simple task into a more complete script, with [comment based help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6), that I can share.  This serves two purposes for me.
+As I have been wont to do of late, I turned this simple task into a more complete script, with [comment based help](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6), that I can distribute and share.  This serves two purposes for me.
+
 * It helps to continue to improve my scripting.  I have to think through how to best generalize common functionality, how to perform (light) error checking, and how to design for use by others.
 * It also helps to ensure that a user can utilize the script right away.  Note that because I anticipate using this script somewhat infrequently, the ability to recall its use is important to future me!
 
@@ -54,4 +55,16 @@ function convertToPdf {
         $wordDoc.Close()
     }
 }
+```
+
+Putting it all together, I merely have to pass in a directory and all `docx` files within are converted into a pdf.
+
+```powershell
+Convert-DocxToPdf -docxDir "C:\Users\myuser\Documents\Word"
+```
+
+Finally, I had need to combine all the resulting pdf files into a single pdf and accomplished using [pdftk](https://www.pdflabs.com/tools/pdftk-server/).
+
+```sh
+pdftk *.pdf cat output singlefile.pdf
 ```
