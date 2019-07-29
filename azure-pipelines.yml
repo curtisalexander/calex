@@ -52,8 +52,8 @@ steps:
   displayName: 'Install git'
 - script: |
     echo "Setting up git user.name and user.email"
-    git config user.name "${GIT_USER_NAME}"
-    git config user.email "${GIT_USER_EMAIL}"
+    git config --global user.email "${GIT_USER_EMAIL}"
+    git config --global user.name "${GIT_USER_NAME}"
     echo "fetch, checkout, and commit to publish branch"
     git fetch
     git checkout -b publish
