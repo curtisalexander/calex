@@ -21,7 +21,7 @@ steps:
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
     echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
-    echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
+    # echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
   displayName: 'Setup R'
@@ -41,7 +41,14 @@ steps:
 #    #cacheHitVar: CACHE_RESTORED
 #  displayName: 'Caching packages'
 - script: |
+    echo "Restoring packrat packages"
     Rscript -e "packrat::restore()"
+    echo "Listing packrat"
+    ls -la ${SOURCE_DIR}/packrat
+    echo "Listing packrat/src"
+    ls -la ${SOURCE_DIR}/packrat/src
+    echo "Listing packrat/lib"
+    ls -la ${SOURCE_DIR}/packrat/lib
 #  condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
 #- script: |
