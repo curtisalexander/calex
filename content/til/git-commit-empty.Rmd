@@ -1,7 +1,7 @@
 ---
 title: "git-commit-empty"
 description: "git commit an empty commit"
-date: "2019-07-30"
+date: "2019-07-29"
 tags: ["til"]
 ---
 
