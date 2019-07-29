@@ -1,10 +1,12 @@
 ---
-title: "blah-pkg"
-description: "blah, blah, blah"
-date: "2017-09-28"
-tags: ["projects"]
+title: "git-commit-empty"
+description: "git commit an empty commit"
+date: "2019-07-29"
+tags: ["til"]
 ---
 
-A minimal [R package](http://r-pkgs.had.co.nz/) for testing.
+In order to commit an empty commit, which is useful for triggering CI builds, utilize the below.
 
-[blah-pkg](https://github.com/curtisalexander/blah-pkg)
+```sh
+git commit --allow-empty -m "Trigger CI Build"
+```
