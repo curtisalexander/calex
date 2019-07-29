@@ -1,0 +1,10 @@
+---
+title: "blah-pkg"
+description: "blah, blah, blah"
+date: "2017-09-28"
+tags: ["projects"]
+---
+
+A minimal [R package](http://r-pkgs.had.co.nz/) for testing.
+
+[blah-pkg](https://github.com/curtisalexander/blah-pkg)
