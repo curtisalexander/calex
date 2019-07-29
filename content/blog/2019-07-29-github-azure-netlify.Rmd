@@ -10,6 +10,5 @@ tags:
   - azure
 ---
 
-> **NOTE:** Placeholder to update the [Github + Travis + Netflify](blog/github-travis-netlify) post with one about Github + Azure Pipelines + Netlify.
+> **NOTE:** Placeholder to update the [Github + Travis + Netflify](/blog/github-travis-netlify) post with one about Github + Azure Pipelines + Netlify.
 
-<aside>**NOTE:** Placeholder to update the [Github + Travis + Netflify](blog/github-travis-netlify) post with one about Github + Azure Pipelines + Netlify.</aside>
