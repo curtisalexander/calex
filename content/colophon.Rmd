@@ -36,4 +36,4 @@ Hosting is provided through [netlify](https://www.netlify.com/).
 
 Simple instructions for getting setup can be found within [Chapter 3.1](https://bookdown.org/yihui/blogdown/netlify.html) of the [blogdown](https://bookdown.org/yihui/blogdown/) book/site.
 
-A more complex set of instructions may be found at <strike>[this blog post](https://www.calex.org/blog/github-travis-netlify/)</strike> [this blog post](https://www.calex.org/blog/github-azure-netlify/).
+A more complex set of instructions may be found at <strike>[this blog post](blog/github-travis-netlify/)</strike> [this blog post](blog/github-azure-netlify/).
