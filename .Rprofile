@@ -5,6 +5,10 @@ options(servr.daemon = FALSE,
         blogdown.ext = ".Rmd")
 #### -- End blogdown options -- ####
 
+#### -- packrat options -- ####
+options(packrat.dependency.discovery.disabled = TRUE)
+#### -- End packrat options -- ####
+
 #### -- Source global profile -- ####
 if (file.exists("~/.Rprofile")) {
   source("~/.Rprofile")
