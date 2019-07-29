@@ -46,9 +46,11 @@ steps:
     Rscript -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
   displayName: 'Build site'
 - script: |
+    echo "Installing git"
+    sudo apt-get update && sudo apt-get install -y git-core
     echo "Setting up git user.name and user.email"
-    git config --global user.name "Curtis Alexander"
-    git config --global user.email "calex@calex.org"
+    git config --global user.name "${GIT_USER_NAME}"
+    git config --global user.email "${GIT_USER_EMAIL}"
     echo "fetch, checkout, and commit to publish branch"
     git fetch
     git checkout -b publish
@@ -57,4 +59,4 @@ steps:
     echo "Push to remote"
     git remote add origin-publish https://${GITHUB_PAT}@github.com/curtisalexander/calex.git > /dev/null 2>&1
     git push -f --quiet --set-upstream origin-publish publish
-  displayName: 'Push to publish branch'
+  displayName: 'Setup git and push to publish branch'
