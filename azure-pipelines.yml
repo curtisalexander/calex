@@ -7,7 +7,6 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 container:
-  #image: 'rocker/r-ver:3.6.1'
   image: 'rstudio/r-base:3.6.1-xenial'
 
 variables:
@@ -21,7 +20,6 @@ steps:
     mkdir -p "${R_LIBS_USER}"
     echo "Updating ~/.Rprofile"
     echo "options(repos = 'https://cloud.r-project.org')" > ~/.Rprofile
-    # echo ".libPaths('${R_LIBS_USER}')" >> ~/.Rprofile
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
   displayName: 'Setup R'
