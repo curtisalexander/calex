@@ -44,12 +44,9 @@ steps:
     Rscript -e "packrat::restore()"
   condition: ne(variables.CACHE_RESTORED, 'true')
   displayName: 'Restore packages'
-#- script: |
-    #cd "${SOURCE_DIR}"
-    #    Rscript -e ".Library"
-    #    Rscript -e "installed.packages()"
-    #Rscript -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
-  #displayName: 'Build site'
+- script: |
+    Rscript -e "blogdown::build_site(local = FALSE, method = c('html', 'custom'), run_hugo = FALSE)"
+  displayName: 'Build site'
 #- script: |
 #    echo "Setting up git user.name and user.email"
 #    git config --global user.name "Curtis Alexander"
