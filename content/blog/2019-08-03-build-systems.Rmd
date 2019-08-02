@@ -1,0 +1,18 @@
+---
+title: Composable Technology
+author: Curtis Alexander
+date: "2019-08-03"
+slug: composable-technology
+categories: []
+tags: ["colophon"]
+draft: true
+---
+
+## Composable Technology
+
+At the moment I am seated outside connected over Wi-Fi with n iPhone. I am using my microphone and the native speech recognition capabilities to compose this draft. After I am finished composing this message, I will push this locally composed document using [Working Copy](https://workingcopyapp.com) up to [Github](https://www.github.com). And then I will let [Azure p
+Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) take over and actually build and deploy this little post.
+
+In the future I see this more easily used with the [today I learned]() section of my site. I can work on very small documents and push whenever I have a thought and am away from my laptop. 
+
+Ultimately this post is not instructive in any way. Instead, I marvel at home technology can be composed in interesting ways to enable functionality we would struggle to imagine just a few years prior.
