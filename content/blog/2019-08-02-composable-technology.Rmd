@@ -8,8 +8,6 @@ tags: ["colophon"]
 draft: false
 ---
 
-## Composable Technology
-
 At the moment I am seated outside connected over Wi-Fi with n iPhone. I am using my microphone and the native speech recognition capabilities to compose this draft. After I am finished composing this message, I will push this locally composed document using [Working Copy](https://workingcopyapp.com) up to [Github](https://www.github.com). And then I will let [Azure p
 Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) take over and actually build and deploy this little post.
 
