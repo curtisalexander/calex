@@ -31,10 +31,7 @@ steps:
   displayName: 'Install packrat'
 - task: CacheBeta@0
   inputs:
-    key: |
-      packrat
-      $(Build.SourcesDirectory)/DESCRIPTION
-      $(Build.SourcesDirectory)/packrat/packrat.lock
+    key: packrat | $(Build.SourcesDirectory)/DESCRIPTION | $(Build.SourcesDirectory)/packrat/packrat.lock
     path: $(Build.SourcesDirectory)/packrat/lib
     cacheHitVar: CACHE_RESTORED
   displayName: 'Caching packages'

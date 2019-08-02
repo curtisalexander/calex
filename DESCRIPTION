@@ -1,5 +1,5 @@
 Package: calex
 Type: Website
 Title: Website for https://calex.org
-Version: 2019.07.30.9000
+Version: 2019.08.02.9001
 Imports: blogdown
