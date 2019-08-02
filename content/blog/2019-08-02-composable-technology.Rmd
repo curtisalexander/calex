@@ -1,7 +1,7 @@
 ---
 title: Composable Technology
 author: Curtis Alexander
-date: "2019-08-03"
+date: "2019-08-02"
 slug: composable-technology
 categories: []
 tags: ["colophon"]
