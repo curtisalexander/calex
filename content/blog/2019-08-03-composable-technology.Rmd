@@ -5,7 +5,7 @@ date: "2019-08-03"
 slug: composable-technology
 categories: []
 tags: ["colophon"]
-draft: true
+draft: false
 ---
 
 ## Composable Technology
