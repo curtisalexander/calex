@@ -23,8 +23,6 @@ steps:
     echo "The content of ~/.Rprofile is now ==>"
     sed -e 's/^/>> /' ~/.Rprofile
   displayName: 'Setup R'
-#- script: |
-    #sudo apt-get update && sudo apt-get install &&
 - script: |
     echo "Installing packrat"
     R -e "install.packages(c('packrat'))"
