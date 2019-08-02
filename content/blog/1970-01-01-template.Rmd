@@ -8,7 +8,7 @@ tags: ["colophon"]
 draft: true
 ---
 
-## Title...
+<!-- Title not necessary -->
 
 Content...
 
