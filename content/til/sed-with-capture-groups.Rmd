@@ -27,17 +27,20 @@ sed -n 's/[ \t]*"name": "\(.*\)",/\1/p' result.json
 
 Interpretation is as follows.
 
-**NOTE:**<br/>
+**NOTE:**
+
 - Any part of the pattern (i.e. line) not included will be printed out thus the entire pattern must be captured.
   
-**REGEX:**</br/>
+**REGEX:**
+
 - `[ \t]*`  ==>  One or more tabs and/or spaces
 
 - `"\(.*\)"`  ==>  The escaped parentheses represent the actual capture group
 
 - `\1`  ==>  The actual captured result
   
-**SWITCHES:**<br/>
+**SWITCHES:**
+
 - `s/`  ==>  substitute - because using substitute, need to ensure that the entire pattern (i.e. line) is captured
 
 - `-n`  ==>  no printing except when p is included - when used in conjunction with /p, acts like `grep`
