@@ -1,0 +1,15 @@
+---
+title: "rstudio-vim-move-by-display-line"
+description: "within RStudio, move the cursor in vim by display line"
+date: "2019-08-09"
+tags: ["til"]
+---
+
+Within RStudio, if you are utilizing vim mode then execute the following ex commands to enable the cursor to move by display line.
+
+```
+:nmap k gk
+:nmap j gj
+```
+
+Unfortunately, these need to be re-entered each time RStudio is opened.

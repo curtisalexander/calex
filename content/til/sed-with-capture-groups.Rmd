@@ -1,0 +1,41 @@
+---
+title: "sed-with-capture-groups"
+description: "use sed with capture groups"
+date: "2019-08-09"
+tags: ["til"]
+---
+
+There are times where I would like to use capture groups in a tool like `grep` when searching through text.  Today I learned that you can accomplish with `sed`.  Note that this is a quick summary based on the longer [sed tutorial](http://www.grymoire.com/Unix/Sed.html#toc-uh-4) from [grymoire](http://www.grymoire.com).
+
+First, create a json file to parse.
+
+```
+# create a file
+cat <<EOF > result.json
+{
+  "id": "123",
+  "name": "curtis"
+}
+EOF
+```
+
+Next, parse and return the value from the `name` key.
+
+```
+sed -n 's/[ \t]*"name": "\(.*\)",/\1/p' result.json
+```
+
+Interpretation is as follows.
+
+**NOTE:**<br/>
+  - Any part of the pattern (i.e. line) not included will be printed out thus the entire pattern must be captured.
+**REGEX:**</br/>
+  - `[ \t]*`  ==>  One or more tabs and/or spaces
+  - `"\(.*\)"`  ==>  The escaped parentheses represent the actual capture group
+  - `\1`  ==>  The actual captured result
+**SWITCHES:**<br/>
+  - `s/`  ==>  substitute - because using substitute, need to ensure that the entire pattern (i.e. line) is captured
+  - `-n`  ==>  no printing except when p is included - when used in conjunction with /p, acts like `grep`
+  - `/p`  ==>  print match (substitution)
+
+Why not just use [`jq`](https://stedolan.github.io/jq/)?  `jq` is great!  But sometimes you just want to utilize the tools you have at hand to get the job done!
