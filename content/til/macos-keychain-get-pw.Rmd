@@ -1,29 +1,27 @@
 ---
-title: "Get a Password from the macOS keychain"
+title: "macOS keychain - get a password"
 date: "2019-08-09"
-slug: get-pw-macos-keychain
+slug: "macos-keychain-get-pw"
 tags: ["til"]
 ---
 
 The [macOS keychain](https://support.apple.com/en-gb/guide/keychain-access/kyca1083/mac) may be queried from the command line.  This is useful for scripting - for instance, it is useful for pulling back a personal access token for Github stored in the keychain.
 
-```sh
+```
 sudo security find-internet-password -gws github.com
 ```
 
 where
 
-```
--g ==> Display the password for the item found
--s ==> Match "server" string
--w ==> Display only the password on stdout
-```
+`-g` ==> Display the password for the item found
+`-s` ==> Match "server" string
+`-w` ==> Display only the password on stdout
 
 ---
 
 To get help:
 
-```sh
+```
 # overall help
 sudo security -h 
 
@@ -35,7 +33,7 @@ sudo security find-internet-password -h
 
 To list keychains:
 
-```sh
+```
 sudo security list-keychains
 ```
 
@@ -43,7 +41,7 @@ sudo security list-keychains
 
 To list items in a keychain:
 
-```sh
+```
 # lists items in the default keychain, which is typically the user keychain
 sudo security find-internet-password
 ```

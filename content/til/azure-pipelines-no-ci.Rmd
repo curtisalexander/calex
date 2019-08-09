@@ -1,0 +1,8 @@
+---
+title: "Azure Pipelines - Do not trigger CI"
+date: "2019-08-09"
+slug: "azure-pipelines-no-ci"
+tags: ["til"]
+---
+
+In order to commit to the `master` branch and [not trigger a CI build](https://docs.microsoft.com/en-us/azure/devops/pipelines/build/triggers?view=azure-devops&tabs=yaml#skipping-ci-for-individual-commits) in [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) then include `[skip ci]` in the commit message.
