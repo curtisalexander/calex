@@ -1,6 +1,6 @@
 ---
-title: "rstudio-vim-move-by-display-line"
-description: "within RStudio, move the cursor in vim by display line"
+title: "RStudio and VIM - Move by Display Line"
+slug: rstudio-vim-move-by-display-line
 date: "2019-08-09"
 tags: ["til"]
 ---

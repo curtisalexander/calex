@@ -1,7 +1,7 @@
 ---
-title: "get-pw-macos-keychain"
-description: "get a password from the macOS keychain"
+title: "Get a Password from the macOS keychain"
 date: "2019-08-09"
+slug: get-pw-macos-keychain
 tags: ["til"]
 ---
 
