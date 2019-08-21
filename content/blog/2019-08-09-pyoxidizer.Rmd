@@ -4,7 +4,7 @@ author: Curtis Alexander
 date: "2019-08-09"
 slug: pyoxidizer
 categories: []
-tags: ["Python"]
+tags: ["python"]
 draft: true
 ---
 
