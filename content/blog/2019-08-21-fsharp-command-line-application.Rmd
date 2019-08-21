@@ -1,0 +1,18 @@
+---
+title: F# Command Line Application
+author: Curtis Alexander
+date: "2019-08-21"
+slug: fsharp-command-line-application
+categories: []
+tags: ["f#"]
+draft: true
+---
+
+The below chronicles the steps needed to create a command line application with [F#](https://fsharp.org).
+
+> Aside: [Why F#](https://fsharpforfunandprofit.com/why-use-fsharp/)?  [Others](https://fsharpforfunandprofit.com/) have answered quite eloquently and completely.  As for me, I believe the language &mdash; and functional programming in particular &mdash; "fits" me.  That is quite a mushy statement but is how I would describe it at the moment.  To put it differently, as I continue to encounter new concepts in the language, I find myself continually saying "that makes sense" and assembling those concepts into the mental picture of what the language is.<br/><br/>An exploration into F# was motivated by the [purrr](https://purrr.tidyverse.org/) and [magrittr](https://magrittr.tidyverse.org/) packages from the [R language](https://www.r-project.org).
+
+### What tools do I need?
+The instructions below are trying to be a (very) minimal set of instructions.
+
+
