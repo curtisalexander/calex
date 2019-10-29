@@ -18,3 +18,15 @@ gpg --quick-generate-key "FirstName LastName (some comment) <username@somerandom
 ```
 
 This is inspired by the shell script [gpgit](https://github.com/NicoHood/gpgit).
+
+Other commands to know (recall).
+
+To list the key ==>
+```
+gpg --list-secret-keys --keyid-format LONG
+```
+
+To get a version for copying to Github ==>
+```
+gpg --armor --export
+```
