@@ -1,0 +1,130 @@
+---
+title: F# - Getting Started
+author: Curtis Alexander
+date: "2019-08-29"
+slug: fsharp-getting-started
+categories: []
+tags: ["f#"]
+draft: true
+---
+
+The below are notes I am taking for myself while I am working through [Get Programming with F#](https://www.manning.com/books/get-programming-with-f-sharp) by [Isaac Abraham](https://github.com/isaacabraham).
+
+As I am currently utilizing macOS, some of the setup and use differs from Isaac's descriptions in the opening chapters.  I will be focused on using [Visual Studio Code](https://code.visualstudio.com/), [mono](https://www.mono-project.com/), and [.NET Core](https://dotnet.microsoft.com/download).
+
+## Definitions
+
+| Term | Definition | File Extension | Notes |
+|------|------------|----------------|-------|
+| Solution | Container to organize code projects | `.sln` | |
+| Project | A set of code files - can be class library, console application, or unit tests | `.fsproj` | |
+| Library | A set of code files that compile into a .NET assembly with `.dll` as the file extension | `.dll` | |
+
+## Types of Projects
+
+Examples utilize [getting started guide](https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/get-started-command-line) for .NET Core on the command line.
+
+### Solution
+Container for projects.
+
+```
+dotnet new sln -o FSNetCore
+```
+
+### Library
+Compile code down into a file or set of files (called assemblies) with `.dll` as the file extension.
+
+```
+dotnet new classlib -lang F# -o src/Library 
+```
+
+### Console Application
+An application intended to be run from the console (command line).
+
+```
+dotnet new console -lang F# -o src/App
+```
+
+## Adding References
+If utilizing the command line, references to link everything together need to be added manually.
+
+### Add a Project to a Solution
+
+```
+dotnet sln add src/Library.fsproj
+```
+
+## Building
+
+```
+dotnet build
+```
+
+## Run
+
+All command line arguments are passed into `argv` within `main`.
+
+```
+[<EntryPoint>]
+let main argv =
+    ...
+```
+
+To actually run.
+
+```
+dotnet run Some command line args
+```
+
+
+## Paket
+Below are notes for utilizing [paket](https://fsprojects.github.io/Paket/) from the command line to finish the [first Capstone](https://github.com/isaacabraham/get-programming-fsharp/tree/netcore/src/code-listings/lesson-08).
+
+First, ensure that you are in the root of the project.  Next, make a directory for paket.
+
+```
+mkdir .paket
+```
+
+Download the bootstrapper.  A [link](https://github.com/fsprojects/Paket/releases/latest) is found on the paket site.  Below is an example for downloading version `5.216.0`.
+
+```
+cd .paket && curl -OLJ https://github.com/fsprojects/Paket/releases/download/5.216.0/paket.bootstrapper.exe ; cd -
+```
+
+Run the bootstrapper once.  A new `.exe` will be created.
+
+```
+mono .paket/paket.bootstrapper.exe
+```
+
+Now, initialize.  This will create a `paket.dependencies` file as well as the directory `paket-files`.
+
+```
+mono .paket/paket.exe init
+```
+
+Add `FSharp.Core` as a dependency.
+
+```
+mono .paket/paket.exe add FSharp.Core --version 4.7.0
+```
+
+Verify that the `<Import>` tag from the `Capstone1.fsproj` file reads as follows.  It should happen automatically when adding `FSharp.Core`.
+
+```xml
+<Import Project=".paket\Paket.Restore.targets" />
+```
+
+Finally, build (which will also perform a restore).
+
+```
+dotnet build
+```
+
+And now run.
+
+```
+dotnet run
+```
+

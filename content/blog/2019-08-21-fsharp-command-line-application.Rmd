@@ -8,11 +8,39 @@ tags: ["f#"]
 draft: true
 ---
 
-The below chronicles the steps needed to create a command line application with [F#](https://fsharp.org).
+The below chronicles the steps needed to create a command line application with [F#](https://fsharp.org) that can be easily consumed.
 
-> Aside: [Why F#](https://fsharpforfunandprofit.com/why-use-fsharp/)?  [Others](https://fsharpforfunandprofit.com/) have answered quite eloquently and completely.  As for me, I believe the language &mdash; and functional programming in particular &mdash; "fits" me.  That is quite a mushy statement but is how I would describe it at the moment.  To put it differently, as I continue to encounter new concepts in the language, I find myself continually saying "that makes sense" and assembling those concepts into the mental picture of what the language is.<br/><br/>An exploration into F# was motivated by the [purrr](https://purrr.tidyverse.org/) and [magrittr](https://magrittr.tidyverse.org/) packages from the [R language](https://www.r-project.org).
+> Aside: [Why F#](https://fsharpforfunandprofit.com/why-use-fsharp/)?  [Others](https://fsharpforfunandprofit.com/) have answered quite eloquently and completely.  As for me, I believe the language &mdash; and functional programming in particular &mdash; "fits" my brain.  That is quite a mushy statement but I don't know how else to describe it.  Perhaps it is because I resisted the siren call of object-oriented programming (or was just too plain lazy to learn).  To put it differently, as I continue to encounter new concepts in the language, I find myself continually saying "that makes sense" and assembling those concepts into the mental picture of what the language is.<br/><br/>I originally began to explore functinoal programming after encountering the [purrr](https://purrr.tidyverse.org/) and [magrittr](https://magrittr.tidyverse.org/) packages from the [R language](https://www.r-project.org).
 
-### What tools do I need?
-The instructions below are trying to be a (very) minimal set of instructions.
+Finally, take note of the blog post date &mdash; these are instructions as of the date of publishing.  Obviously this will change in the future!
 
+## What tools do I need?
+The instructions below are meant to be a (very) minimal set of instructions for creating a command line.  In addition, they are as command line focused as possible.
+
+`.NET Core SDK`
+
+Download the [.NET Core SDK](https://dotnet.microsoft.com/download/dotnet-core/3.0).  For my sample application, I am utilizing `SDK 3.0.100-preview8-013656`.
+
+## What are we going to be building?
+In this example, we will be building a simple command line application that requests location information for [ipstack.com](https://ipstack.com/).
+
+
+## Let's Go!
+
+### Setup
+Let's get everything setup.  Start with a new directory.
+
+```
+mkdir fsharp-ipstack
+```
+
+### Beginnings
+
+Start by creating a console application.
+
+```
+dotnet new console -lang F#
+```
+
+### Build the App
 
