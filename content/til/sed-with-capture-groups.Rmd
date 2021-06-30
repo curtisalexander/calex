@@ -22,7 +22,7 @@ EOF
 Next, parse and return the value from the `name` key.
 
 ```
-sed -n 's/[ \t]*"name": "\(.*\)",/\1/p' result.json
+sed -n 's/[ \t]*"name": "\(.*\)",\?/\1/p' result.json
 ```
 
 Interpretation is as follows.
@@ -38,6 +38,8 @@ Interpretation is as follows.
 - `"\(.*\)"`  ==>  The escaped parentheses represent the actual capture group
 
 - `\1`  ==>  The actual captured result
+
+- `,\?`  ==>  Match comma zero or one time 
   
 **SWITCHES:**
 
