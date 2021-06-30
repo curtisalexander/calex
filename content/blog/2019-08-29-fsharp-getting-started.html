@@ -1,0 +1,113 @@
+---
+title: F# - Getting Started
+author: Curtis Alexander
+date: "2019-08-29"
+slug: fsharp-getting-started
+categories: []
+tags: ["f#"]
+draft: true
+---
+
+
+
+<p>The below are notes I am taking for myself while I am working through <a href="https://www.manning.com/books/get-programming-with-f-sharp">Get Programming with F#</a> by <a href="https://github.com/isaacabraham">Isaac Abraham</a>.</p>
+<p>As I am currently utilizing macOS, some of the setup and use differs from Isaac’s descriptions in the opening chapters. I will be focused on using <a href="https://code.visualstudio.com/">Visual Studio Code</a>, <a href="https://www.mono-project.com/">mono</a>, and <a href="https://dotnet.microsoft.com/download">.NET Core</a>.</p>
+<div id="definitions" class="section level2">
+<h2>Definitions</h2>
+<table style="width:62%;">
+<colgroup>
+<col width="9%" />
+<col width="18%" />
+<col width="23%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Definition</th>
+<th>File Extension</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Solution</td>
+<td>Container to organize code projects</td>
+<td><code>.sln</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Project</td>
+<td>A set of code files - can be class library, console application, or unit tests</td>
+<td><code>.fsproj</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Library</td>
+<td>A set of code files that compile into a .NET assembly with <code>.dll</code> as the file extension</td>
+<td><code>.dll</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="types-of-projects" class="section level2">
+<h2>Types of Projects</h2>
+<p>Examples utilize <a href="https://docs.microsoft.com/en-us/dotnet/fsharp/get-started/get-started-command-line">getting started guide</a> for .NET Core on the command line.</p>
+<div id="solution" class="section level3">
+<h3>Solution</h3>
+<p>Container for projects.</p>
+<pre><code>dotnet new sln -o FSNetCore</code></pre>
+</div>
+<div id="library" class="section level3">
+<h3>Library</h3>
+<p>Compile code down into a file or set of files (called assemblies) with <code>.dll</code> as the file extension.</p>
+<pre><code>dotnet new classlib -lang F# -o src/Library </code></pre>
+</div>
+<div id="console-application" class="section level3">
+<h3>Console Application</h3>
+<p>An application intended to be run from the console (command line).</p>
+<pre><code>dotnet new console -lang F# -o src/App</code></pre>
+</div>
+</div>
+<div id="adding-references" class="section level2">
+<h2>Adding References</h2>
+<p>If utilizing the command line, references to link everything together need to be added manually.</p>
+<div id="add-a-project-to-a-solution" class="section level3">
+<h3>Add a Project to a Solution</h3>
+<pre><code>dotnet sln add src/Library.fsproj</code></pre>
+</div>
+</div>
+<div id="building" class="section level2">
+<h2>Building</h2>
+<pre><code>dotnet build</code></pre>
+</div>
+<div id="run" class="section level2">
+<h2>Run</h2>
+<p>All command line arguments are passed into <code>argv</code> within <code>main</code>.</p>
+<pre><code>[&lt;EntryPoint&gt;]
+let main argv =
+    ...</code></pre>
+<p>To actually run.</p>
+<pre><code>dotnet run Some command line args</code></pre>
+</div>
+<div id="paket" class="section level2">
+<h2>Paket</h2>
+<p>Below are notes for utilizing <a href="https://fsprojects.github.io/Paket/">paket</a> from the command line to finish the <a href="https://github.com/isaacabraham/get-programming-fsharp/tree/netcore/src/code-listings/lesson-08">first Capstone</a>.</p>
+<p>First, ensure that you are in the root of the project. Next, make a directory for paket.</p>
+<pre><code>mkdir .paket</code></pre>
+<p>Download the bootstrapper. A <a href="https://github.com/fsprojects/Paket/releases/latest">link</a> is found on the paket site. Below is an example for downloading version <code>5.216.0</code>.</p>
+<pre><code>cd .paket &amp;&amp; curl -OLJ https://github.com/fsprojects/Paket/releases/download/5.216.0/paket.bootstrapper.exe ; cd -</code></pre>
+<p>Run the bootstrapper once. A new <code>.exe</code> will be created.</p>
+<pre><code>mono .paket/paket.bootstrapper.exe</code></pre>
+<p>Now, initialize. This will create a <code>paket.dependencies</code> file as well as the directory <code>paket-files</code>.</p>
+<pre><code>mono .paket/paket.exe init</code></pre>
+<p>Add <code>FSharp.Core</code> as a dependency.</p>
+<pre><code>mono .paket/paket.exe add FSharp.Core --version 4.7.0</code></pre>
+<p>Verify that the <code>&lt;Import&gt;</code> tag from the <code>Capstone1.fsproj</code> file reads as follows. It should happen automatically when adding <code>FSharp.Core</code>.</p>
+<pre class="xml"><code>&lt;Import Project=&quot;.paket\Paket.Restore.targets&quot; /&gt;</code></pre>
+<p>Finally, build (which will also perform a restore).</p>
+<pre><code>dotnet build</code></pre>
+<p>And now run.</p>
+<pre><code>dotnet run</code></pre>
+</div>

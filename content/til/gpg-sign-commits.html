@@ -1,0 +1,19 @@
+---
+title: "Using gpg to sign commits"
+date: "2019-08-24"
+slug: "gpg-sign-commits"
+tags: ["til"]
+---
+
+
+
+<p>Instructions for signing commits via git and <a href="https://help.github.com/en/articles/managing-commit-signature-verification">Github</a> requires one to first setup a <a href="https://gnupg.org/">gpg</a> key. To utilize the <a href="https://ed25519.cr.yp.to/">ed25519</a> algorithm, create your key like so.</p>
+<pre><code>gpg --quick-generate-key &quot;FirstName LastName &lt;username@somerandomemaildomain.com&gt;&quot; future-default default none</code></pre>
+<p>If one would like to add a comment, then just include in parentheses.</p>
+<pre><code>gpg --quick-generate-key &quot;FirstName LastName (some comment) &lt;username@somerandomemaildomain.com&gt;&quot; future-default default none</code></pre>
+<p>This is inspired by the shell script <a href="https://github.com/NicoHood/gpgit">gpgit</a>.</p>
+<p>Other commands to know (recall).</p>
+<p>To list the key ==&gt;</p>
+<pre><code>gpg --list-secret-keys --keyid-format LONG</code></pre>
+<p>To get a version for copying to Github ==&gt;</p>
+<pre><code>gpg --armor --export</code></pre>

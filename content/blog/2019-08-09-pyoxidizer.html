@@ -1,0 +1,36 @@
+---
+title: PyOxidizer
+author: Curtis Alexander
+date: "2019-08-09"
+slug: pyoxidizer
+categories: []
+tags: ["python"]
+draft: true
+---
+
+
+
+<p>I have been keeping an eye on a new project - <a href="">PyOxidizer</a> - that looks quite promising to distribute Python applications/scripts as a single executable by embedding Python. This post will not repeat much of what the author, <a href="https://github.com/indygreg">Gregory Szorc</a>, has already noted about the motivations, technical achievments, etc. Specifically, Gregory has a detailed and informative (as well as enjoyable) <a href="https://gregoryszorc.com/blog/2019/06/24/building-standalone-python-applications-with-pyoxidizer/">post</a> announcing PyOxidizer. I appreciate that within the introduction Gregory notes the concerns regarding the lack of easy distribution of Python applications to non-developers!</p>
+<blockquote>
+<p>Aside: I quite enjoy working in and utilizing Python. But I consider the difficulty in distributing code as a real drawback for Python. This is part of the reason I continue to side-eye <a href="https://fsharp.org/">F#</a> and to a lesser degree <a href="https://docs.microsoft.com/en-us/dotnet/csharp/">C#</a>. With <a href="https://docs.microsoft.com/en-us/dotnet/core/">.Net Core</a>, the languages that run on .Net have a story for <a href="https://docs.microsoft.com/en-us/dotnet/core/">application deployment</a>. Currently, there are three potential deployment models, all built into the CLI tooling, with one such model being a <a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/deploy-with-cli#self-contained-deployment">self-contained deployment</a> that includes the .Net Core runtime. Taking this a step further will be the Ahead of Time compilation Microsoft is working on for <a href="https://devblogs.microsoft.com/dotnet/introducing-net-5/#fast-startup-low-footprint-and-lower-memory-usage">.Net 5</a>. With .Net 5 aiming to be a unified platform for distributing apps to most any target desired, it looks to me to be a compelling platform to potentially build upon.</p>
+</blockquote>
+<p>Thus, this post will describe how one can utilize PyOxidizer for a single, simple use case - taking a single Python script (a single <code>.py</code> file) and distributing it as an executable.</p>
+<div id="code-for-this-post" class="section level3">
+<h3>Code for this post</h3>
+<p>All code for this post can be found in the following repos:</p>
+<p><repo 1> <repo 2></p>
+<p>In addition to the repos, all the steps below are encapsulated in a single shell script that one can use as a form of shorthand.</p>
+</div>
+<div id="multiple-repositories" class="section level3">
+<h3>Multiple Repositories</h3>
+<p>Before going through the steps to create an executable, I should note my preferred way to organize (at this point in time).</p>
+<p>First, my preference is to maintain the Python script that PyOxidizer will consume in its own repository. This allows me to first develop the script, ensuring it is documented and working before adding the compilation overhead. It also allows the script to be used by someone who has Python on their system and doesn’t need to consume a binary.</p>
+<p>After creating the inital repository with my Python script, I then create a second repository (named the same as the Python script with the postfix <code>cli</code>) that will be use PyOxidizer to produce a binary. This second repository consumes the first as a <a href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">git submodule</a>.</p>
+</div>
+<div id="get-pyoxidizer" class="section level3">
+<h3>Get PyOxidizer</h3>
+<p>First, get PyOxidizer. Simple enough - just follow the instructions <a href="https://pyoxidizer.readthedocs.io/en/latest/getting_started.html">here</a> to <a href="https://pyoxidizer.readthedocs.io/en/latest/getting_started.html#installing-rust">install Rust</a> and then <a href="https://pyoxidizer.readthedocs.io/en/latest/getting_started.html#installing-pyoxidizer">install PyOxidizer</a>.</p>
+</div>
+<div id="initialize-a-project" class="section level3">
+<h3>Initialize a project</h3>
+</div>
