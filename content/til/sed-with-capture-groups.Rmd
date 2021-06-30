@@ -9,7 +9,7 @@ There are times where I would like to use capture groups in a tool like `grep` w
 
 First, create a json file to parse.
 
-```
+```bash
 # create a file
 cat <<EOF > result.json
 {
@@ -21,7 +21,7 @@ EOF
 
 Next, parse and return the value from the `name` key.
 
-```
+```bash
 sed -n 's/[ \t]*"name": "\(.*\)",\?/\1/p' result.json
 ```
 
