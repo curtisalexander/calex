@@ -1,0 +1,54 @@
+---
+title: Convert docx to pdf
+author: Curtis Alexander
+date: '2019-07-27'
+slug: convert-docx-to-pdf
+categories: []
+tags:
+  - powershell
+---
+
+
+
+<p>Recently, I had the need to convert a set (&gt; 30) of Word documents (<code>docx</code> files) to pdf. Cobbling together pieces, I came up with a <a href="https://github.com/curtisalexander/convert-docx-to-pdf">PowerShell script</a> that takes advantage of the feature within Word to save a document as pdf.</p>
+<p>As I have been wont to do of late, I turned this simple task into a more complete script, with <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_comment_based_help?view=powershell-6">comment based help</a>, that I can distribute and share. This serves two purposes for me.</p>
+<ul>
+<li>It helps to continue to improve my scripting. I have to think through how to best generalize common functionality, how to perform (light) error checking, and how to design for use by others.</li>
+<li>It also helps to ensure that a user can utilize the script right away. Note that because I anticipate using this script somewhat infrequently, the ability to recall its use is important to future me!</li>
+</ul>
+<p>Unfortunately, this script only works on Windows as it requires the use of a <a href="https://docs.microsoft.com/en-us/powershell/scripting/samples/creating-.net-and-com-objects--new-object-?view=powershell-6#creating-com-objects-with-new-object">COM Object</a> that allows PowerShell to open and control a Word application.</p>
+<p>Of particular interest to me within the script is how to perform a <a href="https://en.wikipedia.org/wiki/Map_(higher-order_function)">map like</a> operation where I am only interested in processing a collection and producing side-effects rather than processing a collection and returning a new collection. To accomplish, the script is broken into two pieces — creating the initial collection and producing the side-effect on each element within the collection.</p>
+<div id="creating-the-initial-collection" class="section level3">
+<h3>Creating the initial collection</h3>
+<p>Utilizing <a href="">Get-ChildItem</a>, creating the collection is quite easy. Utilizing a simple filter results in a collection of files in a directory with a <code>docx</code> extension.</p>
+<pre class="powershell"><code>Get-ChildItem -Path &quot;${docxDir}&quot; -Filter &quot;*.docx&quot;</code></pre>
+</div>
+<div id="saving-as-pdf" class="section level3">
+<h3>Saving as pdf</h3>
+<p>To process the above collection, it is piped into <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/foreach-object?view=powershell-6">ForEach-Object</a> which iterates over the collection, executing a function for each file (the collection element).</p>
+<pre class="powershell"><code>ForEach-Object {
+    convertToPdf -wordApp $wordApp -wordFile $_
+}</code></pre>
+<p>The actual function is quite simple, merely opening the Word file and saving as a pdf.</p>
+<pre class="powershell"><code>function convertToPdf {
+    Param(
+        [Parameter(Mandatory = $true)]
+        [System.__ComObject]$wordApp,
+        [Parameter(Mandatory = $true)]
+        [System.IO.FileInfo]$wordFile
+    )
+    $pdfFile = Join-Path $wordFile.DirectoryName &quot;$($wordFile.Basename).pdf&quot; 
+    $wordDoc = $wordApp.Documents.Open($wordFile.FullName)
+    Write-Host &quot;Converting $wordFile to $pdfFile&quot;
+    try {
+        $wordDoc.SaveAs($pdfFile, 17)
+    }
+    finally {
+        $wordDoc.Close()
+    }
+}</code></pre>
+<p>Putting it all together, I merely have to pass in a directory and all <code>docx</code> files within are converted into a pdf.</p>
+<pre class="powershell"><code>Convert-DocxToPdf -docxDir &quot;C:\Users\myuser\Documents\Word&quot;</code></pre>
+<p>Finally, I had need to combine all the resulting pdf files into a single pdf and accomplished using <a href="https://www.pdflabs.com/tools/pdftk-server/">pdftk</a>.</p>
+<pre class="sh"><code>pdftk *.pdf cat output singlefile.pdf</code></pre>
+</div>

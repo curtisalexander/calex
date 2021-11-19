@@ -1,0 +1,70 @@
+---
+title: "Install openssl R package"
+author: Curtis Alexander
+date: "2018-03-03"
+slug: install-openssl-r-package
+categories: []
+tags:
+  - r
+---
+
+
+
+<p>Due to the various <code>openssl</code> libraries I have throughout my system (Apple’s version, homebrew’s version, miniconda3’s version), I was having trouble installing the <a href="https://CRAN.R-project.org/package=openssl">openssl</a> R package.</p>
+<p>Below is a shell script that makes use of my <a href="https://github.com/curtisalexander/cran-dl">cran-dl</a> script to first download the needed <code>tar.gz</code> file for <code>openssl</code> and then install it from the command line with <code>R CMD INSTALL</code> and the appropriate settings for <code>--configure-vars</code>.</p>
+<p>The below is also available in <a href="https://gist.github.com/curtisalexander/7dd6ddff900c2a7aa4461b34aa4dbde8">gist</a> form.</p>
+<pre class="bash"><code>#!/usr/bin/env zsh
+
+# where to begin?
+DIR=&quot;${HOME}/code&quot;
+cd &quot;${DIR}&quot;
+
+echo
+echo &quot;Working from within ${PWD}&quot;
+echo
+
+# clone cran-dl repo
+if [ ! -d &quot;cran-dl&quot; ] ; then
+    printf &quot;Would you like to clone cran-dl? [y/N]: &quot;
+    if read -q; then
+        echo; git clone https://github.com/curtisalexander/cran-dl; echo
+    fi
+fi
+
+
+echo &quot;Note that cran-dl requires the following R packages be installed:&quot;
+echo &quot;  - docopt&quot;
+echo &quot;  - httr&quot;
+echo &quot;  - purrr&quot;
+echo &quot;  - rvest&quot;
+echo &quot;  - xml2&quot;
+echo
+echo &quot;To install within R, execute the following:&quot;
+echo &quot;  - install.packages(c(\&quot;docopt\&quot;, \&quot;httr\&quot;, \&quot;purrr\&quot;, \&quot;rvest\&quot;, \&quot;xml2\&quot;))&quot;
+
+# create the directory if it does not exist
+if [ ! -d &quot;r-pkgs&quot; ] ; then
+    echo
+    echo &quot;Making the directory r-pkgs&quot;
+    mkdir -p &quot;${DIR}/r-pkgs&quot;
+fi
+
+# from the command line, download the tar.gz file
+echo
+echo &quot;Download the package using cran-dl&quot;
+${DIR}/cran-dl/cran-dl --pkg=openssl --path=&quot;${DIR}/r-pkgs&quot;
+echo
+
+# get the current openssl version
+echo
+echo &quot;Get the current version of openssl&quot;
+OPENSSL_VER=&quot;$(openssl version | cut -d&#39; &#39; -f 2)&quot;
+echo &quot;  - ${OPENSSL_VER}&quot;
+
+# install using appropriate configuration
+OPENSSL_R_VER=&quot;$(ls -1 ${DIR}/r-pkgs | grep ^openssl | sort -R | head -1)&quot;
+echo
+echo &quot;Installing...${OPENSSL_R_VER}&quot;
+echo
+
+sudo R CMD INSTALL -l /Library/Frameworks/R.framework/Resources/library --configure-vars=&#39;INCLUDE_DIR=/usr/local/opt/openssl/include LIB_DIR=/usr/local/opt/openssl/lib&#39; &quot;${DIR}/r-pkgs/${OPENSSL_R_VER}&quot;</code></pre>

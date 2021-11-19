@@ -1,0 +1,39 @@
+---
+title: "Using sed with capture groups"
+date: "2019-08-09"
+slug: "sed-with-capture-groups"
+tags: ["til"]
+---
+
+
+
+<p>There are times where I would like to use capture groups in a tool like <code>grep</code> when searching through text. Today I learned that you can accomplish with <code>sed</code>. Note that this is a quick summary based on the longer <a href="http://www.grymoire.com/Unix/Sed.html#toc-uh-4">sed tutorial</a> from <a href="http://www.grymoire.com">grymoire</a>.</p>
+<p>First, create a json file to parse.</p>
+<pre class="bash"><code># create a file
+cat &lt;&lt;EOF &gt; result.json
+{
+  &quot;id&quot;: &quot;123&quot;,
+  &quot;name&quot;: &quot;curtis&quot;
+}
+EOF</code></pre>
+<p>Next, parse and return the value from the <code>name</code> key.</p>
+<pre class="bash"><code>sed -n &#39;s/[ \t]*&quot;name&quot;: &quot;\(.*\)&quot;,\?/\1/p&#39; result.json</code></pre>
+<p>Interpretation is as follows.</p>
+<p><strong>NOTE:</strong></p>
+<ul>
+<li>Any part of the pattern (i.e. line) not included will be printed out thus the entire pattern must be captured.</li>
+</ul>
+<p><strong>REGEX:</strong></p>
+<ul>
+<li><p><code>[ \t]*</code> ==&gt; One or more tabs and/or spaces</p></li>
+<li><p><code>&quot;\(.*\)&quot;</code> ==&gt; The escaped parentheses represent the actual capture group</p></li>
+<li><p><code>\1</code> ==&gt; The actual captured result</p></li>
+<li><p><code>,\?</code> ==&gt; Match comma zero or one time</p></li>
+</ul>
+<p><strong>SWITCHES:</strong></p>
+<ul>
+<li><p><code>s/</code> ==&gt; substitute - because using substitute, need to ensure that the entire pattern (i.e. line) is captured</p></li>
+<li><p><code>-n</code> ==&gt; no printing except when p is included - when used in conjunction with /p, acts like <code>grep</code></p></li>
+<li><p><code>/p</code> ==&gt; print match (substitution)</p></li>
+</ul>
+<p>Why not just use <a href="https://stedolan.github.io/jq/"><code>jq</code></a>? <code>jq</code> is great! But sometimes you just want to utilize the tools you have at hand to get the job done!</p>

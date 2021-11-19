@@ -1,0 +1,22 @@
+---
+title: Killing Tasks on Windows with R
+author: Curtis Alexander
+date: "2017-11-04"
+slug: killing-tasks-on-windows-with-r
+categories: []
+tags:
+  - r
+---
+
+
+
+<p>On my Windows machine, I oftentimes want to kill a set of applications that are running. This is especially true when I don’t have full control of my machine and am unable to adjust the applications that launch on startup.</p>
+<p>Below are two examples — both accomplish the same feat — that use R to call down to the OS and kill a list of tasks / applications. One example is more <a href="#taskkill-readable-annotated">readable</a> while the <a href="#taskkill-terse-single-pipeline">other</a> is more terse. An alternative impetus for writing the short scripts below was to experiment with the <a href="https://github.com/r-lib/processx">processx</a> package. A more portable way to accomplish would be to simply use PowerShell. But this was a fun exercise.</p>
+<div id="taskkill-readable-annotated" class="section level3">
+<h3>Taskkill — Readable, Annotated</h3>
+<script src="https://gist.github.com/curtisalexander/5d328078441eb767083793faf268b27c.js"></script>
+</div>
+<div id="taskkill-terse-single-pipeline" class="section level3">
+<h3>Taskkill — Terse, Single Pipeline</h3>
+<script src="https://gist.github.com/curtisalexander/3d4f97fe7ef4564017d527c88830e852.js"></script>
+</div>

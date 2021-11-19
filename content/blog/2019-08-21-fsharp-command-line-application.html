@@ -1,0 +1,43 @@
+---
+title: F# Command Line Application
+author: Curtis Alexander
+date: "2019-08-21"
+slug: fsharp-command-line-application
+categories: []
+tags: ["f#"]
+draft: true
+---
+
+
+
+<p>The below chronicles the steps needed to create a command line application with <a href="https://fsharp.org">F#</a> that can be easily consumed.</p>
+<blockquote>
+<p>Aside: <a href="https://fsharpforfunandprofit.com/why-use-fsharp/">Why F#</a>? <a href="https://fsharpforfunandprofit.com/">Others</a> have answered quite eloquently and completely. As for me, I believe the language — and functional programming in particular — “fits” my brain. That is quite a mushy statement but I don’t know how else to describe it. Perhaps it is because I resisted the siren call of object-oriented programming (or was just too plain lazy to learn). To put it differently, as I continue to encounter new concepts in the language, I find myself continually saying “that makes sense” and assembling those concepts into the mental picture of what the language is.<br/><br/>I originally began to explore functinoal programming after encountering the <a href="https://purrr.tidyverse.org/">purrr</a> and <a href="https://magrittr.tidyverse.org/">magrittr</a> packages from the <a href="https://www.r-project.org">R language</a>.</p>
+</blockquote>
+<p>Finally, take note of the blog post date — these are instructions as of the date of publishing. Obviously this will change in the future!</p>
+<div id="what-tools-do-i-need" class="section level2">
+<h2>What tools do I need?</h2>
+<p>The instructions below are meant to be a (very) minimal set of instructions for creating a command line. In addition, they are as command line focused as possible.</p>
+<p><code>.NET Core SDK</code></p>
+<p>Download the <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0">.NET Core SDK</a>. For my sample application, I am utilizing <code>SDK 3.0.100-preview8-013656</code>.</p>
+</div>
+<div id="what-are-we-going-to-be-building" class="section level2">
+<h2>What are we going to be building?</h2>
+<p>In this example, we will be building a simple command line application that requests location information for <a href="https://ipstack.com/">ipstack.com</a>.</p>
+</div>
+<div id="lets-go" class="section level2">
+<h2>Let’s Go!</h2>
+<div id="setup" class="section level3">
+<h3>Setup</h3>
+<p>Let’s get everything setup. Start with a new directory.</p>
+<pre><code>mkdir fsharp-ipstack</code></pre>
+</div>
+<div id="beginnings" class="section level3">
+<h3>Beginnings</h3>
+<p>Start by creating a console application.</p>
+<pre><code>dotnet new console -lang F#</code></pre>
+</div>
+<div id="build-the-app" class="section level3">
+<h3>Build the App</h3>
+</div>
+</div>
